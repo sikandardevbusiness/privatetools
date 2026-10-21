@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 
 import { GlobalJsonLd } from "@/components/global-json-ld";
+import { ThemeProvider } from "@/features/preferences/theme/theme-provider";
 
 import { env } from "@/lib/env";
 import { cn } from "@/lib/utils";
@@ -55,14 +56,21 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body
                 className={cn(
-                    "min-h-screen antialiased bg-background text-foreground w-full",
+                    "min-h-screen antialiased bg-surface text-foreground w-full",
                     inter.variable,
                 )}
             >
-                {children}
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    {children}
+                </ThemeProvider>
 
                 <GlobalJsonLd />
                 <GoogleAnalytics gaId={env.NEXT_PUBLIC_GA_ID} />
