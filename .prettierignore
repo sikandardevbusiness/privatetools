@@ -1,0 +1,11 @@
+# Dependencies & Build
+node_modules
+dist
+build
+
+# Auto-generated
+CHANGELOG.md
+pnpm-lock.yaml
+
+# Husky/Git Hooks
+.husky/_

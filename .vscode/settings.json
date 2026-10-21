@@ -1,0 +1,52 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit",
+        "source.fixAll.eslint": "explicit"
+    },
+
+    // --- Clean Explorer Side-Panel Trimming ---
+    "files.exclude": {
+        "**/dist": true,
+        "**/.git": true,
+        "**/.next": true,
+        "**/*.log": true,
+        "**/.kilo": true,
+        "**/.husky": true,
+        "**/.turbo": true,
+        "**/*.sanity": true,
+        "**/.DS_Store": true,
+        "**/.changeset": true,
+        "**/node_modules": true,
+        "pnpm-debug.log*": true,
+
+        // Playwright
+        "**/test-results": true,
+        "**/playwright-report": true
+    },
+
+    // --- Search Engine Performance Optimization ---
+    "search.exclude": {
+        "**/dist": true,
+        "**/.next": true,
+        "**/.turbo": true,
+        "**/.husky": true,
+        "**/node_modules": true,
+        "**/pnpm-lock.yaml": true,
+
+        // Playwright
+        "**/test-results": true,
+        "**/playwright-report": true
+    },
+
+    // --- File Nesting View Rules ---
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        ".env.local": ".env.*",
+        "tsconfig.json": "ts*",
+        "README.md": "*.md, LICENSE",
+        "package.json": ".prettierrc, .prettierignore, *.cjs, pnpm-*, eslint*, *.js"
+    }
+}
