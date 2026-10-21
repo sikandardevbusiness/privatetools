@@ -172,3 +172,17 @@ export function getDiverseTools(currentToolId: string, limit: number = 4): BaseT
 
     return diverseTools;
 }
+
+// Helper to determine if a tool is "New" (e.g., created within the last 30 days)
+// Note: Adjust `(tool as any).createdAt` to match your actual BaseTool type if it has a `createdAt` or `isNew` field.
+export function isToolNew(createdAt?: string | Date | null): boolean {
+    if (!createdAt) return false;
+    try {
+        const created = new Date(createdAt).getTime();
+        const now = Date.now();
+        const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
+        return now - created < thirtyDaysInMs;
+    } catch {
+        return false;
+    }
+}

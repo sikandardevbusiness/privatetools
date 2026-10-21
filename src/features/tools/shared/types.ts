@@ -35,6 +35,7 @@ export const baseToolSchema = z.object({
     name: z.string(),
     thumbnailUrl: z.url(),
     description: z.string(),
+    tags: z.array(z.string()),
     longDescription: z.string(),
     category: toolCategorySchema,
     inputFormat: z.string().optional(),
@@ -46,6 +47,8 @@ export const baseToolSchema = z.object({
     legacyPaths: z.array(z.string()).optional(),
     maxFileSizeMB: z.number().positive().optional(),
     supportedOutputFormats: z.array(z.string()).optional(),
+    // ✅ NEW: Track when the effect was created (ISO Date String)
+    createdAt: z.string().optional(),
 });
 export type BaseTool = z.infer<typeof baseToolSchema>;
 
