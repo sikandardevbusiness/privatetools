@@ -29,7 +29,7 @@ const exploreLinks = [
 export function Footer() {
     return (
         <footer className="border-t border-border bg-surface text-foreground">
-            <div className="max-w-7xl mx-auto px-4 md:px-8 pt-12 pb-8">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 pt-16 pb-8">
                 {/* Changed to lg:grid-cols-5 to cleanly separate Brand, Explore, Company, Support, and Legal */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
                     {/* Column 1: Brand */}
