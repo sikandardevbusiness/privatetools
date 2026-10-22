@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import type { BaseTool, ToolComponentMap } from "@/features/tools/shared/types";
 
 export const audioTrimmerToolMetadata: BaseTool[] = [
@@ -50,5 +52,5 @@ export const audioTrimmerToolMetadata: BaseTool[] = [
 ];
 
 export const audioTrimmerToolComponentMap: ToolComponentMap = {
-    // "audio-trimmer": dynamic(() => import("./component")),
+    "audio-trimmer": dynamic(() => import("./component")),
 };

@@ -19,7 +19,7 @@ export function ToolShell({ children }: ToolShellProps) {
     }, []);
 
     return (
-        <div ref={shellRef} className="py-6">
+        <div ref={shellRef} className="py-4">
             {children}
         </div>
     );
