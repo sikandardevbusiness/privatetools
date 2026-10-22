@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import { BaseTool, ToolComponentMap } from "@/features/tools/shared/types";
 
 export const thumbnailPreviewToolMetadataList: BaseTool[] = [
@@ -38,5 +40,5 @@ export const thumbnailPreviewToolMetadataList: BaseTool[] = [
 ];
 
 export const thumbnailPreviewToolComponentMap: ToolComponentMap = {
-    // "youtube-thumbnail-preview": dynamic(() => import("./component")),
+    "youtube-thumbnail-preview": dynamic(() => import("./component")),
 };
