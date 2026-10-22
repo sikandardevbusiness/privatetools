@@ -15,15 +15,21 @@ const footerLinks = {
     ],
     support: [
         { label: "Contact Us", href: "/contact" },
-        { label: "Suggest a Tool", href: "/suggest" },
-        { label: "Report a Bug", href: "/report-bug" },
+        {
+            label: "Suggest a Tool",
+            href: `${env.NEXT_PUBLIC_GITHUB_URL}/issues/new?labels=enhancement&template=feature_request.md`,
+        },
+        {
+            label: "Report a Bug",
+            href: `${env.NEXT_PUBLIC_GITHUB_URL}/issues/new?labels=bug&template=bug_report.md`,
+        },
     ],
 };
 
 const exploreLinks = [
     { label: "All Tools", href: "/tools" },
-    { label: "Image Tools", href: "/tools/image" },
-    { label: "Document Tools", href: "/tools/document" },
+    { label: "Image Tools", href: "/tools?category=image" },
+    { label: "Document Tools", href: "/tools?category=document" },
 ];
 
 export function Footer() {

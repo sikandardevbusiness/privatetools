@@ -6,6 +6,8 @@ import Link from "next/link";
 import { CTASection } from "@/components/home/cta-section";
 import { Button } from "@/components/ui/button";
 
+import { toolMetadataList } from "@/features/tools/registry";
+
 export const metadata: Metadata = {
     title: "About Us",
     description:
@@ -15,7 +17,7 @@ export const metadata: Metadata = {
 const stats = [
     { value: "100%", label: "Client-Side Processing" },
     { value: "0", label: "Files Uploaded to Servers" },
-    { value: "50+", label: "Free Utilities Available" },
+    { value: `${toolMetadataList.length}+`, label: "Free Utilities Available" },
     { value: "24/7", label: "Always Available, No Downtime" },
 ];
 
