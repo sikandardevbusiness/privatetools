@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import type { BaseTool, ToolComponentMap } from "@/features/tools/shared/types";
 
 export const pdfRedactorToolMetadata: BaseTool[] = [
@@ -105,5 +107,5 @@ export const pdfRedactorToolMetadata: BaseTool[] = [
 ];
 
 export const pdfRedactorToolComponentMap: ToolComponentMap = {
-    // "pdf-redactor": dynamic(() => import("./component")),
+    "pdf-redactor": dynamic(() => import("./component")),
 };

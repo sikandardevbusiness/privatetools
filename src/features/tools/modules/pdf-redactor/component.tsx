@@ -1,0 +1,391 @@
+"use client";
+
+import { Redo, Shield, Trash2, Undo, ZoomIn, ZoomOut } from "lucide-react";
+import { useState } from "react";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
+import { ToolFullScreen } from "@/features/tools/shared/components/layouts/tool-fullscreen";
+import { FileUpload } from "@/features/tools/shared/components/uploads/file-upload";
+
+import type { BaseTool } from "@/features/tools/shared/types";
+import type { ResizeDirection, TextOverlayType } from "./use-pdf-redactor";
+import { usePDFRedactor } from "./use-pdf-redactor";
+
+export default function PDFRedactorClient({ tool }: { tool: BaseTool }) {
+    const {
+        file,
+        pdfDoc,
+        pageNum,
+        scale,
+        redactions,
+        settings,
+        isProcessing,
+        canvasRef,
+        containerRef,
+        currentBox,
+        past,
+        future,
+        handleFileSelect,
+        setPageNum,
+        setScale,
+        setSettings,
+        handleContainerMouseDown,
+        startBoxAction,
+        handleContainerMouseMove,
+        handleContainerMouseUp,
+        handleUndo,
+        handleRedo,
+        deleteRedaction,
+        handleApplyAndDownload,
+        reset,
+    } = usePDFRedactor();
+
+    const [isFullScreen, setIsFullScreen] = useState(false);
+
+    const handleUpload = (selected: File[]) => {
+        if (selected.length > 0) {
+            handleFileSelect(selected[0]);
+            setIsFullScreen(true); // ✅ Auto-enter fullscreen on upload
+        }
+    };
+
+    // ✅ FIX: Safely handle Select's null value to prevent TypeScript error
+    const handleOverlayTextChange = (value: string | null) => {
+        if (value) {
+            setSettings({ ...settings, overlayText: value as TextOverlayType });
+        }
+    };
+
+    // Upload Screen (KEPT EXACTLY AS YOU PROVIDED)
+    if (!file) {
+        return (
+            <div className="max-w-3xl mx-auto w-full text-center pt-16">
+                <FileUpload
+                    accept="application/pdf"
+                    maxSizeMB={50}
+                    multiple={false}
+                    onFilesSelected={handleUpload}
+                    allowedFormats={["pdf"]}
+                />
+            </div>
+        );
+    }
+
+    return (
+        <ToolFullScreen
+            title={tool.name}
+            isFullScreen={isFullScreen}
+            onToggleFullScreen={() => setIsFullScreen(!isFullScreen)}
+            sidebar={
+                <div className="space-y-6">
+                    {/* Redaction Settings */}
+                    <div className="bg-card border border-border rounded-xl p-4">
+                        <div className="flex items-center gap-2 text-sm font-medium text-foreground mb-4">
+                            <Shield className="w-4 h-4 text-primary" /> Redaction Settings
+                        </div>
+                        <div className="space-y-4">
+                            <div className="space-y-2">
+                                <Label className="text-xs text-muted-foreground">Color</Label>
+                                <Input
+                                    type="color"
+                                    value={settings.color}
+                                    onChange={(e) =>
+                                        setSettings({ ...settings, color: e.target.value })
+                                    }
+                                    className="h-9 cursor-pointer p-1 w-full"
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label className="text-xs text-muted-foreground">
+                                    Overlay Text
+                                </Label>
+                                <Select
+                                    value={settings.overlayText}
+                                    onValueChange={handleOverlayTextChange}
+                                >
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="Blank">Blank</SelectItem>
+                                        <SelectItem value="REDACTED">REDACTED</SelectItem>
+                                        <SelectItem value="CONFIDENTIAL">CONFIDENTIAL</SelectItem>
+                                        <SelectItem value="CUSTOM">Custom Text</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                                {settings.overlayText === "CUSTOM" && (
+                                    <Input
+                                        placeholder="Enter custom text"
+                                        value={settings.customText}
+                                        onChange={(e) =>
+                                            setSettings({ ...settings, customText: e.target.value })
+                                        }
+                                        className="mt-2"
+                                    />
+                                )}
+                            </div>
+
+                            <div className="space-y-2 pt-2 border-t border-border">
+                                <div className="flex items-center justify-between">
+                                    <Label className="text-xs cursor-pointer">Strip Metadata</Label>
+                                    <Switch
+                                        checked={settings.stripMetadata}
+                                        onCheckedChange={(v) =>
+                                            setSettings({ ...settings, stripMetadata: v })
+                                        }
+                                    />
+                                </div>
+                                <p className="text-[11px] text-muted-foreground/80 leading-relaxed">
+                                    Removes hidden properties like author name and creation date.
+                                </p>
+                            </div>
+
+                            <div className="space-y-2">
+                                <div className="flex items-center justify-between">
+                                    <Label className="text-xs cursor-pointer">
+                                        Remove Annotations
+                                    </Label>
+                                    <Switch
+                                        checked={settings.removeAnnotations}
+                                        onCheckedChange={(v) =>
+                                            setSettings({ ...settings, removeAnnotations: v })
+                                        }
+                                    />
+                                </div>
+                                <p className="text-[11px] text-muted-foreground/80 leading-relaxed">
+                                    Deletes existing comments, highlights, and form fields.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Actions */}
+                    <div className="bg-card border border-border rounded-xl p-4 space-y-3">
+                        <div className="grid grid-cols-2 gap-2">
+                            <Button
+                                onClick={handleUndo}
+                                disabled={past.length === 0}
+                                variant="outline"
+                                size="sm"
+                                className="gap-1"
+                            >
+                                <Undo className="w-3.5 h-3.5" /> Undo
+                            </Button>
+                            <Button
+                                onClick={handleRedo}
+                                disabled={future.length === 0}
+                                variant="outline"
+                                size="sm"
+                                className="gap-1"
+                            >
+                                <Redo className="w-3.5 h-3.5" /> Redo
+                            </Button>
+                        </div>
+
+                        <Button
+                            onClick={handleApplyAndDownload}
+                            disabled={redactions.length === 0 || isProcessing}
+                            className="w-full gap-2"
+                            size="lg"
+                        >
+                            {isProcessing ? "Processing..." : "Apply & Download"}
+                        </Button>
+
+                        <Button
+                            onClick={reset}
+                            variant="ghost"
+                            size="sm"
+                            className="w-full text-muted-foreground gap-2"
+                        >
+                            <Trash2 className="w-4 h-4" /> Clear & Upload New
+                        </Button>
+                    </div>
+                </div>
+            }
+        >
+            {/* Main Canvas Area */}
+            <div className="flex flex-col items-center gap-4 w-full h-full">
+                {/* Toolbar */}
+                <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-md border border-border rounded-lg p-2 flex items-center gap-2 shadow-sm">
+                    <Button
+                        variant="outline"
+                        size="icon"
+                        className="h-8 w-8"
+                        onClick={() => setScale((s) => Math.max(0.5, s - 0.25))}
+                    >
+                        <ZoomOut className="w-4 h-4" />
+                    </Button>
+                    <span className="text-sm font-medium w-12 text-center">
+                        {Math.round(scale * 100)}%
+                    </span>
+                    <Button
+                        variant="outline"
+                        size="icon"
+                        className="h-8 w-8"
+                        onClick={() => setScale((s) => Math.min(3, s + 0.25))}
+                    >
+                        <ZoomIn className="w-4 h-4" />
+                    </Button>
+                    <div className="w-px h-6 bg-border mx-1" />
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        disabled={pageNum <= 1}
+                        onClick={() => setPageNum((p) => p - 1)}
+                    >
+                        Previous
+                    </Button>
+                    <span className="text-sm font-medium min-w-20 text-center">
+                        Page {pageNum} of {pdfDoc?.numPages || 1}
+                    </span>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        disabled={pageNum >= (pdfDoc?.numPages || 1)}
+                        onClick={() => setPageNum((p) => p + 1)}
+                    >
+                        Next
+                    </Button>
+                </div>
+
+                {/* Canvas Container */}
+                <div
+                    ref={containerRef}
+                    className="relative shadow-lg border border-border bg-white"
+                    style={{ cursor: "crosshair", display: "inline-block" }}
+                    onMouseDown={handleContainerMouseDown}
+                    onMouseMove={handleContainerMouseMove}
+                    onMouseUp={handleContainerMouseUp}
+                    onMouseLeave={handleContainerMouseUp}
+                >
+                    <canvas ref={canvasRef} className="block" />
+
+                    {/* Render Redactions */}
+                    {redactions
+                        .filter((r) => r.pageIndex === pageNum - 1)
+                        .map((box) => {
+                            const textToDisplay =
+                                box.overlayText === "CUSTOM"
+                                    ? settings.customText || "REDACTED"
+                                    : box.overlayText;
+
+                            const resizeHandles: { dir: ResizeDirection; className: string }[] = [
+                                { dir: "nw", className: "-top-1.5 -left-1.5 cursor-nw-resize" },
+                                {
+                                    dir: "n",
+                                    className: "-top-1.5 left-1/2 -translate-x-1/2 cursor-n-resize",
+                                },
+                                { dir: "ne", className: "-top-1.5 -right-1.5 cursor-ne-resize" },
+                                {
+                                    dir: "e",
+                                    className:
+                                        "top-1/2 -right-1.5 -translate-y-1/2 cursor-e-resize",
+                                },
+                                { dir: "se", className: "-bottom-1.5 -right-1.5 cursor-se-resize" },
+                                {
+                                    dir: "s",
+                                    className:
+                                        "-bottom-1.5 left-1/2 -translate-x-1/2 cursor-s-resize",
+                                },
+                                { dir: "sw", className: "-bottom-1.5 -left-1.5 cursor-sw-resize" },
+                                {
+                                    dir: "w",
+                                    className: "top-1/2 -left-1.5 -translate-y-1/2 cursor-w-resize",
+                                },
+                            ];
+
+                            return (
+                                <div
+                                    key={box.id}
+                                    className="absolute redaction-box"
+                                    style={{
+                                        left: box.x * scale,
+                                        top: box.y * scale,
+                                        width: box.width * scale,
+                                        height: box.height * scale,
+                                    }}
+                                >
+                                    <div
+                                        className="w-full h-full border-2 border-red-500 relative group"
+                                        style={{
+                                            backgroundColor: box.color + "80",
+                                            cursor: "move",
+                                        }}
+                                        onMouseDown={(e) => startBoxAction(e, box, "move")}
+                                    >
+                                        {box.overlayText !== "Blank" && (
+                                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden p-1">
+                                                <span className="text-white font-bold text-[10px] md:text-sm drop-shadow-md text-center wrap-break-word leading-tight">
+                                                    {textToDisplay}
+                                                </span>
+                                            </div>
+                                        )}
+
+                                        {/* Resize Handles - Only show on hover */}
+                                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                            {resizeHandles.map(({ dir, className }) => (
+                                                <div
+                                                    key={dir}
+                                                    className={`absolute w-3 h-3 bg-white border border-red-500 pointer-events-auto ${className}`}
+                                                    onMouseDown={(e) => {
+                                                        e.stopPropagation();
+                                                        startBoxAction(
+                                                            e,
+                                                            box,
+                                                            `resize-${dir}` as `resize-${ResizeDirection}`,
+                                                        );
+                                                    }}
+                                                />
+                                            ))}
+
+                                            {/* Delete Button */}
+                                            <button
+                                                className="absolute -top-4 -right-4 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center shadow-sm pointer-events-auto hover:bg-red-700 transition-colors"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    deleteRedaction(box.id);
+                                                }}
+                                                title="Delete this box"
+                                            >
+                                                <Trash2 className="w-3.5 h-3.5" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+
+                    {/* Drawing Box Preview */}
+                    {currentBox && (
+                        <div
+                            className="absolute border-2 border-red-500 pointer-events-none"
+                            style={{
+                                left: currentBox.x,
+                                top: currentBox.y,
+                                width: Math.abs(currentBox.width),
+                                height: Math.abs(currentBox.height),
+                                backgroundColor: settings.color + "80",
+                            }}
+                        />
+                    )}
+                </div>
+
+                <p className="text-center text-xs text-muted-foreground pb-4">
+                    Click and drag to draw. Drag inside a box to move, use any edge or corner handle
+                    to resize.
+                </p>
+            </div>
+        </ToolFullScreen>
+    );
+}
