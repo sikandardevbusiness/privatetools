@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import { BaseTool, ToolComponentMap } from "@/features/tools/shared/types";
 
 export const imageCropperToolMetadataList: BaseTool[] = [
@@ -49,5 +51,5 @@ export const imageCropperToolMetadataList: BaseTool[] = [
 ];
 
 export const imageCropperToolComponentMap: ToolComponentMap = {
-    // "universal-image-cropper": dynamic(() => import("./component")),
+    "universal-image-cropper": dynamic(() => import("./component")),
 };

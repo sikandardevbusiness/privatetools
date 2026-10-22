@@ -1,6 +1,6 @@
 "use client";
 
-import { File, FileText, Image, Music, Upload, Video, X } from "lucide-react";
+import { File, FileText, ImageIcon, Music, Upload, Video, X } from "lucide-react";
 import { useCallback, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -19,7 +19,7 @@ interface FileUploadProps {
 }
 
 const formatIcons: Record<string, React.ReactNode> = {
-    image: <Image className="h-5 w-5" />,
+    image: <ImageIcon className="h-5 w-5" />,
     audio: <Music className="h-5 w-5" />,
     video: <Video className="h-5 w-5" />,
     pdf: <FileText className="h-5 w-5" />,

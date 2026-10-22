@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { FAQWithSchema } from "@/features/tools/shared/components/faq-with-schema";
 import { ToolCard } from "@/features/tools/shared/components/tool-card";
 
-import { toolMetadataList } from "@/features/tools/registry";
+import { toolComponentMap, toolMetadataList } from "@/features/tools/registry";
 import { ToolHeader } from "@/features/tools/shared/components/layouts/tool-header";
 import { BaseTool } from "@/features/tools/shared/types";
 import { getDiverseTools, getRelatedTools, getToolByPath } from "@/features/tools/shared/utils";
@@ -16,7 +16,7 @@ interface PageProps {
     }>;
 }
 
-// ✅ FIX: Tell Next.js this route is allowed to block while resolving params
+// ✅ FIX: Allow blocking route to resolve params
 export const instant = false;
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://privatetools.in";
@@ -178,6 +178,12 @@ export default async function DynamicToolPage({ params }: PageProps) {
         notFound();
     }
 
+    // ✅ FIX: Get the dynamic component from the registry
+    const DynamicComponent = toolComponentMap[tool.id];
+    if (!DynamicComponent) {
+        notFound();
+    }
+
     const structuredData = generateStructuredData(tool);
     const faqStructuredData = generateFAQStructuredData(tool);
     const breadcrumbSchema = generateBreadcrumbSchema(tool);
@@ -209,7 +215,9 @@ export default async function DynamicToolPage({ params }: PageProps) {
 
             <ToolHeader tool={tool} />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <DynamicComponent tool={tool} />
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
                 {tool.faqs && tool.faqs.length > 0 && <FAQWithSchema items={tool.faqs} />}
 
                 <div className="w-full mt-12">
