@@ -154,18 +154,21 @@ export function ToolsClient() {
 
                         <div className="flex items-center justify-between sm:justify-end gap-1 w-full sm:w-auto">
                             <Sheet>
-                                <SheetTrigger>
-                                    <Button
-                                        variant="outline"
-                                        className="lg:hidden gap-2 flex-1 sm:flex-none h-11"
-                                    >
-                                        <Filter className="h-4 w-4" /> Filters
-                                    </Button>
-                                </SheetTrigger>
+                                <SheetTrigger
+                                    render={
+                                        <Button
+                                            variant="outline"
+                                            className="lg:hidden gap-2 flex-1 sm:flex-none h-11"
+                                        >
+                                            <Filter className="h-4 w-4" /> Filters
+                                        </Button>
+                                    }
+                                />
                                 <SheetContent side="left" className="w-80 overflow-y-auto pt-2">
-                                    <SheetHeader className="border-b border-border">
+                                    <SheetHeader className="border-b border-border pb-4 mb-4">
                                         <SheetTitle>Filter Tools</SheetTitle>
                                     </SheetHeader>
+
                                     {/* Mobile categories with icons */}
                                     <div className="space-y-1 px-3">
                                         <button

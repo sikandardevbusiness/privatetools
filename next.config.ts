@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
                 hostname: "images.unsplash.com",
                 pathname: "/**",
             },
+            {
+                protocol: "https",
+                hostname: "cdn.sanity.io",
+                port: "",
+                pathname: "/images/**",
+            },
         ],
     },
     /* config options here */
