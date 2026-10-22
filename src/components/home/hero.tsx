@@ -1,8 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { ArrowRight, CloudOff, Lock, ShieldCheck, Zap } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+
+import { buttonVariants } from "@/components/ui/button";
+
+import { cn } from "@/lib/utils";
 
 const referenceHero =
     "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?q=80&w=1330&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D";
@@ -30,12 +34,15 @@ export function Hero() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-4">
-                    <Button size="lg" className="gap-2">
+                    <Link href="/tools" className={cn(buttonVariants({ size: "lg" }))}>
                         Browse Our Tools <ArrowRight size={16} />
-                    </Button>
-                    <Button variant="outline" size="lg" className="gap-2">
+                    </Link>
+                    <Link
+                        href="/legal/privacy"
+                        className={cn(buttonVariants({ size: "lg", variant: "outline" }))}
+                    >
                         <Lock size={16} /> Our Privacy Promise
-                    </Button>
+                    </Link>
                 </div>
 
                 <div className="flex flex-wrap gap-6 pt-4 border-t border-border">

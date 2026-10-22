@@ -6,6 +6,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
+import { env } from "@/lib/env";
+
 export function CTASection() {
     return (
         <section className="bg-primary/5 py-24 border-y border-border" id="community">
@@ -29,13 +31,19 @@ export function CTASection() {
                         </p>
 
                         <div className="flex flex-wrap items-center gap-4">
-                            <Link href="/suggest">
+                            <Link
+                                href={`${env.NEXT_PUBLIC_GITHUB_URL}/issues/new?labels=enhancement&template=feature_request.md`}
+                                target="_blank"
+                            >
                                 <Button size="lg" className="gap-2">
                                     <Lightbulb size={16} /> Suggest a Tool
                                 </Button>
                             </Link>
 
-                            <Link href="/report-bug">
+                            <Link
+                                href={`${env.NEXT_PUBLIC_GITHUB_URL}/issues/new?labels=bug&template=bug_report.md`}
+                                target="_blank"
+                            >
                                 <Button
                                     variant="outline"
                                     size="lg"
@@ -65,11 +73,11 @@ export function CTASection() {
                             <CardContent>
                                 <div className="pt-2 border-t border-border">
                                     <Link
-                                        href="mailto:support@privatetools.in"
+                                        href={`mailto:${env.NEXT_PUBLIC_CONTACT_EMAIL}`}
                                         className="flex items-center justify-between group p-3 rounded-lg hover:bg-muted transition-colors"
                                     >
                                         <span className="font-medium text-foreground">
-                                            support@privatetools.in
+                                            {env.NEXT_PUBLIC_CONTACT_EMAIL}
                                         </span>
                                         <ArrowRight
                                             size={16}

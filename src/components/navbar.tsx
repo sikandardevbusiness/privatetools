@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/sheet";
 import { ThemeToggler } from "@/features/preferences/theme/theme-toggler";
 
+import { env } from "@/lib/env";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -25,10 +26,6 @@ const navLinks = [
     { label: "Contact", href: "/contact" },
 ];
 
-const GITHUB_URL = "https://github.com/your-username/privatetools";
-
-// ✅ FIX 1: Applied button styles directly to the <Link> to prevent invalid HTML
-// nesting (<button><a>...</a></button>), which causes browser/console warnings.
 const IconButtonLink = ({
     href,
     label,
@@ -73,7 +70,7 @@ export function Navbar() {
 
                 {/* Desktop Actions (GitHub + Theme) */}
                 <div className="hidden md:flex items-center gap-2">
-                    <IconButtonLink href={GITHUB_URL} label="GitHub repository">
+                    <IconButtonLink href={env.NEXT_PUBLIC_GITHUB_URL} label="GitHub repository">
                         <FaGithub className="h-5 w-5" />
                     </IconButtonLink>
                     <ThemeToggler />
@@ -81,7 +78,7 @@ export function Navbar() {
 
                 {/* Mobile Actions (GitHub + Theme + Menu) */}
                 <div className="flex md:hidden items-center gap-1">
-                    <IconButtonLink href={GITHUB_URL} label="GitHub repository">
+                    <IconButtonLink href={env.NEXT_PUBLIC_GITHUB_URL} label="GitHub repository">
                         <FaGithub className="h-5 w-5" />
                     </IconButtonLink>
 

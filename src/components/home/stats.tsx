@@ -1,8 +1,10 @@
+import { toolMetadataList } from "@/features/tools/registry";
+
 const stats = [
     { value: "100%", label: "Client-side processing" },
     { value: "0", label: "Files uploaded to servers" },
-    { value: "50+", label: "Free utilities available" },
-    { value: "0", label: "Trackers or ads" },
+    { value: `${toolMetadataList.length}+`, label: "Free utilities available" },
+    { value: "0", label: "Accounts required" },
 ];
 
 export function Stats() {

@@ -6,7 +6,7 @@ import { Hero } from "@/components/home/hero";
 import { Stats } from "@/components/home/stats";
 
 export const metadata: Metadata = {
-    title: "Home",
+    title: "Free Online Tools. 100% Private & Secure.",
 };
 
 export default function Home() {

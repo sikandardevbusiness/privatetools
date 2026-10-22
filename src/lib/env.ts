@@ -21,6 +21,9 @@ export const env = createEnv({
         NEXT_PUBLIC_SANITY_DATASET: z.string().min(1),
         NEXT_PUBLIC_SANITY_PROJECT_ID: z.string().min(1),
 
+        // SOCIAL MEDIA
+        NEXT_PUBLIC_GITHUB_URL: z.string().min(1),
+
         // DONATION PLATFORM COMPLETE URL VALIDATION
         NEXT_PUBLIC_KOFI_URL: z.url(),
         NEXT_PUBLIC_PATREON_URL: z.url(),
@@ -46,6 +49,9 @@ export const env = createEnv({
 
         // CONTACT DETAILS
         NEXT_PUBLIC_CONTACT_EMAIL: process.env.NEXT_PUBLIC_CONTACT_EMAIL,
+
+        // SOCIAL MEDIA
+        NEXT_PUBLIC_GITHUB_URL: process.env.NEXT_PUBLIC_GITHUB_URL,
 
         // VERIFICATION CODES
         NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
