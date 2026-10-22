@@ -10,9 +10,9 @@ import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 import { toolMetadataList } from "@/features/tools/registry";
+import { getCategoryIcon } from "@/features/tools/shared/actions";
 import { ToolCard } from "@/features/tools/shared/components/tool-card";
 import type { ToolCategory } from "@/features/tools/shared/types";
-import { getCategoryIcon } from "@/features/tools/shared/utils";
 import { cn } from "@/lib/utils";
 
 interface FilterState {

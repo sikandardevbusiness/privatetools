@@ -15,11 +15,11 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { FileUpload } from "@/features/tools/shared/components/file-upload";
 import { ToolShell } from "@/features/tools/shared/components/layouts/tool-shell";
-import { cn } from "@/lib/utils";
+import { FileUpload } from "@/features/tools/shared/components/uploads/file-upload";
 
 import type { BaseTool } from "@/features/tools/shared/types";
+import { cn } from "@/lib/utils";
 
 export default function ImageCropperTool({}: { tool: BaseTool }) {
     const [image, setImage] = useState<string | null>(null);

@@ -5,9 +5,9 @@ import { FAQWithSchema } from "@/features/tools/shared/components/faq-with-schem
 import { ToolCard } from "@/features/tools/shared/components/tool-card";
 
 import { toolComponentMap, toolMetadataList } from "@/features/tools/registry";
+import { getDiverseTools, getRelatedTools, getToolByPath } from "@/features/tools/shared/actions";
 import { ToolHeader } from "@/features/tools/shared/components/layouts/tool-header";
 import { BaseTool } from "@/features/tools/shared/types";
-import { getDiverseTools, getRelatedTools, getToolByPath } from "@/features/tools/shared/utils";
 
 interface PageProps {
     params: Promise<{
@@ -16,7 +16,6 @@ interface PageProps {
     }>;
 }
 
-// ✅ FIX: Allow blocking route to resolve params
 export const instant = false;
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://privatetools.in";

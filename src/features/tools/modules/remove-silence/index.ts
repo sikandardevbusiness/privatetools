@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import { BaseTool, ToolComponentMap } from "@/features/tools/shared/types";
 
 export const removeSilenceToolMetadataList: BaseTool[] = [
@@ -55,5 +57,5 @@ export const removeSilenceToolMetadataList: BaseTool[] = [
 ];
 
 export const removeSilenceToolComponentMap: ToolComponentMap = {
-    // "remove-silence": dynamic(() => import("./component")),
+    "remove-silence": dynamic(() => import("./component")),
 };
