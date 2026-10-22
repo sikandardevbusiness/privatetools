@@ -4,9 +4,7 @@ export const imageConverterToolMetadataList: BaseTool[] = [
     {
         id: "all-in-one-image-converter",
         category: "image",
-        legacyPaths: ["/tools/converters/*"],
         name: "All-in-One Image Converter",
-        acceptType: ".jpg,.jpeg,.png,.webp,.gif,.bmp,.svg,.heic,.heif,.tiff,.tif,.pdf",
         tags: ["convert", "batch", "jpg", "png", "webp", "heic", "tiff"],
         keywords: [
             "all in one image converter",
@@ -49,9 +47,6 @@ export const imageConverterToolMetadataList: BaseTool[] = [
         id: "jpg-to-png",
         category: "image",
         name: "JPG to PNG Converter",
-        acceptType: ".jpg,.jpeg",
-        inputFormat: "jpg",
-        defaultOutputFormat: "png",
         tags: ["jpg", "png", "convert", "transparency"],
         keywords: [
             "jpg to png converter",
@@ -86,9 +81,6 @@ export const imageConverterToolMetadataList: BaseTool[] = [
         id: "png-to-jpg",
         category: "image",
         name: "PNG to JPG Converter",
-        acceptType: ".png",
-        inputFormat: "png",
-        defaultOutputFormat: "jpg",
         tags: ["png", "jpg", "convert", "compress"],
         keywords: [
             "png to jpg converter",
@@ -123,9 +115,6 @@ export const imageConverterToolMetadataList: BaseTool[] = [
         id: "webp-to-jpg",
         category: "image",
         name: "WEBP to JPG Converter",
-        acceptType: ".webp",
-        inputFormat: "webp",
-        defaultOutputFormat: "jpg",
         keywords: [
             "webp to jpg converter",
             "convert webp to jpeg online",
@@ -160,9 +149,6 @@ export const imageConverterToolMetadataList: BaseTool[] = [
         id: "heic-to-jpg",
         category: "image",
         name: "HEIC to JPG Converter",
-        acceptType: ".heic,.heif",
-        defaultOutputFormat: "jpg",
-        inputFormat: "heic",
         tags: ["heic", "jpg", "iphone", "convert"],
         keywords: [
             "heic to jpg converter",
@@ -199,9 +185,6 @@ export const imageConverterToolMetadataList: BaseTool[] = [
         id: "tiff-to-jpg",
         category: "image",
         name: "TIFF to JPG Converter",
-        acceptType: ".tiff,.tif",
-        inputFormat: "tiff",
-        defaultOutputFormat: "jpg",
         tags: ["tiff", "jpg", "convert", "scanner"],
         keywords: [
             "tiff to jpg converter",

@@ -5,7 +5,6 @@ export const manhwaCropperToolMetadataList: BaseTool[] = [
         id: "manhwa-panel-cropper",
         category: "image",
         name: "Manhwa & Webtoon Panel Cropper",
-        acceptType: ".jpg,.jpeg,.png,.webp",
         keywords: [
             "manhwa cropper",
             "webtoon panel splitter",

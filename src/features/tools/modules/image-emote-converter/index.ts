@@ -5,7 +5,6 @@ export const imageEmoteConverterToolMetadataList: BaseTool[] = [
         id: "emote-resizer",
         category: "image",
         name: "Twitch & Discord Emote Resizer",
-        acceptType: ".png,.jpg,.jpeg,.webp,.gif",
         keywords: [
             "emote resizer",
             "twitch emote resizer",

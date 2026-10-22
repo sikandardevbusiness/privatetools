@@ -5,7 +5,6 @@ export const audioTrimmerToolMetadata: BaseTool[] = [
         id: "audio-trimmer",
         category: "audio",
         name: "Audio Trimmer & Merger",
-        acceptType: "audio/*,.mp3,.wav,.m4a,.ogg,.aac,.flac",
         tags: ["audio", "trim", "merge", "mp3", "wav"],
         keywords: [
             "free audio trimmer online",

@@ -5,7 +5,6 @@ export const videoWatermarkToolMetadataList: BaseTool[] = [
         id: "video-watermark",
         category: "video",
         name: "Video Watermark",
-        acceptType: "video/*",
         keywords: [
             "video watermark",
             "add logo to video",

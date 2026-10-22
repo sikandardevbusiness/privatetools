@@ -1,16 +1,10 @@
 import { BaseTool, ToolComponentMap } from "@/features/tools/shared/types";
 
-const DATA_FORMATS = ["CSV", "JSON", "XML", "YAML", "SQL", "Markdown", "TSV"];
-
 export const dataTransformerToolMetadataList: BaseTool[] = [
     {
         id: "json-to-csv",
-        inputFormat: "JSON",
-        acceptType: ".json",
         category: "developer",
-        defaultOutputFormat: "CSV",
         name: "JSON to CSV Converter",
-        supportedOutputFormats: DATA_FORMATS,
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/65bbb5a96f60fdf0d2a981aaf9baadb5a4b4e066-1376x768.jpg",
         keywords: [
@@ -19,7 +13,7 @@ export const dataTransformerToolMetadataList: BaseTool[] = [
             "json to csv converter",
             "export json to csv",
         ],
-        tags: ["json", "csv", "convert", "developer", "data", "spreadsheet", "export"], // ✅ Added tags
+        tags: ["json", "csv", "convert", "developer", "data", "spreadsheet", "export"],
         isExperimental: true,
         description:
             "Convert JSON to CSV online for free. Transform arrays and objects into spreadsheet format instantly. 100% private.",
@@ -40,11 +34,7 @@ export const dataTransformerToolMetadataList: BaseTool[] = [
         id: "csv-to-json",
         category: "developer",
         name: "CSV to JSON Converter",
-        inputFormat: "CSV",
-        defaultOutputFormat: "JSON",
-        acceptType: ".csv",
         isExperimental: true,
-        supportedOutputFormats: DATA_FORMATS,
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/be96b786f2fa3814a8d0e02d236d3c978ba3de6e-1376x768.jpg",
         keywords: [
@@ -53,7 +43,7 @@ export const dataTransformerToolMetadataList: BaseTool[] = [
             "csv to json converter",
             "spreadsheet to json",
         ],
-        tags: ["csv", "json", "convert", "developer", "data", "spreadsheet", "import"], // ✅ Added tags
+        tags: ["csv", "json", "convert", "developer", "data", "spreadsheet", "import"],
         description:
             "Convert CSV to JSON online for free. Transform spreadsheet data into JSON arrays instantly. 100% private.",
         longDescription:
@@ -73,13 +63,9 @@ export const dataTransformerToolMetadataList: BaseTool[] = [
         id: "all-in-one-data-transformer",
         category: "developer",
         name: "All-in-One Data Transformer",
-        defaultOutputFormat: "JSON",
         isExperimental: true,
-        acceptType: ".json,.csv,.xml,.yaml,.yml,.sql,.md,.tsv",
-        supportedOutputFormats: DATA_FORMATS,
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/ac3cafdd7abb03b75aa1bbd6770317ed2640ddf4-1376x768.jpg",
-        legacyPaths: ["/tools/transformers/*"],
         keywords: [
             "data transformer",
             "convert data formats",
@@ -100,7 +86,7 @@ export const dataTransformerToolMetadataList: BaseTool[] = [
             "sql",
             "markdown",
             "all-in-one",
-        ], // ✅ Added tags
+        ],
         description:
             "Convert between JSON, CSV, XML, YAML, SQL, and Markdown formats instantly. 100% private, no uploads.",
         longDescription:

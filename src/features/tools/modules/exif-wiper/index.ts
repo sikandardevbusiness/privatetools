@@ -21,7 +21,6 @@ export const exifWiperToolMetadataList: BaseTool[] = [
             "clean image metadata",
             "privacy tool",
         ],
-        acceptType: "image/*",
         faqs: [
             {
                 question: "Are my photos uploaded to a server?",

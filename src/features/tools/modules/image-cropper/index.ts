@@ -5,8 +5,6 @@ export const imageCropperToolMetadataList: BaseTool[] = [
         id: "universal-image-cropper",
         category: "image",
         name: "Universal Image Cropper",
-        acceptType: ".jpg,.png,.webp,.gif,.bmp,.svg,.heic,.heif",
-        legacyPaths: ["/tools/croppers/*"],
         keywords: [
             "image cropper",
             "photo cropper",

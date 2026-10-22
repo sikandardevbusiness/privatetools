@@ -5,7 +5,6 @@ export const removeSilenceToolMetadataList: BaseTool[] = [
         id: "remove-silence",
         category: "audio",
         name: "Remove Silence from Audio",
-        acceptType: "audio/*",
         keywords: [
             "remove silence",
             "audio silence remover",

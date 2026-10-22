@@ -5,9 +5,6 @@ export const pdfConverterToolMetadataList: BaseTool[] = [
         id: "pdf-to-jpg",
         category: "document",
         name: "PDF to JPG Converter",
-        acceptType: ".pdf",
-        inputFormat: "pdf",
-        defaultOutputFormat: "jpg",
         keywords: [
             "pdf to jpg",
             "convert pdf to jpg",

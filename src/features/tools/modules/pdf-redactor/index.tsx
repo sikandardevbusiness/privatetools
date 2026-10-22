@@ -5,7 +5,6 @@ export const pdfRedactorToolMetadata: BaseTool[] = [
         id: "pdf-redactor",
         category: "document",
         name: "PDF Redactor",
-        acceptType: "application/pdf",
         tags: ["pdf", "redact", "privacy", "metadata"],
         keywords: [
             // Primary keywords

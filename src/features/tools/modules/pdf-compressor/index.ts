@@ -21,7 +21,6 @@ export const pdfCompressorToolMetadataList: BaseTool[] = [
         tags: ["pdf", "compress", "reduce size"],
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/51d91055d270b211c4bfdb0ac3c81427977a01f9-1376x768.jpg",
-        acceptType: ".pdf",
         faqs: [
             {
                 question: "Are my PDFs uploaded to a server?",

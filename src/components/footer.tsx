@@ -127,7 +127,7 @@ export function Footer() {
                 {/* Bottom Bar */}
                 <div className="border-t border-muted-foreground/20 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground/60">
                     <span>© 2026 {env.NEXT_PUBLIC_SITE_TITLE}. All rights reserved.</span>
-                    <span>Built with privacy first. No tracking. No ads. Pure tools.</span>
+                    <span>Built with privacy first. No tracking. Pure tools.</span>
                 </div>
             </div>
         </footer>

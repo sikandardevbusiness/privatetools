@@ -5,7 +5,6 @@ export const imageCompressorToolMetadataList: BaseTool[] = [
         id: "image-compressor",
         category: "image",
         name: "Image Compressor",
-        acceptType: ".jpg,.jpeg,.png,.webp,.gif,.bmp,.avif",
         tags: ["compress", "optimize", "reduce size"],
         keywords: [
             "image compressor",
