@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import { BaseTool, ToolComponentMap } from "@/features/tools/shared/types";
 
 export const videoWatermarkToolMetadataList: BaseTool[] = [
@@ -41,5 +43,5 @@ export const videoWatermarkToolMetadataList: BaseTool[] = [
 ];
 
 export const videoWatermarkToolComponentMap: ToolComponentMap = {
-    // "video-watermark": dynamic(() => import("./component")),
+    "video-watermark": dynamic(() => import("./component")),
 };
