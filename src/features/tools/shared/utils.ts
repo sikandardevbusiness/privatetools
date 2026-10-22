@@ -1,3 +1,4 @@
+import { Code, FileText, Image, Lock, Music, Sparkles, Type, Video } from "lucide-react";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
@@ -184,5 +185,27 @@ export function isToolNew(createdAt?: string | Date | null): boolean {
         return now - created < thirtyDaysInMs;
     } catch {
         return false;
+    }
+}
+
+// Category icon mapping
+export function getCategoryIcon(category: string) {
+    switch (category) {
+        case "image":
+            return Image;
+        case "document":
+            return FileText;
+        case "text":
+            return Type;
+        case "video":
+            return Video;
+        case "audio":
+            return Music;
+        case "privacy":
+            return Lock;
+        case "developer":
+            return Code;
+        default:
+            return Sparkles;
     }
 }
