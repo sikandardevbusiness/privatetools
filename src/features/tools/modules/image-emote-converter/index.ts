@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import { BaseTool, ToolComponentMap } from "@/features/tools/shared/types";
 
 export const imageEmoteConverterToolMetadataList: BaseTool[] = [
@@ -41,5 +43,5 @@ export const imageEmoteConverterToolMetadataList: BaseTool[] = [
 ];
 
 export const imageEmoteConverterToolComponentMap: ToolComponentMap = {
-    // "emote-resizer": dynamic(() => import("./component")),
+    "emote-resizer": dynamic(() => import("./component")),
 };
