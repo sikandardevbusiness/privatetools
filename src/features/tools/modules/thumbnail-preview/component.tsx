@@ -120,15 +120,13 @@ export default function ThumbnailPreviewClient({ tool }: { tool: BaseTool }) {
     if (thumbs.length === 0) {
         return (
             <ToolShell>
-                <div className="max-w-3xl mx-auto w-full text-center">
-                    <FileUpload
-                        accept="image/*"
-                        maxSizeMB={10}
-                        multiple={true}
-                        onFilesSelected={addFiles}
-                        allowedFormats={["jpg", "jpeg", "png", "webp"]}
-                    />
-                </div>
+                <FileUpload
+                    accept="image/*"
+                    maxSizeMB={10}
+                    multiple={true}
+                    onFilesSelected={addFiles}
+                    allowedFormats={["jpg", "jpeg", "png", "webp"]}
+                />
             </ToolShell>
         );
     }

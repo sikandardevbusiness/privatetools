@@ -101,15 +101,13 @@ export default function EmoteResizerClient({}: { tool: BaseTool }) {
     return (
         <ToolShell>
             {!currentFile ? (
-                <div className="max-w-3xl mx-auto">
-                    <FileUpload
-                        accept="image/*"
-                        maxSizeMB={10}
-                        multiple={false}
-                        onFilesSelected={handleFileSelect}
-                        allowedFormats={["png", "jpg", "jpeg", "webp"]}
-                    />
-                </div>
+                <FileUpload
+                    accept="image/*"
+                    maxSizeMB={10}
+                    multiple={false}
+                    onFilesSelected={handleFileSelect}
+                    allowedFormats={["png", "jpg", "jpeg", "webp"]}
+                />
             ) : (
                 <div className="max-w-7xl mx-auto space-y-8">
                     {/* Header Actions */}

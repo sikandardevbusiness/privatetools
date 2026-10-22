@@ -266,18 +266,17 @@ export default function RemoveSilenceAudioClient({}: { tool: BaseTool }) {
 
     return (
         <ToolShell>
-            <div className="grid lg:grid-cols-3 gap-8">
-                {/* Left Side: File Upload / File List (2/3 width) */}
-                <div className="lg:col-span-2">
-                    {files.length === 0 ? (
-                        <FileUpload
-                            accept="audio/*"
-                            maxSizeMB={100}
-                            multiple={true}
-                            onFilesSelected={handleFileSelect}
-                            allowedFormats={["mp3", "wav", "ogg", "m4a", "aac", "flac", "webm"]}
-                        />
-                    ) : (
+            {files.length === 0 ? (
+                <FileUpload
+                    accept="audio/*"
+                    maxSizeMB={100}
+                    multiple={true}
+                    onFilesSelected={handleFileSelect}
+                    allowedFormats={["mp3", "wav", "ogg", "m4a", "aac", "flac", "webm"]}
+                />
+            ) : (
+                <div className="grid lg:grid-cols-3 gap-8">
+                    <div className="lg:col-span-2">
                         <FileList
                             files={files}
                             supportedFormats={["mp3", "wav"]}
@@ -289,37 +288,37 @@ export default function RemoveSilenceAudioClient({}: { tool: BaseTool }) {
                             onDownloadAll={handleDownloadAll}
                             onAddMoreFiles={() => fileInputRef.current?.click()}
                         />
-                    )}
-                </div>
+                    </div>
 
-                {/* Right Side: Settings Panel (1/3 width, sticky, disabled when no files) */}
-                <div className="space-y-6">
-                    <SilenceSettings
-                        threshold={threshold}
-                        minDuration={minDuration}
-                        outputFormat={outputFormat}
-                        onThresholdChange={setThreshold}
-                        onMinDurationChange={setMinDuration}
-                        onOutputFormatChange={handleFormatChange}
-                        isDisabled={files.length === 0}
-                    />
+                    {/* Right Side: Settings Panel (1/3 width, sticky, disabled when no files) */}
+                    <div className="space-y-6">
+                        <SilenceSettings
+                            threshold={threshold}
+                            minDuration={minDuration}
+                            outputFormat={outputFormat}
+                            onThresholdChange={setThreshold}
+                            onMinDurationChange={setMinDuration}
+                            onOutputFormatChange={handleFormatChange}
+                            isDisabled={files.length === 0}
+                        />
+                    </div>
                 </div>
+            )}
 
-                {/* Hidden file input for "Add More" functionality */}
-                <input
-                    ref={fileInputRef}
-                    type="file"
-                    multiple
-                    accept="audio/*"
-                    className="hidden"
-                    onChange={(e) => {
-                        if (e.target.files) {
-                            handleFileSelect(Array.from(e.target.files));
-                            e.target.value = "";
-                        }
-                    }}
-                />
-            </div>
+            {/* Hidden file input for "Add More" functionality */}
+            <input
+                ref={fileInputRef}
+                type="file"
+                multiple
+                accept="audio/*"
+                className="hidden"
+                onChange={(e) => {
+                    if (e.target.files) {
+                        handleFileSelect(Array.from(e.target.files));
+                        e.target.value = "";
+                    }
+                }}
+            />
         </ToolShell>
     );
 }

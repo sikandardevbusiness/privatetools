@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import { BaseTool, ToolComponentMap } from "@/features/tools/shared/types";
 
 export const pdfCompressorToolMetadataList: BaseTool[] = [
@@ -39,5 +41,5 @@ export const pdfCompressorToolMetadataList: BaseTool[] = [
 ];
 
 export const pdfCompressorToolComponentMap: ToolComponentMap = {
-    // "pdf-compressor": dynamic(() => import("./component")),
+    "pdf-compressor": dynamic(() => import("./component")),
 };

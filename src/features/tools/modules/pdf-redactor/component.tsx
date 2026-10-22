@@ -59,25 +59,21 @@ export default function PDFRedactorClient({ tool }: { tool: BaseTool }) {
         }
     };
 
-    // ✅ FIX: Safely handle Select's null value to prevent TypeScript error
     const handleOverlayTextChange = (value: string | null) => {
         if (value) {
             setSettings({ ...settings, overlayText: value as TextOverlayType });
         }
     };
 
-    // Upload Screen (KEPT EXACTLY AS YOU PROVIDED)
     if (!file) {
         return (
-            <div className="max-w-3xl mx-auto w-full text-center pt-16">
-                <FileUpload
-                    accept="application/pdf"
-                    maxSizeMB={50}
-                    multiple={false}
-                    onFilesSelected={handleUpload}
-                    allowedFormats={["pdf"]}
-                />
-            </div>
+            <FileUpload
+                accept="application/pdf"
+                maxSizeMB={50}
+                multiple={false}
+                onFilesSelected={handleUpload}
+                allowedFormats={["pdf"]}
+            />
         );
     }
 
