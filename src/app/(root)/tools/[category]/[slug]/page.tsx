@@ -125,7 +125,7 @@ export default async function DynamicToolPage({ params }: PageProps) {
                     )}
 
                     {diverseTools.length > 0 && (
-                        <RelatedTools tools={relatedTools} title="Explore something different" />
+                        <RelatedTools tools={diverseTools} title="Explore something different" />
                     )}
                 </div>
             </div>

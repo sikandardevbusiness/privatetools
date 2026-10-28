@@ -1,21 +1,13 @@
 "use client";
 
-import { Redo, Shield, Trash2, Undo, ZoomIn, ZoomOut } from "lucide-react";
+import { Trash2, ZoomIn, ZoomOut } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
 import { ToolFullScreen } from "@/features/tools/shared/components/layouts/tool-fullscreen";
+import { ToolHeader } from "@/features/tools/shared/components/layouts/tool-header";
 import { FileUpload } from "@/features/tools/shared/components/uploads/file-upload";
+import { PDFRedactorSettings } from "./settings";
 
 import type { BaseTool } from "@/features/tools/shared/types";
 import type { ResizeDirection, TextOverlayType } from "./use-pdf-redactor";
@@ -65,149 +57,41 @@ export default function PDFRedactorClient({ tool }: { tool: BaseTool }) {
         }
     };
 
+    // Upload Screen
     if (!file) {
         return (
-            <FileUpload
-                accept="application/pdf"
-                maxSizeMB={50}
-                multiple={false}
-                onFilesSelected={handleUpload}
-                allowedFormats={["pdf"]}
-            />
+            <ToolHeader title={tool.name} description={tool.description}>
+                <FileUpload
+                    accept="application/pdf"
+                    maxSizeMB={50}
+                    multiple={false}
+                    onFilesSelected={handleUpload}
+                    allowedFormats={["pdf"]}
+                />
+            </ToolHeader>
         );
     }
 
+    // Fullscreen Editor Screen
     return (
         <ToolFullScreen
             title={tool.name}
             isFullScreen={isFullScreen}
             onToggleFullScreen={() => setIsFullScreen(!isFullScreen)}
             sidebar={
-                <div className="space-y-6">
-                    {/* Redaction Settings */}
-                    <div className="bg-card border border-border rounded-xl p-4">
-                        <div className="flex items-center gap-2 text-sm font-medium text-foreground mb-4">
-                            <Shield className="w-4 h-4 text-primary" /> Redaction Settings
-                        </div>
-                        <div className="space-y-4">
-                            <div className="space-y-2">
-                                <Label className="text-xs text-muted-foreground">Color</Label>
-                                <Input
-                                    type="color"
-                                    value={settings.color}
-                                    onChange={(e) =>
-                                        setSettings({ ...settings, color: e.target.value })
-                                    }
-                                    className="h-9 cursor-pointer p-1 w-full"
-                                />
-                            </div>
-
-                            <div className="space-y-2">
-                                <Label className="text-xs text-muted-foreground">
-                                    Overlay Text
-                                </Label>
-                                <Select
-                                    value={settings.overlayText}
-                                    onValueChange={handleOverlayTextChange}
-                                >
-                                    <SelectTrigger className="w-full">
-                                        <SelectValue />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="Blank">Blank</SelectItem>
-                                        <SelectItem value="REDACTED">REDACTED</SelectItem>
-                                        <SelectItem value="CONFIDENTIAL">CONFIDENTIAL</SelectItem>
-                                        <SelectItem value="CUSTOM">Custom Text</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                                {settings.overlayText === "CUSTOM" && (
-                                    <Input
-                                        placeholder="Enter custom text"
-                                        value={settings.customText}
-                                        onChange={(e) =>
-                                            setSettings({ ...settings, customText: e.target.value })
-                                        }
-                                        className="mt-2"
-                                    />
-                                )}
-                            </div>
-
-                            <div className="space-y-2 pt-2 border-t border-border">
-                                <div className="flex items-center justify-between">
-                                    <Label className="text-xs cursor-pointer">Strip Metadata</Label>
-                                    <Switch
-                                        checked={settings.stripMetadata}
-                                        onCheckedChange={(v) =>
-                                            setSettings({ ...settings, stripMetadata: v })
-                                        }
-                                    />
-                                </div>
-                                <p className="text-[11px] text-muted-foreground/80 leading-relaxed">
-                                    Removes hidden properties like author name and creation date.
-                                </p>
-                            </div>
-
-                            <div className="space-y-2">
-                                <div className="flex items-center justify-between">
-                                    <Label className="text-xs cursor-pointer">
-                                        Remove Annotations
-                                    </Label>
-                                    <Switch
-                                        checked={settings.removeAnnotations}
-                                        onCheckedChange={(v) =>
-                                            setSettings({ ...settings, removeAnnotations: v })
-                                        }
-                                    />
-                                </div>
-                                <p className="text-[11px] text-muted-foreground/80 leading-relaxed">
-                                    Deletes existing comments, highlights, and form fields.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Actions */}
-                    <div className="bg-card border border-border rounded-xl p-4 space-y-3">
-                        <div className="grid grid-cols-2 gap-2">
-                            <Button
-                                onClick={handleUndo}
-                                disabled={past.length === 0}
-                                variant="outline"
-                                size="sm"
-                                className="gap-1"
-                            >
-                                <Undo className="w-3.5 h-3.5" /> Undo
-                            </Button>
-                            <Button
-                                onClick={handleRedo}
-                                disabled={future.length === 0}
-                                variant="outline"
-                                size="sm"
-                                className="gap-1"
-                            >
-                                <Redo className="w-3.5 h-3.5" /> Redo
-                            </Button>
-                        </div>
-
-                        <Button
-                            onClick={handleApplyAndDownload}
-                            disabled={redactions.length === 0 || isProcessing}
-                            className="w-full gap-2"
-                            size="lg"
-                        >
-                            {isProcessing ? "Processing..." : "Apply & Download"}
-                        </Button>
-
-                        <Button
-                            onClick={reset}
-                            variant="ghost"
-                            size="sm"
-                            className="w-full text-muted-foreground gap-2"
-                        >
-                            <Trash2 className="w-4 h-4" /> Clear & Upload New
-                        </Button>
-                    </div>
-                </div>
+                <PDFRedactorSettings
+                    settings={settings}
+                    setSettings={setSettings}
+                    pastLength={past.length}
+                    futureLength={future.length}
+                    redactionsLength={redactions.length}
+                    isProcessing={isProcessing}
+                    onUndo={handleUndo}
+                    onRedo={handleRedo}
+                    onApplyAndDownload={handleApplyAndDownload}
+                    onReset={reset}
+                    onOverlayTextChange={handleOverlayTextChange}
+                />
             }
         >
             {/* Main Canvas Area */}
