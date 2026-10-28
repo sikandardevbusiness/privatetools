@@ -42,6 +42,25 @@ export const baseToolSchema = z.object({
     isExperimental: z.boolean().optional(),
     faqs: z.array(faqItemSchema).default([]),
     keywords: z.array(z.string()).default([]),
+    // NEW: Steps for "How it works"
+    steps: z
+        .array(
+            z.object({
+                title: z.string(),
+                description: z.string(),
+            }),
+        )
+        .default([]),
+
+    // NEW: What to expect details
+    whatToExpect: z
+        .array(
+            z.object({
+                title: z.string(),
+                description: z.string(),
+            }),
+        )
+        .default([]),
 });
 export type BaseTool = z.infer<typeof baseToolSchema>;
 

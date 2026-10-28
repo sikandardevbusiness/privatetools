@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 
 import { FaqSection } from "@/features/tools/shared/components/sections/faq-section";
 import { RelatedTools } from "@/features/tools/shared/components/sections/related-tools";
+import { StepsSection } from "@/features/tools/shared/components/sections/steps-section";
+import { WhatToExpect } from "@/features/tools/shared/components/sections/what-to-expect";
 
 import { toolComponentMap, toolMetadataList } from "@/features/tools/registry";
 import { getDiverseTools, getRelatedTools, getToolByPath } from "@/features/tools/shared/actions";
@@ -102,7 +104,15 @@ export default async function DynamicToolPage({ params }: PageProps) {
             {/* Tool Component */}
             <DynamicComponent tool={tool} />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+            <div className="max-w-7xl mx-auto px-4 space-y-12 sm:px-6 lg:px-8 py-12">
+                {/* What to Expect Section */}
+                {tool.whatToExpect && tool.whatToExpect.length > 0 && (
+                    <WhatToExpect items={tool.whatToExpect} />
+                )}
+
+                {/* Steps Section */}
+                {tool.steps && tool.steps.length > 0 && <StepsSection steps={tool.steps} />}
+
                 {tool.faqs && tool.faqs.length > 0 && <FaqSection items={tool.faqs} />}
 
                 <div className="w-full space-y-12 mt-12">
