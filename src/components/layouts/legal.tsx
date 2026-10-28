@@ -23,7 +23,7 @@ export function LegalLayout({
     updatedAt?: string;
 }) {
     return (
-        <div className="bg-surface text-foreground mb-4 min-h-screen">
+        <div className="bg-background text-foreground mb-4 min-h-screen">
             {/* Header */}
             <section className="border-border/30 border-b py-8 md:py-12">
                 <div className="mx-auto max-w-7xl px-4 md:px-8 py-8">

@@ -1,42 +1,59 @@
 "use client";
 
-import { File, FileText, ImageIcon, Music, Upload, Video, X } from "lucide-react";
-import { useCallback, useState } from "react";
+import { ChevronDownIcon, ShieldCheck, UploadCloud } from "lucide-react";
+import { useCallback, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-
+import { ButtonGroup } from "@/components/ui/button-group";
 import { cn } from "@/lib/utils";
 
 interface FileUploadProps {
     accept: string;
     maxSizeMB?: number;
     multiple?: boolean;
-    progress?: number;
-    processing?: boolean;
     allowedFormats?: string[];
-    onFilesSelected: (files: File[]) => void;
+    onFilesSelected: (files: File[]) => void | Promise<void>;
 }
-
-const formatIcons: Record<string, React.ReactNode> = {
-    image: <ImageIcon className="h-5 w-5" />,
-    audio: <Music className="h-5 w-5" />,
-    video: <Video className="h-5 w-5" />,
-    pdf: <FileText className="h-5 w-5" />,
-    text: <FileText className="h-5 w-5" />,
-};
 
 export function FileUpload({
     accept,
     maxSizeMB = 50,
     multiple = false,
-    onFilesSelected,
     allowedFormats,
-    processing = false,
-    progress = 0,
+    onFilesSelected,
 }: FileUploadProps) {
     const [isDragging, setIsDragging] = useState(false);
-    const [files, setFiles] = useState<File[]>([]);
+    const internalRef = useRef<HTMLInputElement>(null);
+
+    const processFiles = useCallback(
+        (fileList: FileList | null) => {
+            if (!fileList) return;
+
+            const validFiles = Array.from(fileList).filter((file) => {
+                // Check file size
+                if (file.size > maxSizeMB * 1024 * 1024) {
+                    alert(`File "${file.name}" exceeds the ${maxSizeMB}MB limit.`);
+                    return false;
+                }
+
+                // Check file type if allowedFormats is specified
+                if (allowedFormats) {
+                    const ext = file.name.split(".").pop()?.toLowerCase();
+                    if (!ext || !allowedFormats.includes(ext)) {
+                        alert(`File type ".${ext}" is not allowed.`);
+                        return false;
+                    }
+                }
+
+                return true;
+            });
+
+            if (validFiles.length > 0) {
+                onFilesSelected(validFiles);
+            }
+        },
+        [maxSizeMB, allowedFormats, onFilesSelected],
+    );
 
     const handleDragOver = useCallback((e: React.DragEvent) => {
         e.preventDefault();
@@ -48,36 +65,6 @@ export function FileUpload({
         setIsDragging(false);
     }, []);
 
-    const processFiles = useCallback(
-        (fileList: FileList | null) => {
-            if (!fileList) return;
-
-            const newFiles = Array.from(fileList).filter((file) => {
-                // Check file size
-                if (file.size > maxSizeMB * 1024 * 1024) {
-                    alert(`File ${file.name} exceeds ${maxSizeMB}MB limit`);
-                    return false;
-                }
-
-                // Check file type if allowedFormats specified
-                if (allowedFormats) {
-                    const ext = file.name.split(".").pop()?.toLowerCase();
-                    if (!ext || !allowedFormats.includes(ext)) {
-                        alert(`File type ${ext} is not allowed`);
-                        return false;
-                    }
-                }
-
-                return true;
-            });
-
-            const updatedFiles = multiple ? [...files, ...newFiles] : newFiles.slice(0, 1);
-            setFiles(updatedFiles);
-            onFilesSelected(updatedFiles);
-        },
-        [files, maxSizeMB, allowedFormats, multiple, onFilesSelected],
-    );
-
     const handleDrop = useCallback(
         (e: React.DragEvent) => {
             e.preventDefault();
@@ -87,118 +74,82 @@ export function FileUpload({
         [processFiles],
     );
 
-    const handleFileInput = useCallback(
-        (e: React.ChangeEvent<HTMLInputElement>) => {
-            processFiles(e.target.files);
-        },
-        [processFiles],
-    );
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        processFiles(e.target.files);
+        if (e.target) e.target.value = ""; // Reset to allow selecting the same file again
+    };
 
-    const removeFile = useCallback(
-        (index: number) => {
-            const updatedFiles = files.filter((_, i) => i !== index);
-            setFiles(updatedFiles);
-            onFilesSelected(updatedFiles);
-        },
-        [files, onFilesSelected],
-    );
-
-    const getFileIcon = (file: File) => {
-        const type = file.type.split("/")[0];
-        return formatIcons[type] || <File className="h-5 w-5" />;
+    const triggerFileInput = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        internalRef.current?.click();
     };
 
     return (
-        <div className="space-y-4">
-            {/* Drop Zone */}
+        <div
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            onClick={triggerFileInput}
+            className="relative flex flex-col items-center justify-center w-full p-12 md:p-14 rounded-2xl border-2 border-dashed border-border bg-card hover:border-primary/50 cursor-pointer transition-all duration-300 ease-in-out hover:shadow-xl group gap-4"
+        >
+            <input
+                ref={internalRef}
+                type="file"
+                multiple={multiple}
+                accept={accept}
+                onChange={handleFileChange}
+                className="hidden"
+            />
+
             <div
-                onDragOver={handleDragOver}
-                onDragLeave={handleDragLeave}
-                onDrop={handleDrop}
                 className={cn(
-                    "relative border-2 border-dashed rounded-xl p-8 text-center transition-colors",
-                    isDragging
-                        ? "border-primary bg-primary/5"
-                        : "border-border hover:border-primary/50",
+                    "p-4 rounded-full transition-colors duration-300",
+                    isDragging ? "bg-primary/10" : "bg-muted group-hover:bg-primary/10",
                 )}
             >
-                <input
-                    type="file"
-                    accept={accept}
-                    multiple={multiple}
-                    onChange={handleFileInput}
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                    disabled={processing}
-                />
-
-                <div className="flex flex-col items-center gap-4">
-                    <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Upload className="h-8 w-8 text-primary" />
-                    </div>
-
-                    <div>
-                        <p className="text-lg font-medium mb-1">
-                            Drop your file{multiple ? "s" : ""} here, or click to browse
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                            Max file size: {maxSizeMB}MB. Fast local processing.
-                        </p>
-                    </div>
-
-                    {allowedFormats && (
-                        <div className="flex flex-wrap justify-center gap-2">
-                            {allowedFormats.map((format) => (
-                                <span
-                                    key={format}
-                                    className="px-2 py-1 rounded-md bg-muted text-xs font-medium"
-                                >
-                                    .{format}
-                                </span>
-                            ))}
-                        </div>
+                <UploadCloud
+                    className={cn(
+                        "w-10 h-10 md:w-12 md:h-12 transition-colors duration-300",
+                        isDragging
+                            ? "text-primary"
+                            : "text-muted-foreground group-hover:text-primary",
                     )}
-
-                    <p className="text-xs text-muted-foreground">
-                        Tip: Press <kbd className="px-2 py-0.5 rounded bg-muted">⌘V</kbd> to paste
-                        from clipboard
-                    </p>
-                </div>
+                />
             </div>
 
-            {/* File List */}
-            {files.length > 0 && (
-                <div className="space-y-2">
-                    {files.map((file, index) => (
-                        <div
-                            key={index}
-                            className="flex items-center gap-3 p-3 rounded-lg border border-border bg-card"
+            <h3 className="text-xl md:text-2xl font-semibold text-foreground text-center">
+                Select your file here to get started
+            </h3>
+            <p className="text-sm md:text-base text-muted-foreground text-center">
+                or drop your file here.
+            </p>
+
+            {allowedFormats && (
+                <div className="flex flex-wrap justify-center gap-2">
+                    {allowedFormats.map((format) => (
+                        <span
+                            key={format}
+                            className="px-2 py-1 rounded-md bg-muted text-xs font-medium text-muted-foreground"
                         >
-                            <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-                                {getFileIcon(file)}
-                            </div>
-
-                            <div className="flex-1 min-w-0">
-                                <p className="font-medium truncate">{file.name}</p>
-                                <p className="text-sm text-muted-foreground">
-                                    {(file.size / 1024 / 1024).toFixed(2)} MB
-                                </p>
-                                {processing && <Progress value={progress} className="mt-2 h-1" />}
-                            </div>
-
-                            {!processing && (
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    onClick={() => removeFile(index)}
-                                    className="shrink-0"
-                                >
-                                    <X className="h-4 w-4" />
-                                </Button>
-                            )}
-                        </div>
+                            .{format}
+                        </span>
                     ))}
                 </div>
             )}
+
+            <ButtonGroup>
+                <Button>
+                    <UploadCloud className="w-4 h-4 mr-2" /> Select File
+                </Button>
+                <Button className="pl-2">
+                    <ChevronDownIcon className="w-4 h-4" />
+                </Button>
+            </ButtonGroup>
+
+            <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-2 text-xs text-muted-foreground">
+                <ShieldCheck className="w-3.5 h-3.5 text-primary" />
+                <span>Max {maxSizeMB}MB. 100% Private. Files never leave your device.</span>
+            </div>
         </div>
     );
 }

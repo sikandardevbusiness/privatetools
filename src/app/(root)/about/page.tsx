@@ -57,7 +57,7 @@ const expertise = [
 
 export default function AboutPage() {
     return (
-        <main className="bg-surface">
+        <main className="bg-background">
             {/* Hero Section */}
             <section className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-20">
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">

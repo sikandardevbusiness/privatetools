@@ -15,13 +15,13 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { ToolShell } from "@/features/tools/shared/components/layouts/tool-shell";
+import { ToolHeader } from "@/features/tools/shared/components/layouts/tool-header";
 import { FileUpload } from "@/features/tools/shared/components/uploads/file-upload";
 
 import type { BaseTool } from "@/features/tools/shared/types";
 import { cn } from "@/lib/utils";
 
-export default function ImageCropperTool({}: { tool: BaseTool }) {
+export default function ImageCropperTool({ tool }: { tool: BaseTool }) {
     const [image, setImage] = useState<string | null>(null);
     const [outputFormat, setOutputFormat] = useState("png");
     const [aspectRatio, setAspectRatio] = useState<number | undefined>(undefined);
@@ -58,9 +58,8 @@ export default function ImageCropperTool({}: { tool: BaseTool }) {
         setImage(null);
     }, []);
 
-    // Cropper State
     return (
-        <ToolShell>
+        <ToolHeader title={tool.name} description={tool.description}>
             {image ? (
                 <div className="grid lg:grid-cols-3 gap-8">
                     {/* Cropper Area */}
@@ -193,14 +192,13 @@ export default function ImageCropperTool({}: { tool: BaseTool }) {
                 <div className="relative">
                     <div className="absolute inset-0 rounded-2xl blur-xl" />
                     <FileUpload
-                        accept="image/*"
-                        maxSizeMB={50}
                         multiple={false}
+                        accept="image/*"
                         onFilesSelected={handleFilesSelected}
                         allowedFormats={["jpg", "jpeg", "png", "webp", "gif", "bmp"]}
                     />
                 </div>
             )}
-        </ToolShell>
+        </ToolHeader>
     );
 }

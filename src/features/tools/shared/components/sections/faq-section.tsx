@@ -12,11 +12,11 @@ interface FAQItem {
     answer: string;
 }
 
-interface FAQWithSchemaProps {
+interface FaqSectionProps {
     items: FAQItem[];
 }
 
-export function FAQWithSchema({ items }: FAQWithSchemaProps) {
+export function FaqSection({ items }: FaqSectionProps) {
     // Generate JSON-LD schema
     const schema = {
         "@context": "https://schema.org",

@@ -18,7 +18,6 @@ export function Hero() {
             <div className="space-y-6">
                 <div className="space-y-4">
                     <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-primary">
-                        <ShieldCheck size={14} />
                         100% Private. No uploads. Ever.
                     </span>
 
@@ -71,7 +70,7 @@ export function Hero() {
                 </div>
 
                 {/* Bottom Left Badge */}
-                <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-lg border border-border bg-surface p-4 shadow-lg">
+                <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-lg border border-border bg-card p-4 shadow-lg">
                     <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary">
                         <Lock size={18} />
                     </div>
