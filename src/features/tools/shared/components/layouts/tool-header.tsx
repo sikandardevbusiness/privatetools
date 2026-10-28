@@ -3,19 +3,23 @@
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
+import { cn } from "@/lib/utils";
+
 export function ToolHeader({
     title,
-    description,
     children,
+    className,
+    description,
     childrenClassName = "max-w-3xl mx-auto",
 }: {
     title: string;
+    className?: string;
     description: string;
     children: ReactNode;
     childrenClassName?: string;
 }) {
     return (
-        <section className="relative w-full bg-background">
+        <section className={cn("relative w-full bg-background", className)}>
             <div className="absolute inset-0 bg-muted/50 border-b border-border pointer-events-none h-[60%]" />
 
             <div className="relative max-w-6xl mx-auto px-4 pt-12 md:pt-16">

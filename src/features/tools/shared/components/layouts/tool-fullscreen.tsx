@@ -1,6 +1,6 @@
 "use client";
 
-import { Maximize2, Minimize2 } from "lucide-react";
+import { Maximize2, XIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -37,20 +37,14 @@ export function ToolFullScreen({
                 {onToggleFullScreen && (
                     <Button
                         variant="outline"
-                        size="sm"
+                        size="icon"
                         onClick={onToggleFullScreen}
                         className="gap-2"
                     >
                         {isFullScreen ? (
-                            <>
-                                <Minimize2 className="h-4 w-4" />
-                                Exit Fullscreen
-                            </>
+                            <XIcon className="h-4 w-4" />
                         ) : (
-                            <>
-                                <Maximize2 className="h-4 w-4" />
-                                Fullscreen
-                            </>
+                            <Maximize2 className="h-4 w-4" />
                         )}
                     </Button>
                 )}

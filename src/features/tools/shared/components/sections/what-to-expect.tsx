@@ -35,7 +35,7 @@ export function WhatToExpect({
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ delay: index * 0.1 }}
                         viewport={{ once: true }}
-                        className="p-6 rounded-xl border border-border/40 bg-card/50 hover:bg-card transition-colors"
+                        className="p-6 rounded-xl border border-border bg-card/50 hover:bg-card transition-colors"
                     >
                         <h3 className="font-semibold mb-2 text-lg">{item.title}</h3>
                         <p className="text-sm text-muted-foreground leading-relaxed">
