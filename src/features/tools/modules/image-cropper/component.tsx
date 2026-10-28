@@ -71,9 +71,9 @@ export default function ImageCropperTool({ tool }: { tool: BaseTool }) {
             onToggleFullScreen={handleNewImage}
             sidebar={
                 <CropperSettings
+                    onReset={handleReset}
                     aspectRatio={aspectRatio}
                     outputFormat={outputFormat}
-                    onReset={handleReset}
                     onDownload={handleDownload}
                     onNewImage={handleNewImage}
                     onAspectRatioChange={setAspectRatio}
