@@ -1,120 +1,42 @@
 "use client";
 
 import { saveAs } from "file-saver";
-import { Settings2 } from "lucide-react";
 import { useRef, useState } from "react";
 
-import { Label } from "@/components/ui/label";
-import { PropSlider } from "@/components/ui/prop-slider";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
-import { ToolShell } from "@/features/tools/shared/components/layouts/tool-shell";
+import { ToolFullScreen } from "@/features/tools/shared/components/layouts/tool-fullscreen";
+import { ToolHeader } from "@/features/tools/shared/components/layouts/tool-header";
 import { FileList } from "@/features/tools/shared/components/uploads/file-list";
 import { FileUpload } from "@/features/tools/shared/components/uploads/file-upload";
+import { SilenceSettings } from "./settings";
 
 import type { BaseTool, ProcessedFile } from "@/features/tools/shared/types";
-import { cn } from "@/lib/utils";
 import { createAndDownloadZip, type ZipFile } from "@/lib/zip";
 import { removeSilenceFromAudio } from "./lib";
 
 type OutputFormat = "mp3" | "wav";
 
-const SilenceSettings = ({
-    threshold,
-    minDuration,
-    outputFormat,
-    onThresholdChange,
-    onMinDurationChange,
-    onOutputFormatChange,
-    isDisabled,
-}: {
-    threshold: number;
-    minDuration: number;
-    outputFormat: OutputFormat;
-    onThresholdChange: (v: number) => void;
-    onMinDurationChange: (v: number) => void;
-    onOutputFormatChange: (v: OutputFormat) => void;
-    isDisabled: boolean;
-}) => {
-    return (
-        <div
-            className={cn(
-                "bg-card border border-border rounded-xl p-6 sticky top-4 transition-all duration-300",
-                isDisabled && "opacity-40 pointer-events-none select-none grayscale",
-            )}
-        >
-            <div className="flex items-center gap-2 text-sm font-medium text-foreground mb-6">
-                <Settings2 className="w-4 h-4 text-primary" /> Silence Detection Settings
-            </div>
-            <div className="grid grid-cols-1 gap-6 w-full">
-                <div className="space-y-2">
-                    <Label className="text-xs text-muted-foreground">Output Format</Label>
-                    <Select
-                        value={outputFormat}
-                        onValueChange={(v) => onOutputFormatChange(v as OutputFormat)}
-                        disabled={isDisabled}
-                    >
-                        <SelectTrigger className="w-full bg-background text-foreground">
-                            <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent className="w-full bg-background text-foreground">
-                            <SelectItem value="mp3">MP3 (Compressed, smaller file)</SelectItem>
-                            <SelectItem value="wav">WAV (Lossless, higher quality)</SelectItem>
-                        </SelectContent>
-                    </Select>
-                </div>
-
-                {/* Silence Threshold with Description */}
-                <div className="space-y-2">
-                    <PropSlider
-                        label="Silence Threshold"
-                        value={threshold}
-                        onChange={onThresholdChange}
-                        min={-100}
-                        max={0}
-                        step={1}
-                        unit="dB"
-                    />
-                    <p className="text-[11px] text-muted-foreground">
-                        How quiet a sound must be to be considered silence. Lower values are
-                        stricter.
-                    </p>
-                </div>
-
-                {/* Min Silence Duration with Description */}
-                <div className="space-y-2">
-                    <PropSlider
-                        label="Min Silence Duration"
-                        value={minDuration}
-                        onChange={onMinDurationChange}
-                        min={0.05}
-                        max={2}
-                        step={0.05}
-                        unit="s"
-                    />
-                    <p className="text-[11px] text-muted-foreground">
-                        The minimum length of a pause to be removed.
-                    </p>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-export default function RemoveSilenceAudioClient({}: { tool: BaseTool }) {
+export default function RemoveSilenceAudioClient({ tool }: { tool: BaseTool }) {
     const [files, setFiles] = useState<ProcessedFile[]>([]);
     const [isProcessing, setIsProcessing] = useState(false);
+    const [isFullScreen, setIsFullScreen] = useState(false);
 
     const [threshold, setThreshold] = useState(-40);
     const [minDuration, setMinDuration] = useState(0.35);
     const [outputFormat, setOutputFormat] = useState<OutputFormat>("mp3");
 
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const handleFileSelect = (selectedFiles: File[]) => {
+        const newFiles: ProcessedFile[] = selectedFiles.map((file) => ({
+            id: crypto.randomUUID(),
+            file,
+            targetFormat: outputFormat,
+            status: "pending",
+            progress: 0,
+        }));
+        setFiles((prev) => [...prev, ...newFiles]);
+        setIsFullScreen(true); // ✅ Auto-enter fullscreen on upload
+    };
 
     const handleFormatChange = (newFormat: OutputFormat) => {
         setOutputFormat(newFormat);
@@ -127,19 +49,19 @@ export default function RemoveSilenceAudioClient({}: { tool: BaseTool }) {
         );
     };
 
-    const handleFileSelect = (selectedFiles: File[]) => {
-        const newFiles: ProcessedFile[] = selectedFiles.map((file) => ({
-            id: crypto.randomUUID(),
-            file,
-            targetFormat: outputFormat,
-            status: "pending",
-            progress: 0,
-        }));
-        setFiles((prev) => [...prev, ...newFiles]);
+    const clearFiles = () => {
+        setFiles([]);
+        setIsFullScreen(false); // ✅ Remove files and exit fullscreen
     };
 
     const removeFile = (id: string) => {
-        setFiles((prev) => prev.filter((f) => f.id !== id));
+        setFiles((prev) => {
+            const updated = prev.filter((f) => f.id !== id);
+            if (updated.length === 0) {
+                setIsFullScreen(false); // ✅ Exit fullscreen if last file is removed
+            }
+            return updated;
+        });
     };
 
     const processFiles = async () => {
@@ -264,9 +186,10 @@ export default function RemoveSilenceAudioClient({}: { tool: BaseTool }) {
         await createAndDownloadZip(zipFiles, "cleaned-audio.zip");
     };
 
-    return (
-        <ToolShell>
-            {files.length === 0 ? (
+    // 1. Show Header + Upload Screen if no files are loaded
+    if (files.length === 0) {
+        return (
+            <ToolHeader title={tool.name} description={tool.description}>
                 <FileUpload
                     accept="audio/*"
                     maxSizeMB={100}
@@ -274,36 +197,40 @@ export default function RemoveSilenceAudioClient({}: { tool: BaseTool }) {
                     onFilesSelected={handleFileSelect}
                     allowedFormats={["mp3", "wav", "ogg", "m4a", "aac", "flac", "webm"]}
                 />
-            ) : (
-                <div className="grid lg:grid-cols-3 gap-8">
-                    <div className="lg:col-span-2">
-                        <FileList
-                            files={files}
-                            supportedFormats={["mp3", "wav"]}
-                            isProcessing={isProcessing}
-                            onProcess={processFiles}
-                            onRemoveFile={removeFile}
-                            onDownload={handleDownload}
-                            onProcessSingle={processSingle}
-                            onDownloadAll={handleDownloadAll}
-                            onAddMoreFiles={() => fileInputRef.current?.click()}
-                        />
-                    </div>
+            </ToolHeader>
+        );
+    }
 
-                    {/* Right Side: Settings Panel (1/3 width, sticky, disabled when no files) */}
-                    <div className="space-y-6">
-                        <SilenceSettings
-                            threshold={threshold}
-                            minDuration={minDuration}
-                            outputFormat={outputFormat}
-                            onThresholdChange={setThreshold}
-                            onMinDurationChange={setMinDuration}
-                            onOutputFormatChange={handleFormatChange}
-                            isDisabled={files.length === 0}
-                        />
-                    </div>
-                </div>
-            )}
+    // 2. Show Fullscreen Editor if files are loaded
+    return (
+        <ToolFullScreen
+            title={tool.name}
+            isFullScreen={isFullScreen}
+            onToggleFullScreen={clearFiles}
+            sidebar={
+                <SilenceSettings
+                    threshold={threshold}
+                    minDuration={minDuration}
+                    outputFormat={outputFormat}
+                    onThresholdChange={setThreshold}
+                    onMinDurationChange={setMinDuration}
+                    onOutputFormatChange={handleFormatChange}
+                />
+            }
+        >
+            <div className="w-full max-w-4xl mx-auto p-4">
+                <FileList
+                    files={files}
+                    supportedFormats={["mp3", "wav"]}
+                    isProcessing={isProcessing}
+                    onProcess={processFiles}
+                    onRemoveFile={removeFile}
+                    onDownload={handleDownload}
+                    onProcessSingle={processSingle}
+                    onDownloadAll={handleDownloadAll}
+                    onAddMoreFiles={() => fileInputRef.current?.click()}
+                />
+            </div>
 
             {/* Hidden file input for "Add More" functionality */}
             <input
@@ -319,6 +246,6 @@ export default function RemoveSilenceAudioClient({}: { tool: BaseTool }) {
                     }
                 }}
             />
-        </ToolShell>
+        </ToolFullScreen>
     );
 }
