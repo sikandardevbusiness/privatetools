@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 
-import type { RedactionSettings } from "./use-pdf-redactor";
+import type { RedactionSettings } from "../../../../../../packages/packages/pdf-redactor";
 
 interface PDFRedactorSettingsProps {
     settings: RedactionSettings;
