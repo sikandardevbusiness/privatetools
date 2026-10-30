@@ -19,16 +19,19 @@ export default function FileConverterClient({ tool }: { tool: BaseTool }) {
     const [isProcessing, setIsProcessing] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
+    // Get the default format from config
+    const defaultFormat = fileConverterToolConfigMap[tool.id].defaultFormat;
+
     const handleFileSelect = (selectedFiles: File[]) => {
         const newFiles: ProcessedFile[] = selectedFiles.map((file) => {
-            // ✅ Get supported outputs specifically for this file's extension
             const ext = file.name.split(".").pop()?.toLowerCase() || "";
             const supportedOutputs = converter.getSupportedOutputFormats(ext);
 
             return {
                 id: crypto.randomUUID(),
                 file,
-                targetFormat: supportedOutputs.length > 0 ? supportedOutputs[0] : "png",
+                targetFormat:
+                    defaultFormat || (supportedOutputs.length > 0 ? supportedOutputs[0] : "png"),
                 status: "pending",
                 progress: 0,
             };

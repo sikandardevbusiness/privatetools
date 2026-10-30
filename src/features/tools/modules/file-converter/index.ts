@@ -567,6 +567,453 @@ export const fileConverterToolMetadataList: BaseTool[] = [
             },
         ],
     },
+    {
+        id: "jpg-to-pdf",
+        category: "document",
+        name: "JPG to PDF Converter",
+        longName: "Free JPG to PDF Converter Online - Combine Images to PDF",
+        thumbnailUrl:
+            "https://cdn.sanity.io/images/1cv2yjn3/production/1b7678a39950937c08dac06bc619c88903a30348-1280x720.png",
+        description:
+            "Convert JPG images to PDF documents online for free. Combine multiple photos into a single PDF file instantly in your browser with no uploads.",
+        longDescription:
+            "Turn your JPG photos, receipts, and scanned documents into professional PDF files in seconds. Whether you need to submit a single ID card or combine multiple photos into a single organized document, this tool handles it locally in your browser.\n\nUnlike cloud-based converters that store your personal photos on remote servers, our tool processes everything 100% client-side. Your images never leave your device, ensuring complete privacy for sensitive documents like passports, bank statements, and contracts.\n\nEnjoy unlimited conversions with no watermarks, no file size limits, and no forced registrations. Simply drop your JPGs, arrange them if needed, and download your clean, professional PDF instantly.",
+        tags: [
+            "jpg to pdf",
+            "image to pdf",
+            "combine images",
+            "document converter",
+            "photo to pdf",
+        ],
+        keywords: [
+            "convert jpg to pdf online free",
+            "combine multiple jpg to single pdf",
+            "image to pdf converter no upload",
+            "free jpg to pdf maker no watermark",
+            "client side jpg to pdf tool",
+            "turn photos into pdf document",
+            "private image to pdf converter",
+            "batch jpg to pdf converter browser",
+        ],
+        steps: [
+            {
+                title: "Upload JPG Images",
+                description: "Select or drag and drop one or multiple JPG files into the browser.",
+            },
+            {
+                title: "Auto-Combine",
+                description:
+                    "The tool instantly packages your images into a clean, standardized PDF document.",
+            },
+            {
+                title: "Download PDF",
+                description:
+                    "Save your new PDF file directly to your device, ready to share or print.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Complete Privacy",
+                description:
+                    "Your photos and documents are processed locally and never uploaded to any server.",
+            },
+            {
+                title: "Multiple Image Support",
+                description:
+                    "Easily combine dozens of separate JPGs into a single, multi-page PDF.",
+            },
+            {
+                title: "Zero Quality Loss",
+                description:
+                    "Images are embedded at their original resolution for crisp, clear PDF documents.",
+            },
+        ],
+        faqs: [
+            {
+                question: "Can I combine multiple JPG images into one PDF?",
+                answer: "Yes! You can select multiple JPG files, and the tool will automatically combine them into a single, multi-page PDF document in the order you uploaded them.",
+            },
+            {
+                question: "Are my photos uploaded to a server?",
+                answer: "No. The conversion happens entirely in your browser using local JavaScript. Your files never leave your device.",
+            },
+            {
+                question: "Is there a limit to how many images I can convert?",
+                answer: "No. Because processing is done locally on your device, there are no artificial limits on file count or size.",
+            },
+        ],
+    },
+    {
+        id: "png-to-pdf",
+        category: "document",
+        name: "PNG to PDF Converter",
+        longName: "Free PNG to PDF Converter Online - Transparent to Document",
+        thumbnailUrl:
+            "https://cdn.sanity.io/images/1cv2yjn3/production/8eca7d0aecf17f295ec625a47809b8af37f9b162-1280x720.png",
+        description:
+            "Convert PNG images to PDF documents online for free. Preserve transparency and combine multiple graphics into a single PDF locally.",
+        longDescription:
+            "Convert your PNG graphics, logos, and screenshots into professional PDF documents instantly. PNG files are perfect for graphics with transparent backgrounds, and this tool ensures they are cleanly embedded into a universal PDF format suitable for printing, emailing, or official submissions.\n\nAll processing happens 100% locally in your web browser. Your proprietary graphics, sensitive screenshots, and personal documents are never uploaded to external servers, guaranteeing absolute data privacy.\n\nThere are no watermarks, no daily limits, and no sign-ups required. Just drop your PNG files and download your perfectly formatted PDF in seconds.",
+        tags: [
+            "png to pdf",
+            "image to pdf",
+            "graphic converter",
+            "document tools",
+            "transparent to pdf",
+        ],
+        keywords: [
+            "convert png to pdf online free",
+            "png to pdf converter no watermark",
+            "combine png images to pdf",
+            "client side png to pdf tool",
+            "free image to pdf maker browser",
+            "private png to pdf converter",
+            "turn png into pdf document free",
+        ],
+        steps: [
+            {
+                title: "Select PNG Files",
+                description: "Upload one or multiple PNG images from your computer or phone.",
+            },
+            {
+                title: "Instant Conversion",
+                description: "The browser engine embeds your PNGs into a standardized PDF layout.",
+            },
+            {
+                title: "Download Document",
+                description: "Save the final PDF file to your device instantly.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Transparency Handling",
+                description:
+                    "Transparent PNG backgrounds are cleanly rendered on a white canvas for professional PDF output.",
+            },
+            {
+                title: "Local Processing",
+                description:
+                    "Your files remain on your device, ensuring total privacy and security.",
+            },
+            {
+                title: "Fast & Unlimited",
+                description:
+                    "No server queues mean instant conversion, regardless of how many files you process.",
+            },
+        ],
+        faqs: [
+            {
+                question: "What happens to transparent PNG backgrounds in the PDF?",
+                answer: "Transparent areas are automatically rendered on a clean white background within the PDF, ensuring the document looks professional when printed or viewed.",
+            },
+            {
+                question: "Is this PNG to PDF converter really free?",
+                answer: "Yes, it is 100% free with no hidden fees, no watermarks, and no file size limits.",
+            },
+            {
+                question: "Can I convert multiple PNGs at once?",
+                answer: "Yes, you can batch upload multiple PNG files and combine them into a single multi-page PDF document.",
+            },
+        ],
+    },
+    {
+        id: "webp-to-png",
+        category: "image",
+        name: "WEBP to PNG Converter",
+        longName: "Free WEBP to PNG Converter Online - Edit Web Images",
+        thumbnailUrl:
+            "https://cdn.sanity.io/images/1cv2yjn3/production/981ddc4c68fbe60a64a4d8d9d554e0e4eb893531-1280x720.png",
+        description:
+            "Convert WEBP images to PNG format online for free. Unlock web images for editing in Photoshop and other software with no server uploads.",
+        longDescription:
+            "Turn modern WEBP web images into universally editable PNG files. While WEBP is great for website speed, most professional editing software (like older versions of Photoshop) and operating systems still struggle to open or edit them. This converter solves that problem instantly.\n\nBy running entirely in your browser, this tool ensures your downloaded assets, design references, and personal images never touch a third-party server. You get the convenience of an online tool with the security of offline software.\n\nEnjoy lossless conversion that preserves original dimensions, transparency, and color accuracy. Batch convert dozens of WEBP files at once without watermarks or artificial limits.",
+        tags: [
+            "webp to png",
+            "image converter",
+            "web image editor",
+            "lossless conversion",
+            "design tools",
+        ],
+        keywords: [
+            "convert webp to png online free",
+            "save webp as png for photoshop",
+            "webp to png converter no upload",
+            "batch webp to png tool",
+            "free webp converter without watermark",
+            "client side webp to png changer",
+            "open webp file as png",
+        ],
+        steps: [
+            {
+                title: "Upload WEBP Files",
+                description: "Drag and drop your downloaded WEBP images into the browser.",
+            },
+            {
+                title: "Lossless Conversion",
+                description:
+                    "The tool decodes the WEBP format and repackages it as a high-quality PNG.",
+            },
+            {
+                title: "Download PNG",
+                description: "Save the editable PNG files directly to your device.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Software Compatibility",
+                description:
+                    "Make your web images editable in Photoshop, GIMP, Paint, and other standard graphic tools.",
+            },
+            {
+                title: "Lossless Quality",
+                description:
+                    "PNG conversion preserves every pixel and transparency layer from the original WEBP.",
+            },
+            {
+                title: "Absolute Privacy",
+                description:
+                    "Files are processed locally in your browser, keeping your design assets secure.",
+            },
+        ],
+        faqs: [
+            {
+                question: "Why do I need to convert WEBP to PNG?",
+                answer: "Many desktop image editors and older operating systems do not natively support the WEBP format. Converting to PNG makes the image universally editable.",
+            },
+            {
+                question: "Will converting WEBP to PNG lose image quality?",
+                answer: "No. PNG is a lossless format, meaning the converted image will retain the exact same visual quality and transparency as the original WEBP.",
+            },
+            {
+                question: "Are my images uploaded to a server?",
+                answer: "No. The conversion happens 100% locally in your browser memory. Your files never leave your device.",
+            },
+        ],
+    },
+    {
+        id: "jpg-to-webp",
+        category: "image",
+        name: "JPG to WEBP Converter",
+        longName: "Free JPG to WEBP Converter Online - Optimize for Web",
+        thumbnailUrl:
+            "https://cdn.sanity.io/images/1cv2yjn3/production/c8f38e82862366609083b0c931a9bfbaa7d89fc5-1280x720.png",
+        description:
+            "Convert JPG images to WEBP format online for free. Drastically reduce image file size for faster website loading with no quality loss.",
+        longDescription:
+            "Optimize your JPG photos for the modern web by converting them to Google's highly efficient WEBP format. WEBP files are significantly smaller than JPGs while maintaining identical visual quality, making them the gold standard for fast-loading websites and better SEO.\n\nThis tool runs entirely in your browser, meaning you can optimize hundreds of product photos or blog images without uploading them to a slow, privacy-invasive cloud server. Your original files stay safely on your computer.\n\nEnjoy batch processing with adjustable quality settings. Shrink your image payloads by up to 30-50% without visible degradation, and download the optimized WEBP files instantly.",
+        tags: [
+            "jpg to webp",
+            "image optimizer",
+            "web performance",
+            "file compressor",
+            "photo converter",
+        ],
+        keywords: [
+            "convert jpg to webp online free",
+            "optimize images for web free",
+            "jpg to webp converter no upload",
+            "reduce image file size to webp",
+            "batch jpg to webp converter",
+            "free image optimizer no watermark",
+            "client side jpg to webp tool",
+        ],
+        steps: [
+            {
+                title: "Select JPG Images",
+                description: "Upload the JPG photos you want to optimize for the web.",
+            },
+            {
+                title: "Optimize to WEBP",
+                description:
+                    "The browser compresses and converts the images to the efficient WEBP format.",
+            },
+            {
+                title: "Download Optimized Files",
+                description: "Save the lightweight WEBP images, ready for website upload.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Massive Size Reduction",
+                description:
+                    "Cut image file sizes by 30-50% without noticeable loss in visual quality.",
+            },
+            {
+                title: "Faster Website Speeds",
+                description:
+                    "WEBP images load faster, improving user experience and search engine rankings.",
+            },
+            {
+                title: "Local Processing",
+                description:
+                    "Optimize your images privately on your own machine without server uploads.",
+            },
+        ],
+        faqs: [
+            {
+                question: "Why should I convert JPG to WEBP?",
+                answer: "WEBP provides superior compression compared to JPG, resulting in much smaller file sizes that load faster on websites, improving SEO and user experience.",
+            },
+            {
+                question: "Will the WEBP image look worse than the JPG?",
+                answer: "No. At standard quality settings, the visual difference is virtually imperceptible to the human eye, while the file size is significantly smaller.",
+            },
+            {
+                question: "Can I convert multiple images at once?",
+                answer: "Yes. You can batch upload multiple JPGs and convert them all to WEBP simultaneously in your browser.",
+            },
+        ],
+    },
+    {
+        id: "tiff-to-png",
+        category: "image",
+        name: "TIFF to PNG Converter",
+        longName: "Free TIFF to PNG Converter Online - Lossless Scanner Format",
+        thumbnailUrl:
+            "https://cdn.sanity.io/images/1cv2yjn3/production/3776080e7ee3292a2c550e50c581bf7323806707-1280x720.png",
+        description:
+            "Convert large TIFF scanner files to PNG format online for free. Preserve lossless quality while making images web-friendly with no uploads.",
+        longDescription:
+            "Convert heavy, uncompressed TIFF files from professional cameras and document scanners into lightweight, web-ready PNG images. While TIFF is excellent for archival storage, its massive file sizes make it impractical for web use, email, or everyday viewing.\n\nUnlike standard JPG conversion which introduces compression artifacts, converting TIFF to PNG maintains strict lossless quality. Your fine text, sharp graphics, and transparent layers remain perfectly intact, but in a much more manageable file format.\n\nBecause this tool operates 100% locally in your browser, your sensitive scanned documents and proprietary design files never travel over the internet. Enjoy unlimited, watermark-free conversions with total peace of mind.",
+        tags: [
+            "tiff to png",
+            "scanner converter",
+            "lossless image",
+            "document images",
+            "tif converter",
+        ],
+        keywords: [
+            "convert tiff to png online free",
+            "tif to png converter no upload",
+            "lossless tiff to png tool",
+            "convert scanner tiff to png free",
+            "private tiff to png converter browser",
+            "batch tiff to png converter",
+            "reduce tiff file size to png",
+        ],
+        steps: [
+            {
+                title: "Upload TIFF Files",
+                description: "Select your large .tiff or .tif files from your computer.",
+            },
+            {
+                title: "Lossless Conversion",
+                description:
+                    "The tool renders the uncompressed data into a highly efficient, lossless PNG.",
+            },
+            {
+                title: "Download PNG",
+                description: "Save the web-friendly PNG file, ready for sharing or editing.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "True Lossless Quality",
+                description:
+                    "Unlike JPG, PNG preserves every pixel of your original TIFF without compression artifacts.",
+            },
+            {
+                title: "Significant Size Reduction",
+                description:
+                    "Make massive scanner files manageable for email and web use without sacrificing detail.",
+            },
+            {
+                title: "Complete Privacy",
+                description:
+                    "Sensitive scans and documents are processed locally and never uploaded to any server.",
+            },
+        ],
+        faqs: [
+            {
+                question: "Why convert TIFF to PNG instead of JPG?",
+                answer: "PNG is a lossless format, meaning it preserves the exact sharpness and detail of your original TIFF file, whereas JPG introduces blurry compression artifacts.",
+            },
+            {
+                question: "Are my scanned documents uploaded to a server?",
+                answer: "No. All conversion happens locally in your browser memory. Your files never leave your device.",
+            },
+            {
+                question: "Can I convert multiple TIFF files at once?",
+                answer: "Yes. You can batch upload multiple TIFF files and convert them all to PNG simultaneously.",
+            },
+        ],
+    },
+    {
+        id: "pdf-to-png",
+        category: "document",
+        name: "PDF to PNG Converter",
+        longName: "Free PDF to PNG Converter Online - Extract Pages as Images",
+        thumbnailUrl:
+            "https://cdn.sanity.io/images/1cv2yjn3/production/9633d729d841643a8e15d868a7c52d6a36e7e47d-1280x720.png",
+        description:
+            "Convert PDF pages to high-resolution PNG images online for free. Extract individual pages or full documents privately in your browser.",
+        longDescription:
+            "Turn multi-page PDF documents into crystal-clear, high-resolution PNG pictures without downloading bloated desktop software. Whether you need to pull high-res slides from a PDF presentation, extract figures from an academic paper, or convert document pages for social media, this tool renders each page into an independent, lossless image file.\n\nPrivacy is essential when handling bank statements, contracts, and transcripts. Unlike conventional PDF websites that store your confidential documents on cloud servers, this tool renders pages locally using browser-based technology. Your documents never travel across the internet.\n\nEnjoy fast conversions with zero artificial limitations. Convert single-page certificates or thick multi-page manuals in seconds, and download specific individual pages or the entire collection in a ZIP archive.",
+        tags: [
+            "pdf to png",
+            "pdf converter",
+            "extract pdf images",
+            "document converter",
+            "pdf tools",
+        ],
+        keywords: [
+            "convert pdf to png online free",
+            "extract images from pdf no upload",
+            "save pdf as high quality png",
+            "pdf to png converter client side",
+            "convert multi page pdf to png free",
+            "private pdf to image converter",
+            "batch pdf to png converter browser",
+            "free pdf page extractor no watermark",
+        ],
+        steps: [
+            {
+                title: "Choose PDF Document",
+                description: "Drag and drop your PDF file into the local in-browser converter.",
+            },
+            {
+                title: "Render Pages",
+                description:
+                    "The tool generates high-resolution PNG previews of every individual page.",
+            },
+            {
+                title: "Download Images",
+                description:
+                    "Save individual page images or download all rendered pages in a single ZIP file.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Sharp Text & Graphics",
+                description:
+                    "Extract pages at full visual fidelity with clean typography and vivid diagrams.",
+            },
+            {
+                title: "Complete Document Privacy",
+                description:
+                    "Sensitive PDFs remain confined to your device with zero cloud processing.",
+            },
+            {
+                title: "Full Multi-Page Support",
+                description:
+                    "Convert comprehensive multi-page brochures, ebooks, and reports in one step.",
+            },
+        ],
+        faqs: [
+            {
+                question: "Can I convert multi-page PDF files into separate images?",
+                answer: "Yes. Every page in your PDF document is converted into an individual high-resolution PNG file that you can download separately or in a ZIP archive.",
+            },
+            {
+                question: "Is my confidential PDF uploaded to your servers?",
+                answer: "No. The document is rendered locally inside your browser memory. Your files are never transmitted across the network.",
+            },
+            {
+                question: "Will the text and diagrams in the exported PNG look blurry?",
+                answer: "No. The converter renders PDF pages at a high pixel density to guarantee that text, tables, and vector graphics remain crisp and clear.",
+            },
+        ],
+    },
 ];
 
 export const fileConverterToolComponentMap: ToolComponentMap = {
@@ -576,31 +1023,41 @@ export const fileConverterToolComponentMap: ToolComponentMap = {
     "webp-to-jpg": dynamic(() => import("./component")),
     "heic-to-jpg": dynamic(() => import("./component")),
     "tiff-to-jpg": dynamic(() => import("./component")),
+    "jpg-to-pdf": dynamic(() => import("./component")),
+    "png-to-pdf": dynamic(() => import("./component")),
+    "webp-to-png": dynamic(() => import("./component")),
+    "jpg-to-webp": dynamic(() => import("./component")),
+    "tiff-to-png": dynamic(() => import("./component")),
+    "pdf-to-png": dynamic(() => import("./component")),
     "all-in-one-image-converter": dynamic(() => import("./component")),
 };
 
 export const fileConverterToolConfigMap: Record<
     string,
-    { acceptType: string; inputFormats: string[]; outputFormats: string[] }
+    { acceptType: string; inputFormats: string[]; outputFormats: string[]; defaultFormat: string }
 > = {
     "jpg-to-png": {
-        inputFormats: ["jpg", "jpeg"],
+        defaultFormat: "png",
         acceptType: ".jpg,.jpeg",
+        inputFormats: ["jpg", "jpeg"],
         outputFormats: [...new Set(converter.getSupportedOutputFormats("jpg"))],
     },
     "png-to-jpg": {
-        inputFormats: ["png"],
         acceptType: ".png",
+        defaultFormat: "jpg",
+        inputFormats: ["png"],
         outputFormats: [...new Set(converter.getSupportedOutputFormats("png"))],
     },
     "webp-to-jpg": {
-        inputFormats: ["webp"],
         acceptType: ".webp",
+        defaultFormat: "jpg",
+        inputFormats: ["webp"],
         outputFormats: [...new Set(converter.getSupportedOutputFormats("webp"))],
     },
     "heic-to-jpg": {
-        inputFormats: ["heic", "heif"],
+        defaultFormat: "jpg",
         acceptType: ".heic,.heif",
+        inputFormats: ["heic", "heif"],
         outputFormats: [
             ...new Set([
                 ...converter.getSupportedOutputFormats("heic"),
@@ -609,8 +1066,9 @@ export const fileConverterToolConfigMap: Record<
         ],
     },
     "tiff-to-jpg": {
-        inputFormats: ["tiff", "tif"],
+        defaultFormat: "jpg",
         acceptType: ".tiff,.tif",
+        inputFormats: ["tiff", "tif"],
         outputFormats: [
             ...new Set([
                 ...converter.getSupportedOutputFormats("tif"),
@@ -619,8 +1077,45 @@ export const fileConverterToolConfigMap: Record<
         ],
     },
     "pdf-to-jpg": {
-        inputFormats: ["pdf"],
         acceptType: ".pdf",
+        defaultFormat: "jpg",
+        inputFormats: ["pdf"],
+        outputFormats: [...new Set([...converter.getSupportedOutputFormats("pdf")])],
+    },
+    "jpg-to-pdf": {
+        defaultFormat: "pdf",
+        acceptType: ".jpg,.jpeg",
+        inputFormats: ["jpg", "jpeg"],
+        outputFormats: [...new Set([...converter.getSupportedOutputFormats("jpg")])],
+    },
+    "png-to-pdf": {
+        acceptType: ".png",
+        defaultFormat: "pdf",
+        inputFormats: ["png"],
+        outputFormats: [...new Set([...converter.getSupportedOutputFormats("png")])],
+    },
+    "webp-to-png": {
+        acceptType: ".webp",
+        defaultFormat: "png",
+        inputFormats: ["webp"],
+        outputFormats: [...new Set([...converter.getSupportedOutputFormats("webp")])],
+    },
+    "jpg-to-webp": {
+        defaultFormat: "webp",
+        acceptType: ".jpg,.jpeg",
+        inputFormats: ["jpg", "jpeg"],
+        outputFormats: [...new Set([...converter.getSupportedOutputFormats("jpg")])],
+    },
+    "tiff-to-png": {
+        defaultFormat: "png",
+        acceptType: ".tiff,.tif",
+        inputFormats: ["tiff", "tif"],
+        outputFormats: [...new Set([...converter.getSupportedOutputFormats("tiff")])],
+    },
+    "pdf-to-png": {
+        acceptType: ".pdf",
+        defaultFormat: "png",
+        inputFormats: ["pdf"],
         outputFormats: [...new Set([...converter.getSupportedOutputFormats("pdf")])],
     },
     "all-in-one-image-converter": {
@@ -640,5 +1135,6 @@ export const fileConverterToolConfigMap: Record<
             "pdf",
         ],
         outputFormats: [],
+        defaultFormat: "png", // Default for all-in-one
     },
 };
