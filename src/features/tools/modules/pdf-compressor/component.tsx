@@ -10,12 +10,16 @@ import { FileUpload } from "@/features/tools/shared/components/uploads/file-uplo
 
 import type { BaseTool, ProcessedFile } from "@/features/tools/shared/types";
 import { createAndDownloadZip, type ZipFile } from "@/lib/zip";
+
+import {
+    compressPdf,
+    type PdfCompressOptions,
+} from "../../../../../../packages/packages/pdf-compressor/src/index";
 import { CompressionSettings, type QualityPreset, type SizeUnit } from "./settings";
-import { useCompressPdf, type PdfCompressOptions } from "./use-compress-pdf";
 
 export default function PdfCompressorClient({ tool }: { tool: BaseTool }) {
     const [files, setFiles] = useState<ProcessedFile[]>([]);
-    const { compressPdf, isCompressing } = useCompressPdf();
+    const [isProcessing, setIsProcessing] = useState(false);
 
     const [qualityPreset, setQualityPreset] = useState<QualityPreset>("default");
     const [targetSize, setTargetSize] = useState("");
@@ -82,6 +86,9 @@ export default function PdfCompressorClient({ tool }: { tool: BaseTool }) {
 
     const processFiles = async () => {
         const pendingFiles = files.filter((f) => f.status === "pending" || f.status === "error");
+        if (pendingFiles.length === 0) return;
+
+        setIsProcessing(true);
         const options = getCompressionOptions();
 
         for (const fileObj of pendingFiles) {
@@ -112,12 +119,14 @@ export default function PdfCompressorClient({ tool }: { tool: BaseTool }) {
                 );
             }
         }
+        setIsProcessing(false);
     };
 
     const processSingle = async (id: string) => {
         const fileObj = files.find((f) => f.id === id);
         if (!fileObj) return;
 
+        setIsProcessing(true);
         setFiles((prev) =>
             prev.map((f) => (f.id === id ? { ...f, status: "processing", progress: 0 } : f)),
         );
@@ -140,6 +149,7 @@ export default function PdfCompressorClient({ tool }: { tool: BaseTool }) {
                 ),
             );
         }
+        setIsProcessing(false);
     };
 
     const handleDownload = (id: string) => {
@@ -183,17 +193,17 @@ export default function PdfCompressorClient({ tool }: { tool: BaseTool }) {
                         setSizeUnit={setSizeUnit}
                         customDpi={customDpi}
                         setCustomDpi={setCustomDpi}
-                        isDisabled={isCompressing}
+                        isDisabled={isProcessing}
                     />
                 )}
             </ToolHeader>
 
-            {!(files.length === 0) && (
+            {files.length > 0 && (
                 <div className="w-full max-w-4xl mx-auto space-y-6">
                     <FileList
                         files={files}
                         supportedFormats={["pdf"]}
-                        isProcessing={isCompressing}
+                        isProcessing={isProcessing}
                         onRemoveFile={removeFile}
                         onDownload={handleDownload}
                         onProcess={processFiles}
@@ -204,6 +214,7 @@ export default function PdfCompressorClient({ tool }: { tool: BaseTool }) {
                 </div>
             )}
 
+            {/* Hidden file input for "Add More" functionality */}
             <input
                 ref={fileInputRef}
                 type="file"

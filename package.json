@@ -1,12 +1,13 @@
 {
     "name": "privatetools",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "private": true,
     "scripts": {
+        "lint": "eslint",
+        "start": "next start",
         "dev": "next dev --webpack",
         "build": "next build --webpack",
-        "start": "next start",
-        "lint": "eslint"
+        "format": "npx prettier --write ."
     },
     "dependencies": {
         "@base-ui/react": "^1.9.0",
@@ -20,12 +21,6 @@
         "@jsquash/png": "^3.1.1",
         "@jsquash/webp": "^1.5.0",
         "@next/third-parties": "^16.4.2",
-        "@privatetools/file-converter": "github:sikandardevbusiness/privatetools-packages#path:packages/file-converter",
-        "@privatetools/image-compressor": "github:sikandardevbusiness/privatetools-packages#path:packages/image-compressor",
-        "@privatetools/pdf-compressor": "github:sikandardevbusiness/privatetools-packages#path:packages/pdf-compressor",
-        "@privatetools/pdf-redactor": "github:sikandardevbusiness/privatetools-packages#path:packages/pdf-redactor",
-        "@privatetools/remove-silence": "github:sikandardevbusiness/privatetools-packages#path:packages/remove-silence",
-        "@privatetools/video-watermark": "github:sikandardevbusiness/privatetools-packages#path:packages/video-watermark",
         "class-variance-authority": "^0.7.1",
         "cn": "^0.5.0",
         "file-saver": "^2.0.5",
@@ -56,6 +51,7 @@
         "@types/react-dom": "^19",
         "eslint": "^9",
         "eslint-config-next": "16.4.2",
+        "prettier": "^3.9.10",
         "tailwindcss": "^4",
         "typescript": "^5",
         "webpack": "^5.112.0"

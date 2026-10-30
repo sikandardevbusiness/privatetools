@@ -13,6 +13,7 @@ import {
     cropManhwaPanels,
     type ManhwaCropOptions,
 } from "../../../../../../packages/packages/manhwa-cropper";
+import { pdfToPageFiles } from "../../../../../../packages/packages/file-converter/src";
 import { CropperSettings } from "./settings";
 
 export default function ManhwaCropperClient({ tool }: { tool: BaseTool }) {
@@ -78,8 +79,8 @@ export default function ManhwaCropperClient({ tool }: { tool: BaseTool }) {
                         prev.map((x) => (x.id === f.id ? { ...x, progress: 5 } : x)),
                     );
                     try {
-                        // const pageFiles = await pdfToPageFiles(f.file, 2);
-                        // filesToProcess.push(...pageFiles);
+                        const pageFiles = await pdfToPageFiles(f.file, 2);
+                        filesToProcess.push(...pageFiles);
                     } catch (e) {
                         console.error("PDF Conversion Failed:", e);
                         setFiles((prev) =>
@@ -203,7 +204,7 @@ export default function ManhwaCropperClient({ tool }: { tool: BaseTool }) {
             </ToolHeader>
 
             {files.length > 0 && (
-                <div className="px-4">
+                <div className="px-4 pt-8 -mb-4">
                     {/* Visual Grid for Completed Panels */}
                     {completed.length > 0 && (
                         <ImageGrid panels={completed} onRemove={removePanel} />
