@@ -60,7 +60,7 @@ export function ToolCard({ tool }: { tool: BaseTool }) {
                 </div>
             </div>
 
-            <CardContent className="flex flex-col p-5 grow space-y-4">
+            <CardContent className="flex flex-col p-5 pt-0 grow space-y-4">
                 <div className="space-y-1">
                     <h3 className="font-heading text-lg font-semibold text-card-foreground line-clamp-1 group-hover:text-primary transition-colors">
                         {tool.name}

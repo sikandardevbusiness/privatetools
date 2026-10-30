@@ -11,22 +11,27 @@ import { cn } from "@/lib/utils";
 
 export function FileList({
     files,
+    selectedId,
     supportedFormats,
     isProcessing = false,
+
+    // Functions
     onProcess,
-    onRemoveFile,
     onDownload,
+    onRemoveFile,
+    onSelectFile,
     onDownloadAll,
     onAddMoreFiles,
     onFormatChange,
     onProcessSingle,
-    selectedId,
-    onSelectFile,
+    getSupportedFormats,
 }: {
     files: ProcessedFile[];
     isProcessing?: boolean;
     selectedId?: string | null;
     supportedFormats?: string[];
+
+    // Functions
     onProcess?: () => void;
     onDownloadAll?: () => void;
     onAddMoreFiles?: () => void;
@@ -34,6 +39,7 @@ export function FileList({
     onRemoveFile: (id: string) => void;
     onSelectFile?: (id: string) => void;
     onProcessSingle?: (id: string) => void;
+    getSupportedFormats?: (file: File) => string[];
     onFormatChange?: (id: string, format: string) => void;
 }) {
     const completedCount = files.filter((f) => f.status === "completed").length;
@@ -41,7 +47,7 @@ export function FileList({
     const hasDownloadAll = completedCount > 0;
 
     return (
-        <section className="max-w-4xl mx-auto px-4 sm:px-0 space-y-6">
+        <section className="max-w-4xl mx-auto px-4 sm:px-0 space-y-6 pt-12">
             {/* Sticky Action Bar */}
             {onProcess && onAddMoreFiles && (
                 <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
@@ -93,18 +99,22 @@ export function FileList({
 
                     return (
                         <FileItem
-                            key={item.id}
                             item={item}
+                            key={item.id}
+                            onSelect={onSelectFile}
                             onRemove={onRemoveFile}
                             onFormatChange={onFormatChange}
-                            supportedFormats={supportedFormats}
+                            // ✅ Use dynamic function if provided, otherwise fallback to static array
+                            supportedFormats={
+                                getSupportedFormats
+                                    ? getSupportedFormats(item.file)
+                                    : supportedFormats
+                            }
                             isSelected={selectedId === item.id}
-                            onSelect={onSelectFile}
                         >
                             {item.status === "completed" ? (
                                 <Button
                                     variant="default"
-                                    size="sm"
                                     onClick={() => onDownload?.(item.id)}
                                     className="gap-2"
                                 >
@@ -115,7 +125,6 @@ export function FileList({
                                 onProcessSingle && (
                                     <Button
                                         variant="outline"
-                                        size="sm"
                                         onClick={() => onProcessSingle(item.id)}
                                         disabled={isDisabled}
                                         className="gap-2 min-w-25"

@@ -10,8 +10,14 @@ import { FileUpload } from "@/features/tools/shared/components/uploads/file-uplo
 import { PDFRedactorSettings } from "./settings";
 
 import type { BaseTool } from "@/features/tools/shared/types";
-import type { ResizeDirection, TextOverlayType } from "./use-pdf-redactor";
-import { usePDFRedactor } from "./use-pdf-redactor";
+// ✅ REPLACE LOCAL IMPORT WITH THE PACKAGE
+import {
+    usePDFRedactor,
+    type TextOverlayType,
+} from "../../../../../../packages/packages/pdf-redactor";
+
+// Keep this local as it's only used for UI styling
+type ResizeDirection = "nw" | "n" | "ne" | "e" | "se" | "s" | "sw" | "w";
 
 export default function PDFRedactorClient({ tool }: { tool: BaseTool }) {
     const {

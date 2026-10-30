@@ -3,5 +3,5 @@ interface ToolShellProps {
 }
 
 export function ToolShell({ children }: ToolShellProps) {
-    return <div className="py-4">{children}</div>;
+    return <div>{children}</div>;
 }

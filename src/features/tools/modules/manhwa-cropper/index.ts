@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import { BaseTool, ToolComponentMap } from "@/features/tools/shared/types";
 
 export const manhwaCropperToolMetadataList: BaseTool[] = [
@@ -51,5 +53,5 @@ export const manhwaCropperToolMetadataList: BaseTool[] = [
 ];
 
 export const manhwaCropperToolComponentMap: ToolComponentMap = {
-    // "manhwa-panel-cropper": dynamic(() => import("./component")),
+    "manhwa-panel-cropper": dynamic(() => import("./component")),
 };

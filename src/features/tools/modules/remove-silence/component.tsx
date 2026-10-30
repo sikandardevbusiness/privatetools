@@ -2,23 +2,23 @@
 
 import { saveAs } from "file-saver";
 import { useRef, useState } from "react";
+import { removeSilenceFromAudio } from "../../../../../../packages/packages/remove-silence/src/index";
 
-import { ToolFullScreen } from "@/features/tools/shared/components/layouts/tool-fullscreen";
+import { Card, CardContent } from "@/components/ui/card";
 import { ToolHeader } from "@/features/tools/shared/components/layouts/tool-header";
+import { ToolShell } from "@/features/tools/shared/components/layouts/tool-shell";
 import { FileList } from "@/features/tools/shared/components/uploads/file-list";
 import { FileUpload } from "@/features/tools/shared/components/uploads/file-upload";
 import { SilenceSettings } from "./settings";
 
 import type { BaseTool, ProcessedFile } from "@/features/tools/shared/types";
 import { createAndDownloadZip, type ZipFile } from "@/lib/zip";
-import { removeSilenceFromAudio } from "./lib";
 
 type OutputFormat = "mp3" | "wav";
 
 export default function RemoveSilenceAudioClient({ tool }: { tool: BaseTool }) {
     const [files, setFiles] = useState<ProcessedFile[]>([]);
     const [isProcessing, setIsProcessing] = useState(false);
-    const [isFullScreen, setIsFullScreen] = useState(false);
 
     const [threshold, setThreshold] = useState(-40);
     const [minDuration, setMinDuration] = useState(0.35);
@@ -35,7 +35,6 @@ export default function RemoveSilenceAudioClient({ tool }: { tool: BaseTool }) {
             progress: 0,
         }));
         setFiles((prev) => [...prev, ...newFiles]);
-        setIsFullScreen(true); // ✅ Auto-enter fullscreen on upload
     };
 
     const handleFormatChange = (newFormat: OutputFormat) => {
@@ -49,19 +48,8 @@ export default function RemoveSilenceAudioClient({ tool }: { tool: BaseTool }) {
         );
     };
 
-    const clearFiles = () => {
-        setFiles([]);
-        setIsFullScreen(false); // ✅ Remove files and exit fullscreen
-    };
-
     const removeFile = (id: string) => {
-        setFiles((prev) => {
-            const updated = prev.filter((f) => f.id !== id);
-            if (updated.length === 0) {
-                setIsFullScreen(false); // ✅ Exit fullscreen if last file is removed
-            }
-            return updated;
-        });
+        setFiles((prev) => prev.filter((f) => f.id !== id));
     };
 
     const processFiles = async () => {
@@ -105,11 +93,13 @@ export default function RemoveSilenceAudioClient({ tool }: { tool: BaseTool }) {
                             : f,
                     ),
                 );
-            } catch {
+            } catch (err) {
+                console.error("[Process Error]", err);
+                const message = err instanceof Error ? err.message : "Failed to process";
                 setFiles((prev) =>
                     prev.map((f) =>
                         f.id === fileObj.id
-                            ? { ...f, status: "error", error: "Failed to process", progress: 0 }
+                            ? { ...f, status: "error", error: message, progress: 0 }
                             : f,
                     ),
                 );
@@ -154,12 +144,12 @@ export default function RemoveSilenceAudioClient({ tool }: { tool: BaseTool }) {
                         : f,
                 ),
             );
-        } catch {
+        } catch (err) {
+            console.error("[Process Single Error]", err);
+            const message = err instanceof Error ? err.message : "Failed to process";
             setFiles((prev) =>
                 prev.map((f) =>
-                    f.id === id
-                        ? { ...f, status: "error", error: "Failed to process", progress: 0 }
-                        : f,
+                    f.id === id ? { ...f, status: "error", error: message, progress: 0 } : f,
                 ),
             );
         }
@@ -186,53 +176,47 @@ export default function RemoveSilenceAudioClient({ tool }: { tool: BaseTool }) {
         await createAndDownloadZip(zipFiles, "cleaned-audio.zip");
     };
 
-    // 1. Show Header + Upload Screen if no files are loaded
-    if (files.length === 0) {
-        return (
-            <ToolHeader title={tool.name} description={tool.description}>
-                <FileUpload
-                    accept="audio/*"
-                    maxSizeMB={100}
-                    multiple={true}
-                    onFilesSelected={handleFileSelect}
-                    allowedFormats={["mp3", "wav", "ogg", "m4a", "aac", "flac", "webm"]}
-                />
-            </ToolHeader>
-        );
-    }
-
-    // 2. Show Fullscreen Editor if files are loaded
     return (
-        <ToolFullScreen
-            title={tool.name}
-            isFullScreen={isFullScreen}
-            onToggleFullScreen={clearFiles}
-            sidebar={
-                <SilenceSettings
-                    threshold={threshold}
-                    minDuration={minDuration}
-                    outputFormat={outputFormat}
-                    onThresholdChange={setThreshold}
-                    onMinDurationChange={setMinDuration}
-                    onOutputFormatChange={handleFormatChange}
-                />
-            }
-        >
-            <div className="w-full max-w-4xl mx-auto p-4">
+        <ToolShell>
+            <ToolHeader title={tool.name} description={tool.description}>
+                {files.length === 0 ? (
+                    <FileUpload
+                        accept="audio/*"
+                        maxSizeMB={100}
+                        multiple={true}
+                        onFilesSelected={handleFileSelect}
+                        allowedFormats={["mp3", "wav", "ogg", "m4a", "aac", "flac", "webm"]}
+                    />
+                ) : (
+                    <Card>
+                        <CardContent>
+                            <SilenceSettings
+                                threshold={threshold}
+                                minDuration={minDuration}
+                                outputFormat={outputFormat}
+                                onThresholdChange={setThreshold}
+                                onMinDurationChange={setMinDuration}
+                                onOutputFormatChange={handleFormatChange}
+                            />
+                        </CardContent>
+                    </Card>
+                )}
+            </ToolHeader>
+
+            {files.length > 0 && (
                 <FileList
                     files={files}
-                    supportedFormats={["mp3", "wav"]}
-                    isProcessing={isProcessing}
                     onProcess={processFiles}
                     onRemoveFile={removeFile}
+                    isProcessing={isProcessing}
                     onDownload={handleDownload}
                     onProcessSingle={processSingle}
                     onDownloadAll={handleDownloadAll}
+                    supportedFormats={["mp3", "wav"]}
                     onAddMoreFiles={() => fileInputRef.current?.click()}
                 />
-            </div>
+            )}
 
-            {/* Hidden file input for "Add More" functionality */}
             <input
                 ref={fileInputRef}
                 type="file"
@@ -246,6 +230,6 @@ export default function RemoveSilenceAudioClient({ tool }: { tool: BaseTool }) {
                     }
                 }}
             />
-        </ToolFullScreen>
+        </ToolShell>
     );
 }

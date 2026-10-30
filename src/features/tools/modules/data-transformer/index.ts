@@ -1,4 +1,5 @@
 import { BaseTool, ToolComponentMap } from "@/features/tools/shared/types";
+import dynamic from "next/dynamic";
 
 export const dataTransformerToolMetadataList: BaseTool[] = [
     {
@@ -105,7 +106,9 @@ export const dataTransformerToolMetadataList: BaseTool[] = [
 ];
 
 export const dataTransformerToolComponentMap: ToolComponentMap = {
-    // "json-to-csv": dynamic(() => import("./component")),
-    // "csv-to-json": dynamic(() => import("./component")),
-    // "all-in-one-data-transformer": dynamic(() => import("./component")),
+    "json-to-csv": dynamic(() => import("@/features/tools/shared/components/under-development")),
+    "csv-to-json": dynamic(() => import("@/features/tools/shared/components/under-development")),
+    "all-in-one-data-transformer": dynamic(
+        () => import("@/features/tools/shared/components/under-development"),
+    ),
 };

@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+
 import type { BaseTool, ToolComponentMap } from "@/features/tools/shared/types";
 
 export const exifWiperToolMetadataList: BaseTool[] = [
@@ -39,5 +41,5 @@ export const exifWiperToolMetadataList: BaseTool[] = [
 ];
 
 export const exifWiperToolComponentMap: ToolComponentMap = {
-    // "exif-wiper": dynamic(() => import("./component")),
+    "exif-wiper": dynamic(() => import("@/features/tools/shared/components/under-development")),
 };

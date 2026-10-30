@@ -1,6 +1,9 @@
+import dynamic from "next/dynamic";
+import { converter } from "../../../../../../packages/packages/file-converter/src/index";
+
 import { BaseTool, ToolComponentMap } from "@/features/tools/shared/types";
 
-export const imageConverterToolMetadataList: BaseTool[] = [
+export const fileConverterToolMetadataList: BaseTool[] = [
     {
         id: "all-in-one-image-converter",
         category: "image",
@@ -181,7 +184,6 @@ export const imageConverterToolMetadataList: BaseTool[] = [
         ],
     },
     {
-        // 🆕 NEW DEDICATED TOOL FOR HIGH-INTENT SEO TRAFFIC
         id: "tiff-to-jpg",
         category: "image",
         name: "TIFF to JPG Converter",
@@ -221,13 +223,113 @@ export const imageConverterToolMetadataList: BaseTool[] = [
             },
         ],
     },
+    {
+        id: "pdf-to-jpg",
+        category: "document",
+        name: "PDF to JPG Converter",
+        keywords: [
+            "pdf to jpg",
+            "convert pdf to jpg",
+            "pdf to image",
+            "extract images from pdf",
+            "pdf to jpeg converter",
+            "save pdf as image",
+            "pdf to jpg online free",
+        ],
+        tags: ["pdf", "jpg", "convert", "extract"],
+        description:
+            "Convert PDF pages to high-quality JPG images online for free. Extract images securely. 100% private.",
+        longDescription:
+            "Convert your PDF documents into high-quality JPG images instantly. Extract pages as images securely in your browser. No server uploads, ensuring complete privacy and security for your sensitive documents.",
+        thumbnailUrl:
+            "https://cdn.sanity.io/images/1cv2yjn3/production/e2424a4bf9f0aa4efdfa190f613c18aada349181-1376x768.jpg",
+        faqs: [
+            {
+                question: "Can I convert multi-page PDFs?",
+                answer: "Yes, you can upload multi-page PDFs and convert them. Each page will be processed as a separate image.",
+            },
+            {
+                question: "Is my PDF uploaded to a server?",
+                answer: "No. All processing happens 100% locally in your browser. Your documents never leave your device, ensuring maximum privacy.",
+            },
+            {
+                question: "What quality will the JPG images be?",
+                answer: "The converter extracts pages at a high resolution, ensuring your text and images remain clear and readable.",
+            },
+        ],
+    },
 ];
 
-export const imageConverterToolComponentMap: ToolComponentMap = {
-    // "jpg-to-png": dynamic(() => import("./component")),
-    // "png-to-jpg": dynamic(() => import("./component")),
-    // "webp-to-jpg": dynamic(() => import("./component")),
-    // "heic-to-jpg": dynamic(() => import("./component")),
-    // "tiff-to-jpg": dynamic(() => import("./component")),
-    // "all-in-one-image-converter": dynamic(() => import("./component")),
+export const fileConverterToolComponentMap: ToolComponentMap = {
+    "jpg-to-png": dynamic(() => import("./component")),
+    "png-to-jpg": dynamic(() => import("./component")),
+    "pdf-to-jpg": dynamic(() => import("./component")),
+    "webp-to-jpg": dynamic(() => import("./component")),
+    "heic-to-jpg": dynamic(() => import("./component")),
+    "tiff-to-jpg": dynamic(() => import("./component")),
+    "all-in-one-image-converter": dynamic(() => import("./component")),
+};
+
+export const fileConverterToolConfigMap: Record<
+    string,
+    { acceptType: string; inputFormats: string[]; outputFormats: string[] }
+> = {
+    "jpg-to-png": {
+        inputFormats: ["jpg", "jpeg"],
+        acceptType: ".jpg,.jpeg",
+        outputFormats: [...new Set(converter.getSupportedOutputFormats("jpg"))],
+    },
+    "png-to-jpg": {
+        inputFormats: ["png"],
+        acceptType: ".png",
+        outputFormats: [...new Set(converter.getSupportedOutputFormats("png"))],
+    },
+    "webp-to-jpg": {
+        inputFormats: ["webp"],
+        acceptType: ".webp",
+        outputFormats: [...new Set(converter.getSupportedOutputFormats("webp"))],
+    },
+    "heic-to-jpg": {
+        inputFormats: ["heic", "heif"],
+        acceptType: ".heic,.heif",
+        outputFormats: [
+            ...new Set([
+                ...converter.getSupportedOutputFormats("heic"),
+                ...converter.getSupportedOutputFormats("heif"),
+            ]),
+        ],
+    },
+    "tiff-to-jpg": {
+        inputFormats: ["tiff", "tif"],
+        acceptType: ".tiff,.tif",
+        outputFormats: [
+            ...new Set([
+                ...converter.getSupportedOutputFormats("tif"),
+                ...converter.getSupportedOutputFormats("tiff"),
+            ]),
+        ],
+    },
+    "pdf-to-jpg": {
+        inputFormats: ["pdf"],
+        acceptType: ".pdf",
+        outputFormats: [...new Set([...converter.getSupportedOutputFormats("pdf")])],
+    },
+    "all-in-one-image-converter": {
+        acceptType: "image/*",
+        inputFormats: [
+            "jpg",
+            "jpeg",
+            "png",
+            "webp",
+            "heic",
+            "heif",
+            "gif",
+            "bmp",
+            "svg",
+            "tiff",
+            "tif",
+            "pdf",
+        ],
+        outputFormats: [],
+    },
 };

@@ -1,278 +1,24 @@
 "use client";
 
 import { saveAs } from "file-saver";
-import { Image as ImageIcon, Type, Video, Wand2 } from "lucide-react";
-import React, { memo, useCallback, useEffect, useRef, useState } from "react";
+import { Video, Wand2 } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { PropSlider } from "@/components/ui/prop-slider";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ToolShell } from "@/features/tools/shared/components/layouts/tool-shell";
 import { FileUpload } from "@/features/tools/shared/components/uploads/file-upload";
 
 import type { BaseTool } from "@/features/tools/shared/types";
-import type { WatermarkImageConfig, WatermarkTextConfig } from "./lib";
-import { processVideoWatermark } from "./lib";
+import {
+    processVideoWatermark,
+    type WatermarkImageConfig,
+    type WatermarkTextConfig,
+} from "../../../../../../packages/packages/video-watermark/src/index";
+import { ToolHeader } from "../../shared/components/layouts/tool-header";
+import { WatermarkSettings, type LocalWatermarkImageConfig } from "./settings";
 
-const WatermarkSettings = memo(function WatermarkSettings({
-    watermarkType,
-    setWatermarkType,
-    textConfig,
-    imageConfig,
-    onTextChange,
-    onImageChange,
-    videoDimensions,
-}: {
-    watermarkType: "text" | "image";
-    setWatermarkType: (type: "text" | "image") => void;
-    textConfig: WatermarkTextConfig;
-    imageConfig: WatermarkImageConfig;
-    onTextChange: (cfg: Partial<WatermarkTextConfig>) => void;
-    onImageChange: (cfg: Partial<WatermarkImageConfig>) => void;
-    videoDimensions: { width: number; height: number } | null;
-}) {
-    const imgInputRef = useRef<HTMLInputElement>(null);
-
-    const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (!file) return;
-        const previewUrl = URL.createObjectURL(file);
-
-        const img = new Image();
-        img.onload = () => {
-            if (videoDimensions) {
-                const targetWidth = videoDimensions.width * 0.3;
-                const targetHeight = videoDimensions.height * 0.3;
-                const scaleX = targetWidth / img.width;
-                const scaleY = targetHeight / img.height;
-                const optimalScale = Math.min(scaleX, scaleY);
-                onImageChange({ file, previewUrl, scale: optimalScale });
-            } else {
-                onImageChange({ file, previewUrl });
-            }
-        };
-        img.src = previewUrl;
-    };
-
-    const setQuickPosition = (x: number, y: number, isImage: boolean = false) => {
-        if (isImage) {
-            onImageChange({ x, y });
-        } else {
-            onTextChange({ x, y });
-        }
-    };
-
-    return (
-        <div className="space-y-4">
-            <div className="flex items-center gap-2 text-sm font-medium text-foreground mb-2">
-                <Wand2 className="w-4 h-4 text-primary" /> Watermark Settings
-            </div>
-
-            <Tabs
-                value={watermarkType}
-                onValueChange={(v) => setWatermarkType(v as "text" | "image")}
-            >
-                <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="text">
-                        <span className="flex items-center gap-2">
-                            <Type className="w-4 h-4" /> Text
-                        </span>
-                    </TabsTrigger>
-                    <TabsTrigger value="image">
-                        <span className="flex items-center gap-2">
-                            <ImageIcon className="w-4 h-4" /> Image
-                        </span>
-                    </TabsTrigger>
-                </TabsList>
-
-                <TabsContent value="text" className="space-y-4 mt-4">
-                    <div className="space-y-2">
-                        <Label className="text-xs text-muted-foreground">Text Content</Label>
-                        <Input
-                            value={textConfig.text}
-                            onChange={(e) => onTextChange({ text: e.target.value })}
-                            placeholder="Enter watermark text..."
-                            className="h-9"
-                        />
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label className="text-xs text-muted-foreground">Color</Label>
-                        <Input
-                            type="color"
-                            value={textConfig.color}
-                            onChange={(e) => onTextChange({ color: e.target.value })}
-                            className="h-9 cursor-pointer p-1 w-full"
-                        />
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label className="text-xs text-muted-foreground">Quick Position</Label>
-                        <div className="grid grid-cols-3 gap-1.5">
-                            {[
-                                { label: "TL", x: 5, y: 5 },
-                                { label: "TC", x: 50, y: 5 },
-                                { label: "TR", x: 95, y: 5 },
-                                { label: "CL", x: 5, y: 50 },
-                                { label: "C", x: 50, y: 50 },
-                                { label: "CR", x: 95, y: 50 },
-                                { label: "BL", x: 5, y: 95 },
-                                { label: "BC", x: 50, y: 95 },
-                                { label: "BR", x: 95, y: 95 },
-                            ].map((pos) => (
-                                <Button
-                                    key={pos.label}
-                                    variant="outline"
-                                    size="sm"
-                                    className="text-[10px] h-7"
-                                    onClick={() => setQuickPosition(pos.x, pos.y, false)}
-                                >
-                                    {pos.label}
-                                </Button>
-                            ))}
-                        </div>
-                    </div>
-
-                    <PropSlider
-                        label="Position X"
-                        value={textConfig.x}
-                        onChange={(v) => onTextChange({ x: v })}
-                        min={-100}
-                        max={200}
-                        step={1}
-                        unit="%"
-                    />
-                    <PropSlider
-                        label="Position Y"
-                        value={textConfig.y}
-                        onChange={(v) => onTextChange({ y: v })}
-                        min={-100}
-                        max={200}
-                        step={1}
-                        unit="%"
-                    />
-                    <PropSlider
-                        label="Font Size"
-                        value={textConfig.fontSize}
-                        onChange={(v) => onTextChange({ fontSize: v })}
-                        min={12}
-                        max={200}
-                        step={1}
-                        unit="px"
-                    />
-                    <PropSlider
-                        label="Opacity"
-                        value={textConfig.opacity}
-                        onChange={(v) => onTextChange({ opacity: v })}
-                        min={0}
-                        max={1}
-                        step={0.05}
-                    />
-                </TabsContent>
-
-                <TabsContent value="image" className="space-y-4 mt-4">
-                    <input
-                        ref={imgInputRef}
-                        type="file"
-                        accept="image/*"
-                        className="hidden"
-                        onChange={handleImageSelect}
-                    />
-                    <Button
-                        type="button"
-                        variant="outline"
-                        onClick={() => imgInputRef.current?.click()}
-                        className="w-full h-9"
-                    >
-                        {imageConfig.file ? "Change Logo Image" : "Upload Logo Image"}
-                    </Button>
-
-                    {imageConfig.file ? (
-                        <>
-                            <p className="text-[10px] text-muted-foreground text-center truncate">
-                                Selected: {imageConfig.file.name}
-                            </p>
-
-                            <div className="space-y-2">
-                                <Label className="text-xs text-muted-foreground">
-                                    Quick Position
-                                </Label>
-                                <div className="grid grid-cols-3 gap-1.5">
-                                    {[
-                                        { label: "TL", x: 5, y: 5 },
-                                        { label: "TC", x: 50, y: 5 },
-                                        { label: "TR", x: 95, y: 5 },
-                                        { label: "CL", x: 5, y: 50 },
-                                        { label: "C", x: 50, y: 50 },
-                                        { label: "CR", x: 95, y: 50 },
-                                        { label: "BL", x: 5, y: 95 },
-                                        { label: "BC", x: 50, y: 95 },
-                                        { label: "BR", x: 95, y: 95 },
-                                    ].map((pos) => (
-                                        <Button
-                                            key={pos.label}
-                                            variant="outline"
-                                            size="sm"
-                                            className="text-[10px] h-7"
-                                            onClick={() => setQuickPosition(pos.x, pos.y, true)}
-                                        >
-                                            {pos.label}
-                                        </Button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <PropSlider
-                                label="Position X"
-                                value={imageConfig.x}
-                                onChange={(v) => onImageChange({ x: v })}
-                                min={-100}
-                                max={200}
-                                step={1}
-                                unit="%"
-                            />
-                            <PropSlider
-                                label="Position Y"
-                                value={imageConfig.y}
-                                onChange={(v) => onImageChange({ y: v })}
-                                min={-100}
-                                max={200}
-                                step={1}
-                                unit="%"
-                            />
-                            <PropSlider
-                                label="Scale"
-                                value={imageConfig.scale}
-                                onChange={(v) => onImageChange({ scale: v })}
-                                min={0.1}
-                                max={5}
-                                step={0.05}
-                            />
-                            <PropSlider
-                                label="Opacity"
-                                value={imageConfig.opacity}
-                                onChange={(v) => onImageChange({ opacity: v })}
-                                min={0}
-                                max={1}
-                                step={0.05}
-                            />
-                        </>
-                    ) : (
-                        <div className="text-center py-6 text-muted-foreground border border-dashed border-border rounded-lg">
-                            <ImageIcon className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                            <p className="text-xs">Upload an image to configure</p>
-                        </div>
-                    )}
-                </TabsContent>
-            </Tabs>
-        </div>
-    );
-});
-
-export default function VideoWatermarkClient({}: { tool: BaseTool }) {
+export default function VideoWatermarkClient({ tool }: { tool: BaseTool }) {
     const [videoFile, setVideoFile] = useState<File | null>(null);
     const [videoSrc, setVideoSrc] = useState<string | null>(null);
     const [outputVideoUrl, setOutputVideoUrl] = useState<string | null>(null);
@@ -293,7 +39,7 @@ export default function VideoWatermarkClient({}: { tool: BaseTool }) {
         color: "#ffffff",
     });
 
-    const [imageConfig, setImageConfig] = useState<WatermarkImageConfig>({
+    const [imageConfig, setImageConfig] = useState<LocalWatermarkImageConfig>({
         file: null,
         previewUrl: null,
         x: 50,
@@ -304,7 +50,6 @@ export default function VideoWatermarkClient({}: { tool: BaseTool }) {
 
     const videoRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleFileSelect = (files: File[]) => {
         if (files.length === 0) return;
@@ -341,8 +86,10 @@ export default function VideoWatermarkClient({}: { tool: BaseTool }) {
         (cfg: Partial<WatermarkTextConfig>) => setTextConfig((prev) => ({ ...prev, ...cfg })),
         [],
     );
+
     const handleImageChange = useCallback(
-        (cfg: Partial<WatermarkImageConfig>) => setImageConfig((prev) => ({ ...prev, ...cfg })),
+        (cfg: Partial<LocalWatermarkImageConfig>) =>
+            setImageConfig((prev) => ({ ...prev, ...cfg })),
         [],
     );
 
@@ -413,10 +160,18 @@ export default function VideoWatermarkClient({}: { tool: BaseTool }) {
         setOutputVideoUrl(null);
 
         try {
+            const packageImageConfig: WatermarkImageConfig = {
+                file: imageConfig.file!,
+                opacity: imageConfig.opacity,
+                scale: imageConfig.scale,
+                x: imageConfig.x,
+                y: imageConfig.y,
+            };
+
             const blob = await processVideoWatermark(
                 videoFile,
                 textConfig,
-                imageConfig,
+                packageImageConfig,
                 watermarkType,
                 (p) => setProgress(p),
             );
@@ -437,18 +192,18 @@ export default function VideoWatermarkClient({}: { tool: BaseTool }) {
 
     return (
         <ToolShell>
-            {!videoFile ? (
-                <FileUpload
-                    accept="video/*"
-                    maxSizeMB={500}
-                    multiple={false}
-                    onFilesSelected={handleFileSelect}
-                    allowedFormats={["mp4", "webm", "mov", "avi"]}
-                />
-            ) : (
-                <div className="grid lg:grid-cols-3 gap-8">
-                    {/* Left Side: Video Preview (2/3 width) */}
-                    <div className="lg:col-span-2 space-y-6">
+            <ToolHeader title={tool.name} description={tool.description}>
+                {!videoFile ? (
+                    <FileUpload
+                        accept="video/*"
+                        maxSizeMB={500}
+                        multiple={false}
+                        onFilesSelected={handleFileSelect}
+                        allowedFormats={["mp4", "webm", "mov", "avi"]}
+                    />
+                ) : (
+                    <div>
+                        {/* 1. Video Preview at the top (replaces the upload area) */}
                         <div className="relative aspect-video w-full bg-background border border-border rounded-xl overflow-hidden shadow-sm">
                             {outputVideoUrl ? (
                                 <video
@@ -474,6 +229,7 @@ export default function VideoWatermarkClient({}: { tool: BaseTool }) {
                             )}
                         </div>
 
+                        {/* 2. Action Buttons */}
                         <div className="flex gap-2">
                             {!outputVideoUrl ? (
                                 <Button
@@ -511,8 +267,9 @@ export default function VideoWatermarkClient({}: { tool: BaseTool }) {
                                 </>
                             )}
                         </div>
+
                         {isProcessing && (
-                            <div className="w-full bg-muted rounded-full h-2">
+                            <div className="w-full bg-muted rounded-full h-2 mt-2">
                                 <div
                                     className="bg-primary h-2 rounded-full transition-all"
                                     style={{ width: `${progress}%` }}
@@ -520,39 +277,26 @@ export default function VideoWatermarkClient({}: { tool: BaseTool }) {
                             </div>
                         )}
                     </div>
+                )}
+            </ToolHeader>
 
-                    {/* Right Side: Settings Panel (1/3 width, sticky) */}
-                    <div className="space-y-6">
-                        <Card className="border-border bg-card sticky top-4">
-                            <CardContent className="p-4 md:p-6">
-                                <WatermarkSettings
-                                    watermarkType={watermarkType}
-                                    setWatermarkType={handleTypeChange}
-                                    textConfig={textConfig}
-                                    imageConfig={imageConfig}
-                                    onTextChange={handleTextChange}
-                                    onImageChange={handleImageChange}
-                                    videoDimensions={videoDimensions}
-                                />
-                            </CardContent>
-                        </Card>
-                    </div>
+            {!outputVideoUrl && (
+                <div className="w-full max-w-4xl mx-auto space-y-6">
+                    <Card>
+                        <CardContent>
+                            <WatermarkSettings
+                                watermarkType={watermarkType}
+                                setWatermarkType={handleTypeChange}
+                                textConfig={textConfig}
+                                imageConfig={imageConfig}
+                                onTextChange={handleTextChange}
+                                onImageChange={handleImageChange}
+                                videoDimensions={videoDimensions}
+                            />
+                        </CardContent>
+                    </Card>
                 </div>
             )}
-
-            {/* Hidden file input for adding more */}
-            <input
-                ref={fileInputRef}
-                type="file"
-                accept="video/*"
-                className="hidden"
-                onChange={(e) => {
-                    if (e.target.files) {
-                        handleFileSelect(Array.from(e.target.files));
-                        e.target.value = "";
-                    }
-                }}
-            />
         </ToolShell>
     );
 }

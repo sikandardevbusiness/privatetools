@@ -1,11 +1,12 @@
 "use client";
 
 import { saveAs } from "file-saver";
-import { Archive, FileImage, RotateCcw } from "lucide-react";
+import { Archive } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { ImageCard } from "@/features/tools/shared/components/image-card";
+import { ToolHeader } from "@/features/tools/shared/components/layouts/tool-header";
 import { ToolShell } from "@/features/tools/shared/components/layouts/tool-shell";
 import { FileUpload } from "@/features/tools/shared/components/uploads/file-upload";
 
@@ -24,9 +25,9 @@ interface EmoteFile extends ProcessedFile {
     resizedBlobs: Record<number, Blob>;
 }
 
-export default function EmoteResizerClient({}: { tool: BaseTool }) {
+export default function EmoteResizerClient({ tool }: { tool: BaseTool }) {
     const [currentFile, setCurrentFile] = useState<EmoteFile | null>(null);
-    const [, setIsProcessing] = useState(false);
+    const [isProcessing, setIsProcessing] = useState(false);
     const [zipping, setZipping] = useState(false);
 
     const processFile = async (file: File) => {
@@ -36,7 +37,6 @@ export default function EmoteResizerClient({}: { tool: BaseTool }) {
             const blobs = await resizeImageToSizes(file, sizes, { format: "png", quality: 0.9 });
 
             const resizedBlobs: Record<number, Blob> = {};
-
             blobs.forEach((blob, index) => {
                 const size = EMOTE_SIZES[index].size;
                 resizedBlobs[size] = blob;
@@ -71,10 +71,6 @@ export default function EmoteResizerClient({}: { tool: BaseTool }) {
         }
     };
 
-    const reset = () => {
-        setCurrentFile(null);
-    };
-
     const downloadZip = async () => {
         if (!currentFile || currentFile.status !== "completed") return;
         setZipping(true);
@@ -97,78 +93,69 @@ export default function EmoteResizerClient({}: { tool: BaseTool }) {
         saveAs(currentFile.resizedBlobs[size], `${name}_${size}x${size}.png`);
     };
 
-    // Single File Editor UI
     return (
         <ToolShell>
-            {!currentFile ? (
-                <FileUpload
-                    accept="image/*"
-                    maxSizeMB={10}
-                    multiple={false}
-                    onFilesSelected={handleFileSelect}
-                    allowedFormats={["png", "jpg", "jpeg", "webp"]}
-                />
-            ) : (
-                <div className="max-w-7xl mx-auto space-y-8">
-                    {/* Header Actions */}
-                    <div className="flex items-center justify-between">
-                        <h2 className="text-xl font-semibold">Resizing: {currentFile.file.name}</h2>
-                        <Button variant="outline" onClick={reset} className="gap-2">
-                            <RotateCcw className="w-4 h-4" /> Upload New File
-                        </Button>
-                    </div>
-
-                    {/* Original Image Card */}
+            <ToolHeader title={tool.name} description={tool.description}>
+                {!currentFile ? (
+                    <FileUpload
+                        accept="image/*"
+                        maxSizeMB={10}
+                        multiple={false}
+                        onFilesSelected={handleFileSelect}
+                        allowedFormats={["png", "jpg", "jpeg", "webp"]}
+                    />
+                ) : (
                     <ImageCard
                         index={0}
-                        onRemove={reset}
-                        isSelected={true}
                         file={currentFile.file}
+                        disabledRemove={true}
                         disabledCheckbox={true}
                         onDownload={downloadZip}
                     />
+                )}
+            </ToolHeader>
 
-                    {/* Resized Outputs Grid using ImageCard */}
-                    {currentFile.status === "completed" && (
-                        <div className="space-y-4">
-                            <div className="flex items-center justify-between">
-                                <h3 className="text-sm font-semibold flex items-center gap-2">
-                                    <FileImage className="w-4 h-4 text-primary" />
-                                    Resized Outputs
-                                </h3>
-                                <Button onClick={downloadZip} disabled={zipping} className="gap-2">
-                                    <Archive className="w-4 h-4" />
-                                    {zipping ? "Preparing ZIP..." : "Download All Sizes (ZIP)"}
-                                </Button>
-                            </div>
-
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                {EMOTE_SIZES.map(({ size }, index) => {
-                                    const blob = currentFile.resizedBlobs[size];
-                                    if (!blob) return null;
-
-                                    // Create a File object from the Blob so ImageCard can render it perfectly
-                                    const baseName = currentFile.file.name.replace(/\.[^/.]+$/, "");
-                                    const resizedFile = new File(
-                                        [blob],
-                                        `${baseName}_${size}x${size}.png`,
-                                        { type: "image/png" },
-                                    );
-
-                                    return (
-                                        <ImageCard
-                                            key={size}
-                                            index={index}
-                                            file={resizedFile}
-                                            disabledRemove={true}
-                                            disabledCheckbox={true}
-                                            onDownload={() => downloadSize(size)}
-                                        />
-                                    );
-                                })}
-                            </div>
+            {currentFile && currentFile.status === "completed" && (
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 pt-8">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                            <Archive className="w-4 h-4 text-primary" />
+                            Resized Emote Outputs
                         </div>
-                    )}
+                        <Button
+                            onClick={downloadZip}
+                            disabled={zipping || isProcessing}
+                            className="gap-2"
+                        >
+                            <Archive className="w-4 h-4" />
+                            {zipping ? "Preparing ZIP..." : "Download All Sizes (ZIP)"}
+                        </Button>
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {EMOTE_SIZES.map(({ size }, index) => {
+                            const blob = currentFile.resizedBlobs[size];
+                            if (!blob) return null;
+
+                            const baseName = currentFile.file.name.replace(/\.[^/.]+$/, "");
+                            const resizedFile = new File(
+                                [blob],
+                                `${baseName}_${size}x${size}.png`,
+                                { type: "image/png" },
+                            );
+
+                            return (
+                                <ImageCard
+                                    key={size}
+                                    index={index}
+                                    file={resizedFile}
+                                    disabledRemove={true}
+                                    disabledCheckbox={true}
+                                    onDownload={() => downloadSize(size)}
+                                />
+                            );
+                        })}
+                    </div>
                 </div>
             )}
         </ToolShell>
