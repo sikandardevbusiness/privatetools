@@ -33,6 +33,7 @@ export type ToolCategory = z.infer<typeof toolCategorySchema>;
 export const baseToolSchema = z.object({
     id: z.string(),
     name: z.string(),
+    longName: z.string(),
     thumbnailUrl: z.url(),
     description: z.string(),
     tags: z.array(z.string()),
@@ -42,7 +43,6 @@ export const baseToolSchema = z.object({
     isExperimental: z.boolean().optional(),
     faqs: z.array(faqItemSchema).default([]),
     keywords: z.array(z.string()).default([]),
-    // NEW: Steps for "How it works"
     steps: z
         .array(
             z.object({
@@ -51,8 +51,6 @@ export const baseToolSchema = z.object({
             }),
         )
         .default([]),
-
-    // NEW: What to expect details
     whatToExpect: z
         .array(
             z.object({

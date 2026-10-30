@@ -7,92 +7,80 @@ export const imageCropperToolMetadataList: BaseTool[] = [
         id: "universal-image-cropper",
         category: "image",
         name: "Universal Image Cropper",
-        keywords: [
-            "image cropper",
-            "photo cropper",
-            "crop images online",
-            "free image cropper",
-            "resize images",
-            "edit photos",
-            "crop JPG",
-            "crop PNG",
-            "crop WEBP",
-            "crop HEIC",
-            "aspect ratio tool",
-            "image resizer",
-            "photo editor",
-            "online image editor",
-            "client-side image cropper",
-            "privacy image tool",
-            "no upload image cropper",
-        ],
-        tags: ["crop", "resize", "edit", "jpg", "png", "webp", "heic", "free", "private"],
-        description:
-            "Free online image cropper. Crop, resize, and edit JPG, PNG, WEBP, and HEIC images instantly in your browser. 100% private, no uploads required.",
-        longDescription:
-            "Transform and optimize your visuals with our free Universal Image Cropper. Designed for speed and privacy, this client-side tool lets you crop, resize, and edit JPG, PNG, WEBP, GIF, BMP, and HEIC images directly in your browser. Whether you need to adjust aspect ratios for Instagram, YouTube, or LinkedIn, or simply trim unwanted edges, our intuitive interface makes it effortless. Enjoy high-quality exports in PNG, JPG, or WEBP formats with zero uploads, zero server storage, and 100% data privacy.",
+        longName: "Free Online Image Cropper & Resizer - Private & Fast",
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/cd85b1ace5816d7d41a980ccd25db912c90fb4bd-1376x768.jpg",
-
-        // NEW: SEO-optimized "What to Expect" section
-        whatToExpect: [
-            {
-                title: "100% Private & Secure",
-                description:
-                    "Your images never leave your device. All cropping and processing happen locally in your browser, ensuring complete data privacy.",
-            },
-            {
-                title: "Lightning Fast Processing",
-                description:
-                    "No uploading or downloading wait times. Get instant, high-quality results with zero latency.",
-            },
-            {
-                title: "High-Quality Output",
-                description:
-                    "Maintain the original resolution and clarity of your images without unwanted compression artifacts.",
-            },
-            {
-                title: "Works Offline",
-                description:
-                    "Once the page is loaded, you can continue cropping images seamlessly even without an internet connection.",
-            },
+        description:
+            "Crop, resize, and edit JPG, PNG, WebP, and HEIC images online for free. 100% private browser tool with custom aspect ratios and no server uploads.",
+        longDescription:
+            "Crop, trim, and frame your photos directly in your web browser with zero server uploads and zero software installation. Whether you are formatting product photos for an online store, framing profile avatars for LinkedIn, or adjusting aspect ratios for Instagram posts and YouTube thumbnails, this tool gives you precise pixel-level control over your image dimensions.\n\nUnlike typical photo editing websites that send your personal pictures over the network, our cropper operates entirely on the client side using HTML5 Canvas. Your images stay on your device at all times, guaranteeing total privacy for sensitive snapshots, personal IDs, and unreleased design assets.\n\nChoose from standard social media aspect ratios like 1:1, 16:9, 4:5, and 9:16, or switch to freeform mode for exact pixel trimming. Export your finished pictures in JPG, PNG, or WebP formats at full resolution with zero watermarks or subscription fees.",
+        tags: [
+            "image cropper",
+            "photo editor",
+            "aspect ratio tool",
+            "image resizer",
+            "photo tools",
         ],
-
-        // NEW: SEO-optimized "How it Works" steps
+        keywords: [
+            "free online image cropper no upload",
+            "crop photos in browser private",
+            "social media aspect ratio photo cropper",
+            "crop png transparent online free",
+            "client side image cutter and resizer",
+            "crop heic photos online without server",
+            "custom aspect ratio photo cropper",
+            "free photo trimmer no watermark",
+            "crop picture for youtube thumbnail",
+        ],
         steps: [
             {
-                title: "Upload Your Image",
-                description:
-                    "Drag and drop your JPG, PNG, WEBP, or HEIC file into the tool, or click to browse your local device.",
+                title: "Load Photo",
+                description: "Drag and drop your image file or browse from your phone or computer.",
             },
             {
-                title: "Adjust Crop Area",
+                title: "Frame Your Crop",
                 description:
-                    "Drag the corners to resize, move the selection box, or choose a preset aspect ratio like 1:1, 16:9, or 9:16.",
+                    "Select a preset aspect ratio or drag the bounding box handles to frame your subject.",
             },
             {
-                title: "Download Instantly",
+                title: "Export Cropped Image",
                 description:
-                    "Select your preferred output format (PNG, JPG, or WEBP) and click download to save your perfectly cropped image.",
+                    "Choose your desired export format and save your cropped photo instantly.",
             },
         ],
-
+        whatToExpect: [
+            {
+                title: "Total Photo Privacy",
+                description:
+                    "Process personal photos and sensitive documents locally without cloud uploads.",
+            },
+            {
+                title: "One-Click Social Presets",
+                description:
+                    "Quickly frame images to match standard Instagram, YouTube, and LinkedIn ratios.",
+            },
+            {
+                title: "Lossless Clarity",
+                description:
+                    "Export clean, full-resolution pictures without unwanted artifacts or watermarks.",
+            },
+        ],
         faqs: [
             {
-                question: "Are my images uploaded to a server?",
-                answer: "No. All cropping happens 100% locally in your browser. Your photos never leave your device, ensuring complete privacy and security.",
+                question: "Are my pictures uploaded to any external server?",
+                answer: "No. All cropping and resizing operations run locally inside your browser using client-side graphics rendering. Your photos never leave your device.",
             },
             {
-                question: "What image formats are supported?",
-                answer: "You can crop JPG, PNG, WEBP, GIF, BMP, SVG, and HEIC files, and download the result as a high-quality PNG, JPG, or WEBP.",
+                question: "Can I select preset aspect ratios for social media platforms?",
+                answer: "Yes. You can choose popular presets like 1:1 for Instagram posts, 16:9 for YouTube thumbnails, 9:16 for TikTok and Reels, or use freeform mode.",
             },
             {
-                question: "Can I set specific aspect ratios?",
-                answer: "Yes. Choose from popular presets like 1:1 (Instagram), 16:9 (YouTube), 9:16 (Stories), or use the free-form mode for custom dimensions.",
+                question: "Will cropping reduce the quality of my photo?",
+                answer: "No. The cropper preserves your original image resolution and allows you to export high-definition files in JPG, PNG, or WebP formats.",
             },
             {
-                question: "Is this image cropper really free?",
-                answer: "Yes, it is completely free to use with no hidden fees, watermarks, or registration required.",
+                question: "What image formats can I crop with this tool?",
+                answer: "You can import and crop JPG, PNG, WebP, GIF, BMP, and HEIC files without needing third-party converter utilities.",
             },
         ],
     },

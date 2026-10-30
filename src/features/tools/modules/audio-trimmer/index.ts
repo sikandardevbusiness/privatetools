@@ -6,46 +6,74 @@ export const audioTrimmerToolMetadata: BaseTool[] = [
     {
         id: "audio-trimmer",
         category: "audio",
-        name: "Audio Trimmer & Merger",
-        tags: ["audio", "trim", "merge", "mp3", "wav"],
-        keywords: [
-            "free audio trimmer online",
-            "unlimited mp3 cutter no watermark",
-            "fast local browser audio editor",
-            "merge audio files client-side",
-            "podcast editor no upload",
-            "voice note trimmer free",
-            "combine mp3 online free unlimited",
-            "lecture recorder trimmer browser",
-            "fade in out audio locally",
-            "private audio cutter no server",
-        ],
+        name: "Audio Trimmer",
+        longName: "Free Audio Trimmer & MP3 Cutter Online - No Upload",
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/a8e6e70a4424475e3af7fdf49e25ca228f68ce50-1376x768.jpg",
         description:
-            "Free, unlimited, and fast audio trimmer & merger. Edit MP3, WAV, and more locally in your browser. No uploads, no watermarks, no limits.",
+            "Trim, cut, and join MP3, WAV, and audio tracks in your browser for free. 100% private client-side audio cutter with zero file size limits.",
         longDescription:
-            "Instantly trim, cut, and merge audio files directly in your browser with our free and unlimited audio editor. Perfect for editing long lectures, podcasts, and voice notes. Add professional fade-ins and fade-outs, combine multiple tracks seamlessly, and export as high-quality MP3 or WAV. Because all processing happens locally in your browser, it is blazing fast, completely private, and has absolutely no file size limits or server uploads.",
+            "Cut, trim, and combine audio files directly in your web browser without sending your recordings to an external server. Whether you are slicing a long podcast recording, cutting ringtones from songs, or removing dead air from voice memos, this tool handles your audio files locally on your computer or phone.\n\nUnlike traditional audio editors that require bulky desktop software installations or force you to wait for slow server uploads, our trimmer processes everything via client-side web technologies. This setup gives you immediate waveform rendering, millisecond-accurate split markers, and smooth volume fades without waiting in server queues.\n\nPrivacy remains absolute because your files never leave your device. You can cut sensitive voice notes, confidential interview tapes, or copyrighted music tracks with complete peace of mind, then export your finished audio file directly to MP3 or lossless WAV.",
+        tags: ["audio editor", "mp3 cutter", "audio trimmer", "audio merger", "audio converter"],
+        keywords: [
+            "free online audio trimmer no upload",
+            "cut mp3 file online without upload",
+            "client side audio merger free",
+            "trim podcast audio in browser",
+            "split voice recording online free",
+            "private mp3 cutter no server",
+            "combine audio files without size limit",
+            "browser based wav cutter",
+            "free audio track splitter online",
+        ],
+        steps: [
+            {
+                title: "Import Audio",
+                description: "Select or drop your audio files into the browser editor.",
+            },
+            {
+                title: "Trim and Adjust",
+                description:
+                    "Drag the waveform handles to set start and end points or arrange tracks.",
+            },
+            {
+                title: "Export Audio",
+                description:
+                    "Pick MP3 or WAV format and save the processed track directly to your device.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Local Device Privacy",
+                description:
+                    "Audio files never upload to third-party servers, keeping private recordings secure.",
+            },
+            {
+                title: "Instant Waveform Cuts",
+                description: "Zero upload lag means immediate trimming, splitting, and previewing.",
+            },
+            {
+                title: "Zero File Size Limits",
+                description:
+                    "Edit hour-long lectures, podcast episodes, or short voice memos without restrictions.",
+            },
+        ],
         faqs: [
             {
-                question: "Is this audio trimmer really free and unlimited?",
-                answer: "Yes, 100% free forever. There are no hidden fees, no watermarks, no sign-ups, and absolutely no file size limits.",
+                question: "Is my audio uploaded to a remote server?",
+                answer: "No. All cutting, splitting, and merging happens locally inside your browser using client-side processing. Your audio files stay on your machine and are never transmitted over the internet.",
             },
             {
-                question: "How fast is the processing?",
-                answer: "It is incredibly fast because it runs locally in your browser. Your audio never travels over the internet to a server, meaning processing starts instantly and finishes in seconds.",
+                question: "Is there a file size limit for long recordings?",
+                answer: "No. Because the processing uses your local device memory rather than a remote cloud server, you can trim long podcasts, voice recordings, and DJ sets of any size without upload restrictions.",
             },
             {
-                question: "Is it safe for private or sensitive audio recordings?",
-                answer: "Absolutely. This is a local browser tool. Your files never leave your device, ensuring complete privacy and security for your voice notes, lectures, or podcast recordings.",
+                question: "Can I combine multiple audio clips into one file?",
+                answer: "Yes. You can add multiple MP3 or WAV files, arrange them in the sequence you want, apply fade effects, and export the combined result into a single continuous track.",
             },
             {
-                question: "Can I merge multiple audio files together?",
-                answer: "Yes! You can upload multiple audio files, arrange them in your preferred order, and merge them into a single, seamless track instantly.",
-            },
-            {
-                question: "What audio formats are supported?",
-                answer: "We support all major audio formats including MP3, WAV, M4A, OGG, AAC, and FLAC. You can export your final edited track in either compressed MP3 or high-quality WAV.",
+                question: "What audio file formats are supported?",
+                answer: "The tool supports MP3, WAV, M4A, AAC, FLAC, and OGG formats for input, and lets you export clean outputs in standard MP3 or uncompressed WAV.",
             },
         ],
     },

@@ -42,16 +42,13 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
         };
     }
 
-    const title = `${tool.name} - Free, Secure & Private Local Browser Tool`;
-    const description = `${tool.description} Process your files 100% locally in your browser. Zero uploads, zero tracking, instant results.`;
-
     return {
-        title,
-        description,
+        title: tool.longName,
+        description: tool.longDescription,
         keywords: tool.keywords?.join(", ") || tool.name,
         openGraph: {
-            title,
-            description,
+            title: tool.longName,
+            description: tool.description,
             type: "website",
             siteName: "PrivateTools",
             images: [
@@ -65,8 +62,8 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
         },
         twitter: {
             card: "summary_large_image",
-            title,
-            description,
+            title: tool.longName,
+            description: tool.description,
             images: [tool.thumbnailUrl || `${BASE_URL}/og-image.jpg`],
         },
         robots: {

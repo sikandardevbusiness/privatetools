@@ -10,7 +10,6 @@ import { FileUpload } from "@/features/tools/shared/components/uploads/file-uplo
 import { PDFRedactorSettings } from "./settings";
 
 import type { BaseTool } from "@/features/tools/shared/types";
-// ✅ REPLACE LOCAL IMPORT WITH THE PACKAGE
 import {
     usePDFRedactor,
     type TextOverlayType,
@@ -22,30 +21,32 @@ type ResizeDirection = "nw" | "n" | "ne" | "e" | "se" | "s" | "sw" | "w";
 export default function PDFRedactorClient({ tool }: { tool: BaseTool }) {
     const {
         file,
-        pdfDoc,
-        pageNum,
-        scale,
-        redactions,
-        settings,
-        isProcessing,
-        canvasRef,
-        containerRef,
-        currentBox,
         past,
+        scale,
+        pdfDoc,
         future,
-        handleFileSelect,
-        setPageNum,
+        pageNum,
+        settings,
+        canvasRef,
+        redactions,
+        currentBox,
+        isProcessing,
+        containerRef,
+
+        // Functions
+        reset,
         setScale,
-        setSettings,
-        handleContainerMouseDown,
-        startBoxAction,
-        handleContainerMouseMove,
-        handleContainerMouseUp,
+        setPageNum,
         handleUndo,
         handleRedo,
+        setSettings,
+        startBoxAction,
         deleteRedaction,
+        handleFileSelect,
+        handleContainerMouseUp,
         handleApplyAndDownload,
-        reset,
+        handleContainerMouseDown,
+        handleContainerMouseMove,
     } = usePDFRedactor();
 
     const [isFullScreen, setIsFullScreen] = useState(false);
@@ -53,7 +54,7 @@ export default function PDFRedactorClient({ tool }: { tool: BaseTool }) {
     const handleUpload = (selected: File[]) => {
         if (selected.length > 0) {
             handleFileSelect(selected[0]);
-            setIsFullScreen(true); // ✅ Auto-enter fullscreen on upload
+            setIsFullScreen(true);
         }
     };
 

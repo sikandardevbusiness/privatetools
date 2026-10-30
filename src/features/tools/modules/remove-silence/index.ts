@@ -7,50 +7,81 @@ export const removeSilenceToolMetadataList: BaseTool[] = [
         id: "remove-silence",
         category: "audio",
         name: "Remove Silence from Audio",
-        keywords: [
-            "remove silence",
-            "audio silence remover",
-            "trim pauses",
-            "remove dead air",
-            "podcast editor",
-            "clean up voiceover",
-            "youtube audio cleanup",
-            "voice memo cleaner",
-            "ffmpeg audio tool",
-            "client-side audio editor",
-            "privacy audio tool",
-        ],
+        longName: "Free Audio Silence Remover Online - Auto Trim Dead Air",
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/38092955e88899a8137b121bde49dc1863aec008-1376x768.jpg",
-        tags: ["audio", "silence", "podcast", "voiceover"],
         description:
-            "Automatically detect and remove silent pauses from your audio files. Perfect for podcasts, voiceovers, and recordings. 100% private.",
+            "Automatically detect and remove dead air, pauses, and silent gaps from audio files. 100% private browser tool powered by FFmpeg WebAssembly.",
         longDescription:
-            "Transform messy recordings into polished audio in seconds. Our Remove Silence tool uses advanced browser-based processing to automatically detect and trim dead air, long pauses, and background noise gaps. Perfect for podcasters, YouTubers, and students cleaning up voice memos. Choose between highly compressed MP3 or lossless WAV output. Because everything runs locally via WebAssembly, your sensitive recordings never touch a server.",
+            "Cut out awkward pauses, dead air, and hesitation gaps from spoken-word recordings in seconds. Perfect for podcasters, voiceover artists, video creators, and students cleaning up lecture recordings, this tool automatically scans your audio timeline, detects quiet segments below your target decibel threshold, and trims them away without clipping spoken words.\n\nPowered by client-side FFmpeg compiled to WebAssembly, all audio decoding and filtering execute directly inside your browser. Your voice recordings never upload to a cloud server, making this tool safe for confidential interviews, business meetings, and personal voice memos. There are no wait times in cloud processing queues.\n\nAdjust the silence threshold slider to match ambient room noise, and fine-tune minimum pause durations so natural breaths between sentences remain intact. Export your cleaned audio as compact MP3 files for quick sharing or uncompressed WAV tracks for professional mixing in your digital audio workstation.",
+        tags: [
+            "audio editor",
+            "silence remover",
+            "podcast tool",
+            "voiceover cleaner",
+            "ffmpeg audio",
+        ],
+        keywords: [
+            "remove silence from audio online free",
+            "auto trim dead air podcast",
+            "cut silent pauses from voice recording",
+            "ffmpeg remove silence in browser",
+            "clean voice memo pauses no upload",
+            "audio silence trimmer client side",
+            "shorten lecture recording dead air",
+            "remove quiet gaps from voiceover",
+            "batch audio silence remover free",
+        ],
+        steps: [
+            {
+                title: "Import Voice Track",
+                description:
+                    "Drop your podcast, interview, or voice memo into the browser silence remover.",
+            },
+            {
+                title: "Tune Decibel & Timing",
+                description:
+                    "Set your silence decibel threshold and minimum pause duration to fit your audio room tone.",
+            },
+            {
+                title: "Export Clean Audio",
+                description:
+                    "Download the trimmed recording as an MP3 or WAV file with all dead air removed.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Intelligent Pause Trimming",
+                description:
+                    "Eliminate dead air while preserving natural speech cadence and breath pacing.",
+            },
+            {
+                title: "Local FFmpeg Processing",
+                description:
+                    "Process audio directly in your browser with zero server uploads and zero privacy risk.",
+            },
+            {
+                title: "Dual Export Options",
+                description:
+                    "Choose lightweight MP3 for fast publishing or uncompressed WAV for studio editing.",
+            },
+        ],
         faqs: [
             {
-                question: "Is my audio uploaded to a server?",
-                answer: "Absolutely not. This tool uses FFmpeg WebAssembly to process your audio entirely within your browser. Your files never leave your device, guaranteeing 100% privacy and security.",
+                question: "Will trimming silence cut off the ends of words or natural breathing?",
+                answer: "No. You can set a minimum pause duration (such as 0.35 seconds). This preserves natural breathing and conversational pacing while removing prolonged dead air.",
             },
             {
-                question: "What is the difference between MP3 and WAV output?",
-                answer: "MP3 is a compressed format, perfect for sharing, uploading to YouTube, or saving space (usually 2-5 MB). WAV is an uncompressed, lossless format used for professional editing, but it results in much larger file sizes (often 20-50 MB).",
+                question: "Are my audio files uploaded to a cloud server?",
+                answer: "No. Audio processing is handled locally on your computer through FFmpeg WebAssembly. Your recordings never leave your device.",
             },
             {
-                question: "How do I use the 'Silence Threshold' slider?",
-                answer: "This controls how quiet a sound must be to be considered 'silence'. The default is -40dB. If you lower it (e.g., -50dB), the tool becomes stricter and removes more background noise. If you raise it (e.g., -30dB), it becomes more lenient.",
+                question: "How do I choose the right silence threshold?",
+                answer: "The default threshold of -40 dB works well for most recordings. If your room has background hum, adjust toward -35 dB; for very quiet studio mics, lower it to -45 dB.",
             },
             {
-                question: "Will it accidentally cut off my words?",
-                answer: "To prevent cutting off words, we use the 'Min Silence Duration' setting. By default, it is set to 0.35 seconds, meaning any pause shorter than that is kept intact. This ensures natural breaths and short pauses between words are not removed.",
-            },
-            {
-                question: "What audio formats can I upload?",
-                answer: "You can upload almost any audio format supported by modern browsers, including MP3, WAV, M4A, OGG, WebM, and FLAC.",
-            },
-            {
-                question: "Can I process multiple files at once?",
-                answer: "Yes! You can upload and batch process multiple audio files simultaneously. Each file will be cleaned up independently, and you can download them all together as a ZIP file.",
+                question: "What output formats are available for the cleaned audio?",
+                answer: "You can export the trimmed audio as a standard compressed MP3 for sharing or as an uncompressed WAV file for DAW editing.",
             },
         ],
     },

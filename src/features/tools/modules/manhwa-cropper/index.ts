@@ -7,46 +7,81 @@ export const manhwaCropperToolMetadataList: BaseTool[] = [
         id: "manhwa-panel-cropper",
         category: "image",
         name: "Manhwa & Webtoon Panel Cropper",
-        keywords: [
-            "manhwa cropper",
-            "webtoon panel splitter",
-            "manga page slicer",
-            "long vertical image cropper",
-            "comic panel extractor",
-            "auto crop webtoon",
-            "split long image online",
-            "webtoon episode slicer",
-            "vertical comic cutter",
-            "manga panel separator",
-        ],
-        tags: ["manhwa", "webtoon", "manga", "split", "crop"],
-        isExperimental: true,
-        description:
-            "Auto-stitch and split long manhwa, webtoon, or manga pages into perfectly cropped individual panels. 100% private, no file size limits.",
-        longDescription:
-            "The ultimate free tool for comic creators, translators, and fans. Upload multiple manhwa or webtoon pages, and our tool will automatically stitch them into a continuous vertical strip. Using smart pixel analysis, it detects the white or black gaps between panels and slices them into perfectly cropped, individual images. Choose between 'Auto Gap Detection' or 'Fixed Height' slicing, auto-detect background colors, and export in high-quality PNG or optimized JPG. Everything runs 100% locally in your browser—your unreleased chapters and private comics never touch a server, and there are no file size limits.",
+        longName: "Free Webtoon & Manhwa Panel Splitter - Auto Slice Comics",
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/a881daf7bd6777bd87f5616e5215c9a1829a787c-1376x768.jpg",
+        description:
+            "Stitch and slice long vertical manhwa, webtoon, and manga strips into individual panels online. 100% private in-browser cutter with no file size limits.",
+        longDescription:
+            "Split long vertical manhwa, webtoons, and digital comic episodes into perfectly framed individual panels without tedious manual cropping in Photoshop. Designed for scanlation teams, webcomic artists, translators, and readers, this tool analyzes continuous scrolling strips and cuts panels cleanly along gutter margins.\n\nChoose between automatic gutter detection or fixed-height slicing. The smart gap detection engine scans your vertical strips for horizontal whitespace or solid black gutters between story beats, ensuring cuts never slice through dialogue bubbles or character art. For comics with textured borders, adjustable gap threshold parameters give you fine-tuned control over cut points.\n\nBecause image processing runs directly inside your browser using HTML5 Canvas and local memory management, you can process entire chapters with dozens of high-resolution pages without hitting server timeouts or file size limits. Unreleased storyboards and raw scans remain private on your computer.",
+        tags: [
+            "manhwa cropper",
+            "webtoon splitter",
+            "manga tools",
+            "comic slicer",
+            "image splitter",
+        ],
+        keywords: [
+            "webtoon panel splitter online free",
+            "manhwa image cropper auto slice",
+            "split long manga strip into panels",
+            "vertical comic page cutter",
+            "auto detect webtoon gutters split",
+            "slice manhwa chapter without upload",
+            "long vertical image slicer free",
+            "comic scanlation cropping tool",
+            "batch webtoon episode panel extractor",
+        ],
+        steps: [
+            {
+                title: "Load Comic Pages",
+                description:
+                    "Select or drop individual episode pages or a continuous vertical strip into the slicer.",
+            },
+            {
+                title: "Configure Cut Settings",
+                description:
+                    "Choose auto-detection or fixed-height slicing and adjust the gap tolerance sensitivity.",
+            },
+            {
+                title: "Download Cropped Panels",
+                description:
+                    "Export all cleanly sliced comic panels in sequence as a single organized ZIP file.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Accurate Gutter Cuts",
+                description:
+                    "Smart horizontal scanning prevents awkward splits across text boxes and character art.",
+            },
+            {
+                title: "Total Draft Privacy",
+                description:
+                    "Raw scans, fan translations, and upcoming chapters stay safely on your device.",
+            },
+            {
+                title: "Unlimited Strip Length",
+                description:
+                    "Stitch and slice full-length webcomic chapters without file size restrictions.",
+            },
+        ],
         faqs: [
             {
-                question: "Are my images uploaded to a server?",
-                answer: "Absolutely not. Everything runs 100% locally in your browser using the HTML5 Canvas API. Your comics, webtoons, and manga remain completely private and secure.",
+                question: "How does the automatic gutter detection find cut points?",
+                answer: "The tool scans horizontal rows of pixels for uniform white or black gutters between panels. Once it verifies an empty margin across the strip, it marks that point for a clean slice.",
             },
             {
-                question: "Is there a file size or page limit?",
-                answer: "No! Unlike other tools, we don't impose artificial file size limits. You can process full webtoon episodes with dozens of pages at once. The tool uses smart memory management to handle extremely long vertical strips.",
+                question: "Can I stitch multiple numbered pages before slicing?",
+                answer: "Yes. Upload all episode pages at once. The tool arranges them in alphabetical or numerical sequence, joins them into a continuous vertical image, and slices them into clean panels.",
             },
             {
-                question: "What is the difference between 'Auto' and 'Fixed' split modes?",
-                answer: "'Auto' mode scans the image for horizontal white or black bands (gutters) and cuts exactly there, preventing awkward cuts through characters or text. 'Fixed' mode cuts at a specific pixel height (e.g., every 2400px), but includes a 'Safe Search Margin' to nudge the cut to the nearest blank band if possible.",
+                question: "Are my unreleased comic chapters uploaded to external servers?",
+                answer: "No. Everything runs 100% locally in your browser memory. Your drafts, raw raws, and unpublished story pages never touch an external server.",
             },
             {
-                question: "What does 'Gap Strength' mean?",
-                answer: "It determines how strict the tool is about identifying a gap. A value of 0.97 means 97% of the pixels in a horizontal row must be pure white or pure black to be considered a valid split point. Lower it to 0.90 if your comic has textured or colored backgrounds between panels.",
-            },
-            {
-                question: "Can I process multiple files at once?",
-                answer: "Yes! You can select multiple pages (e.g., page 1, page 2, page 3) at once. The tool will automatically stitch them together in alphabetical/numerical order before splitting them into panels.",
+                question: "Is there a limit on how long the vertical image can be?",
+                answer: "There are no arbitrary server limits. The tool uses chunked browser memory rendering, letting you process multi-page webtoon episodes directly on modern hardware.",
             },
         ],
     },

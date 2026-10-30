@@ -8,41 +8,81 @@ export const fileConverterToolMetadataList: BaseTool[] = [
         id: "all-in-one-image-converter",
         category: "image",
         name: "All-in-One Image Converter",
-        tags: ["convert", "batch", "jpg", "png", "webp", "heic", "tiff"],
-        keywords: [
-            "all in one image converter",
-            "batch image converter online free",
-            "convert tiff to jpg online free",
-            "convert heic to jpg online free",
-            "client-side image converter",
-            "privacy focused image converter",
-            "offline image format changer",
-            "no upload image converter",
-            "secure file converter no watermark",
-            "fast browser image converter",
-        ],
-        description:
-            "Free online batch image converter. Convert JPG, PNG, WEBP, HEIC, TIFF, and more formats instantly in your browser. 100% private, no uploads, no limits.",
-        longDescription:
-            "Convert your images between all major formats completely client-side. Full support for JPG, PNG, WEBP, GIF, BMP, SVG, HEIC, HEIF, TIFF, and TIF. Convert single images or batch process multiple files at once. All processing happens locally in your browser, ensuring your files never leave your device. No watermarks, no sign-ups, and no file size limits.",
+        longName: "Free Batch Image Converter Online - No File Upload",
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/eb8ab9c00c2ea3b29840c1571aed377381743b0f-1376x768.jpg",
+        description:
+            "Convert JPG, PNG, WEBP, HEIC, and TIFF images in batch online for free. Fast, private client-side converter with zero file size limits or server uploads.",
+        longDescription:
+            "Convert image files between modern and legacy formats directly in your web browser. This all-in-one converter handles JPG, PNG, WEBP, GIF, BMP, SVG, HEIC, and TIFF formats without making you install heavy graphic software or wait in cloud server queues. Whether you need to change iPhone photos into standard JPEGs or prepare transparent web graphics, you can convert individual images or batch process entire folders at once.\n\nUnlike typical file converters that upload your personal pictures, receipts, or confidential scans to remote servers, this tool works entirely on the client side using your browser's native processing power. Your files remain on your device from start to finish, ensuring complete privacy and immediate file transformation without bandwidth bottlenecks.\n\nEnjoy complete freedom with no arbitrary limits. There are no daily conversion caps, watermarks, forced account registrations, or file size restrictions. Download your converted images individually or save all of them together in a single structured ZIP file.",
+        tags: [
+            "image converter",
+            "batch converter",
+            "heic to jpg",
+            "webp converter",
+            "image tools",
+        ],
+        keywords: [
+            "batch image converter online free",
+            "convert heic to jpg no upload",
+            "client side image converter",
+            "free raw image converter browser",
+            "tiff to png converter online",
+            "bulk picture format changer",
+            "private image converter no watermark",
+            "offline image converter in browser",
+            "convert webp to jpg without limit",
+        ],
+        steps: [
+            {
+                title: "Select or Drop Images",
+                description:
+                    "Add one or multiple JPG, PNG, WEBP, HEIC, or TIFF files from your device.",
+            },
+            {
+                title: "Choose Target Format",
+                description:
+                    "Pick your desired output format and adjust quality preferences if needed.",
+            },
+            {
+                title: "Download Files",
+                description:
+                    "Save your converted pictures individually or download everything in a single ZIP file.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "100% In-Browser Privacy",
+                description:
+                    "Your photos never leave your device and are never sent to external servers.",
+            },
+            {
+                title: "Unlimited Batch Processing",
+                description:
+                    "Convert dozens of high-resolution images simultaneously with zero queue wait times.",
+            },
+            {
+                title: "Crisp Output Quality",
+                description:
+                    "Preserve original color profiles, dimensions, and visual clarity across all formats.",
+            },
+        ],
         faqs: [
             {
-                question: "Are my images uploaded to a server?",
-                answer: "No. All conversion happens 100% locally in your browser. Your files never leave your device, guaranteeing complete privacy.",
+                question: "Are my photos uploaded to a remote server during conversion?",
+                answer: "No. All image processing runs locally in your browser using client-side JavaScript and Canvas APIs. Your photos never leave your computer or phone.",
             },
             {
-                question: "Can I convert multiple images at once (batch convert)?",
-                answer: "Yes! You can drag and drop multiple files to convert them all simultaneously. They will be packaged into a single ZIP file for easy download.",
+                question: "Can I convert multiple images at once?",
+                answer: "Yes. You can select and convert dozens of files in a single batch. Once finished, you can download all converted files together as a convenient ZIP archive.",
             },
             {
-                question: "Does the converter support TIFF and HEIC files?",
-                answer: "Yes. We fully support converting TIFF/TIF (commonly used by scanners) and HEIC/HEIF (Apple iPhone photos) into web-friendly formats like JPG or PNG.",
+                question: "Does this tool support iPhone HEIC and scanner TIFF formats?",
+                answer: "Yes. The converter fully supports Apple HEIC/HEIF files and scanner TIFF/TIF files, turning them into web-friendly JPG, PNG, or WEBP formats.",
             },
             {
-                question: "Is this image converter really free?",
-                answer: "Yes, it is 100% free forever. There are no hidden fees, no watermarks, no sign-ups, and no artificial file size limits.",
+                question: "Is there a daily file size limit or watermarking?",
+                answer: "There are no file size limits, daily conversion caps, or watermarks. The tool is free and relies on your local device memory to process files of any size.",
             },
         ],
     },
@@ -50,33 +90,74 @@ export const fileConverterToolMetadataList: BaseTool[] = [
         id: "jpg-to-png",
         category: "image",
         name: "JPG to PNG Converter",
-        tags: ["jpg", "png", "convert", "transparency"],
-        keywords: [
-            "jpg to png converter",
-            "convert jpeg to png high quality",
-            "jpg to png with transparency support",
-            "free jpg to png converter no watermark",
-            "lossless image converter",
-            "make jpg png online",
-        ],
-        description:
-            "Convert JPG to PNG online for free. Add transparency support and preserve lossless quality. 100% private, client-side, no uploads.",
-        longDescription:
-            "Convert your JPG images to PNG format instantly and securely in your browser. PNG is a lossless format that supports transparent backgrounds, making it the perfect choice for logos, graphics, digital art, and high-quality images. Unlike other tools, our converter runs entirely on your device, ensuring your photos are never uploaded to a third-party server.",
+        longName: "Free Online JPG to PNG Converter - Lossless Quality",
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/978f01b09b910547e02fba4aab518d424c683f09-1376x768.jpg",
+        description:
+            "Convert JPG images to high-quality PNG format online for free. Preserve crisp edges and prepare transparent graphics locally with no server uploads.",
+        longDescription:
+            "Convert compressed JPG photos into clean, lossless PNG format in seconds. While JPG files are great for compact storage, repeated editing causes visible compression artifacts. Converting your JPG pictures to PNG gives you a stable, uncompressed foundation ideal for graphic design, web assets, logos, and digital artwork.\n\nMost web converters transfer your personal pictures across the internet to convert them on remote web servers. This tool executes 100% locally in your web browser. Because the image conversion is carried out using client-side memory, your files are never exposed to third-party data tracking, server logs, or cloud storage risks.\n\nExperience rapid conversions without waiting for file uploads or downloads. Simply drop your JPG photos into the editor, view the immediate conversion, and download your full-resolution PNG files without watermarks or quality degradation.",
+        tags: ["jpg to png", "image converter", "lossless image", "photo editor", "png export"],
+        keywords: [
+            "convert jpg to png online free",
+            "jpeg to png converter high quality",
+            "lossless jpg to png tool",
+            "convert jpg to png without upload",
+            "make jpg png transparent background ready",
+            "free image converter no watermark",
+            "best jpg to png converter browser",
+            "batch convert jpg to png free",
+            "client side jpeg to png",
+        ],
+        steps: [
+            {
+                title: "Import JPG Files",
+                description:
+                    "Drag and drop your JPG or JPEG images directly into the browser converter.",
+            },
+            {
+                title: "Automatic Conversion",
+                description:
+                    "The tool decodes and repacks your image into lossless PNG format locally.",
+            },
+            {
+                title: "Download PNG",
+                description: "Save the crystal-clear PNG image straight to your computer or phone.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Lossless Compression",
+                description:
+                    "Prevent repeated compression artifacts and keep graphic edges sharp for editing.",
+            },
+            {
+                title: "Absolute Data Privacy",
+                description:
+                    "Files are processed strictly within your browser without touching external servers.",
+            },
+            {
+                title: "Instant Processing",
+                description:
+                    "Zero network upload latency means your conversions finish in milliseconds.",
+            },
+        ],
         faqs: [
             {
-                question: "Why should I convert JPG to PNG?",
-                answer: "PNG supports lossless compression and transparent backgrounds (alpha channel), making it ideal for logos, graphics, and images where you cannot afford quality loss.",
+                question: "Will converting a JPG to PNG improve its image quality?",
+                answer: "Converting to PNG cannot restore detail already lost to JPG compression, but it prevents any further quality loss during future edits and saves.",
             },
             {
-                question: "Will converting JPG to PNG make the file larger?",
-                answer: "Yes, PNG files are typically larger than JPGs because they use lossless compression. However, the image quality will be perfectly preserved.",
+                question: "Will the resulting PNG have a transparent background?",
+                answer: "Standard JPGs do not support transparency and have solid backgrounds. Converting to PNG allows you to open and edit the image in graphic software to add transparency.",
             },
             {
-                question: "Is my JPG file uploaded to your servers?",
-                answer: "Absolutely not. The conversion happens entirely in your browser using local JavaScript. Your files never touch our servers.",
+                question: "Are my JPG files uploaded to an external server?",
+                answer: "No. Conversion runs locally in your browser memory. Your images never leave your device, ensuring total privacy.",
+            },
+            {
+                question: "Why is the converted PNG file larger than the original JPG?",
+                answer: "PNG is a lossless format that retains every pixel without compression discard, resulting in larger file sizes that preserve maximum visual detail.",
             },
         ],
     },
@@ -84,33 +165,79 @@ export const fileConverterToolMetadataList: BaseTool[] = [
         id: "png-to-jpg",
         category: "image",
         name: "PNG to JPG Converter",
-        tags: ["png", "jpg", "convert", "compress"],
-        keywords: [
-            "png to jpg converter",
-            "convert png to jpeg online free",
-            "reduce png file size",
-            "png to jpg for email",
-            "remove png transparency to jpg",
-            "compress png to jpg locally",
-        ],
-        description:
-            "Convert PNG to JPG online for free. Drastically reduce file size for web, email, and social media. 100% private, no uploads required.",
-        longDescription:
-            "Convert your PNG images to JPG format instantly to significantly reduce file size. JPG is the universal standard for photographs, web use, email attachments, and social media uploads. Note: Because JPG does not support transparency, any transparent areas in your PNG will be filled with a solid white background. 100% client-side, no server uploads.",
+        longName: "Free Online PNG to JPG Converter - Reduce File Size",
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/d850ae8cfce85cb32d8cf2b649b2f364058a4f62-1376x768.jpg",
+        description:
+            "Convert large PNG images to compressed JPG format online for free. Shrink image file size for web, email, and social media with zero server uploads.",
+        longDescription:
+            "Shrink bulky PNG graphics into lightweight, universally compatible JPG files. PNG images provide crisp lines and transparent layers, but their large file sizes frequently cause slow website load times and bounce email attachment limits. Converting PNG files to JPG cuts file size by up to 80% while retaining high visual clarity.\n\nYour photos, sensitive scans, and personal screenshots stay completely safe because all encoding happens directly inside your web browser. Without network transfers or remote cloud processing, you avoid data exposure risks, bandwidth delays, and queue limits common to server-based converters.\n\nCustomize your output quality to achieve the exact balance of small file size and clear detail. Any transparent areas in your PNG are cleanly filled with a solid white background, producing ready-to-share JPEGs suited for blogs, social platforms, and online forms.",
+        tags: [
+            "png to jpg",
+            "image compressor",
+            "file converter",
+            "reduce image size",
+            "jpeg format",
+        ],
+        keywords: [
+            "convert png to jpg online free",
+            "png to jpeg converter no upload",
+            "reduce png file size to jpg",
+            "batch png to jpg converter",
+            "compress png to jpg high quality",
+            "free png to jpg converter without watermark",
+            "convert transparent png to white background jpg",
+            "client side png to jpg tool",
+            "fast png to jpeg photo converter",
+        ],
+        steps: [
+            {
+                title: "Upload PNG Images",
+                description: "Select or drop your PNG files into the browser conversion tool.",
+            },
+            {
+                title: "Set Compression Quality",
+                description:
+                    "Choose your preferred JPG quality level to balance file size and visual fidelity.",
+            },
+            {
+                title: "Download JPG",
+                description: "Save your lightweight JPG images instantly to your device.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Significant Size Reduction",
+                description:
+                    "Cut image file sizes by up to 80% for faster sharing, web publishing, and emailing.",
+            },
+            {
+                title: "Universal Device Support",
+                description:
+                    "Ensure your pictures open effortlessly across all operating systems and photo viewers.",
+            },
+            {
+                title: "Safe Client-Side Encoding",
+                description:
+                    "Your files never leave your device, ensuring confidential graphics remain private.",
+            },
+        ],
         faqs: [
             {
-                question: "What happens to transparent areas when converting PNG to JPG?",
-                answer: "JPG format does not support transparency. Any transparent or semi-transparent pixels in your PNG will automatically be filled with a solid white background.",
+                question: "What happens to transparent backgrounds when converting PNG to JPG?",
+                answer: "Because the JPG format does not support alpha transparency, transparent areas are automatically replaced with a clean, solid white background.",
             },
             {
-                question: "Will I lose quality converting PNG to JPG?",
-                answer: "JPG uses lossy compression, so there may be a very slight quality reduction. However, it drastically reduces file size, making it ideal for photos and web use.",
+                question: "Will converting PNG to JPG noticeably reduce image quality?",
+                answer: "At standard high-quality settings, the visual difference is virtually imperceptible to the human eye, even while drastically slashing the file size.",
             },
             {
-                question: "Is this tool free and unlimited?",
-                answer: "Yes, completely free with no watermarks, no sign-ups, and no file size limits.",
+                question: "Are my PNG files stored or tracked on your servers?",
+                answer: "No. Conversion happens entirely on your local machine using client-side web technology. Nothing is uploaded, saved, or logged on remote servers.",
+            },
+            {
+                question: "Can I convert multiple PNG files at the same time?",
+                answer: "Yes. You can batch upload multiple PNGs, convert them simultaneously in your browser, and download the finished JPGs together in a ZIP file.",
             },
         ],
     },
@@ -118,33 +245,80 @@ export const fileConverterToolMetadataList: BaseTool[] = [
         id: "webp-to-jpg",
         category: "image",
         name: "WEBP to JPG Converter",
-        keywords: [
-            "webp to jpg converter",
-            "convert webp to jpeg online",
-            "save webp as jpg",
-            "open webp file on windows",
-            "webp to jpg no watermark",
-            "webp image converter free",
-        ],
-        tags: ["webp", "jpg", "convert"],
-        description:
-            "Convert WEBP to JPG online for free. Make WEBP images compatible with all devices, software, and social media. 100% private, no uploads.",
-        longDescription:
-            "Convert WEBP images to standard JPG format instantly. While WEBP is highly efficient for websites, many older software programs, photo editors, and social media platforms still require standard JPG files. Our tool solves this compatibility issue locally in your browser, with no uploads and no watermarks.",
+        longName: "Free WEBP to JPG Converter Online - Universal Compatibility",
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/a3767ed9fb45ad371acc9bb946857e0be486f8bc-1376x768.jpg",
+        description:
+            "Convert downloaded WEBP images to standard JPG format online for free. Fix compatibility issues on Windows, Mac, and editing apps with no file uploads.",
+        longDescription:
+            "Turn downloaded web images into standard, universally recognized JPG files. Modern websites use Google's WEBP format for faster loading, but many desktop photo editors, older operating systems, presentation apps, and submission portals still refuse to open WEBP files. This converter solves incompatibility issues in a single click.\n\nForget uploading your downloaded assets or personal pictures to suspicious third-party servers. This tool runs entirely on your device using HTML5 Canvas processing. Your files never touch an external server, protecting your personal browsing downloads and proprietary project assets from unauthorized logging.\n\nWhether you are managing e-commerce product photos, social media graphics, or reference materials, you can batch convert dozens of WEBP images to crisp JPGs in seconds. Save hours of manual exporting and make your images usable across every desktop and mobile application.",
+        tags: [
+            "webp to jpg",
+            "image converter",
+            "save webp as jpg",
+            "image compatibility",
+            "photo format",
+        ],
+        keywords: [
+            "convert webp to jpg online free",
+            "save webp as jpg windows",
+            "webp to jpeg converter no upload",
+            "open webp file in photoshop",
+            "batch webp to jpg converter free",
+            "free webp converter without watermark",
+            "client side webp to jpg changer",
+            "how to change webp to jpg",
+            "fast webp to jpg converter browser",
+        ],
+        steps: [
+            {
+                title: "Drop WEBP Files",
+                description: "Drag and drop one or more WEBP pictures into the browser window.",
+            },
+            {
+                title: "Convert Instantly",
+                description:
+                    "The converter decodes the WEBP format and encodes standard high-resolution JPGs.",
+            },
+            {
+                title: "Download Universal JPG",
+                description:
+                    "Save the converted JPGs to your device, ready to edit or share anywhere.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Everywhere Compatibility",
+                description:
+                    "Open and edit your converted pictures in Photoshop, Word, PowerPoint, and Windows.",
+            },
+            {
+                title: "Zero Upload Latency",
+                description:
+                    "Images process immediately inside your browser without wait times or server queues.",
+            },
+            {
+                title: "Strict Local Privacy",
+                description:
+                    "Your downloaded files and graphics stay safely contained on your computer.",
+            },
+        ],
         faqs: [
             {
-                question: "Why can't I open WEBP files on my computer?",
-                answer: "WEBP is a modern web format. Older operating systems (like Windows 7) or basic photo viewers may not support it natively. Converting to JPG makes it universally compatible.",
+                question: "Why do downloaded web images save as WEBP instead of JPG?",
+                answer: "Websites use WEBP because it provides smaller file sizes for fast page loading. However, many desktop programs and photo viewers still require standard JPG files.",
             },
             {
-                question: "Does converting WEBP to JPG reduce quality?",
-                answer: "Our converter uses high-quality encoding to ensure the visual difference is virtually imperceptible, while giving you a universally compatible JPG file.",
+                question: "Does converting WEBP to JPG degrade visual quality?",
+                answer: "No. Our converter maintains high compression bitrates so the converted JPG matches the clarity and sharpness of the original WEBP image.",
             },
             {
-                question: "Is my WEBP file safe from being stolen?",
-                answer: "Yes, the conversion runs 100% locally in your browser. No data is ever sent to any server.",
+                question: "Can I convert multiple WEBP images at once?",
+                answer: "Yes. You can add dozens of WEBP files at once and convert them in batch, then download the entire collection as a single organized ZIP folder.",
+            },
+            {
+                question: "Is it safe to convert private images with this tool?",
+                answer: "Yes, completely safe. The tool operates 100% locally in your browser. No image data is ever transferred to remote servers.",
             },
         ],
     },
@@ -152,34 +326,81 @@ export const fileConverterToolMetadataList: BaseTool[] = [
         id: "heic-to-jpg",
         category: "image",
         name: "HEIC to JPG Converter",
-        tags: ["heic", "jpg", "iphone", "convert"],
-        keywords: [
-            "heic to jpg converter",
-            "convert heic to jpg online free",
-            "iphone heic to jpg windows",
-            "bulk convert heic to jpg free",
-            "heic to jpeg no watermark",
-            "apple photo format converter",
-            "open heic on android",
-        ],
-        description:
-            "Convert iPhone HEIC photos to JPG online for free. Compatible with Windows, Android, and all devices. 100% private, no uploads.",
-        longDescription:
-            "Convert Apple HEIC photos to standard JPG format instantly. Modern iPhones save photos in HEIC format to save space, but these files often won't open on Windows PCs, Android phones, or older software. Our tool solves this problem directly in your browser. Convert single photos or bulk convert entire albums locally, with no software installation required.",
+        longName: "Free HEIC to JPG Converter Online - Open iPhone Photos Anywhere",
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/48944e3f0bfafd572952eb5569c4e7de9c48b83d-1376x768.jpg",
+        description:
+            "Convert iPhone HEIC photos to JPG online for free. View Apple photos on Windows, Android, and PC with 100% private in-browser conversion and no uploads.",
+        longDescription:
+            "Convert Apple High Efficiency Image Container (HEIC) photos to standard JPG format without installing third-party software or buying codec packs. iPhones and iPads capture photos in HEIC format to save storage space, but these files frequently fail to open on Windows PCs, Android phones, smart TVs, and job application portals.\n\nUploading family pictures, personal identity cards, or private vacation snaps to remote cloud converters creates severe privacy concerns. Our HEIC to JPG converter operates strictly inside your browser. Your images are unpacked and re-encoded locally using client-side libraries, guaranteeing that your personal memories never leave your machine.\n\nBatch convert entire photo albums from your latest trip or photo shoot in seconds. The converter preserves original image dimensions, vivid color depth, and sharpness, giving you universally compatible JPEGs ready to print, email, or share across any platform.",
+        tags: [
+            "heic to jpg",
+            "iphone photo converter",
+            "apple heic",
+            "image converter",
+            "windows heic",
+        ],
+        keywords: [
+            "heic to jpg converter online free",
+            "convert iphone photo to jpg on windows",
+            "batch convert heic to jpg no upload",
+            "open heic file on pc free",
+            "apple photo to jpeg converter",
+            "free heic to jpg without watermark",
+            "private heic converter browser",
+            "convert heic to jpg without quality loss",
+            "bulk heic to jpg converter",
+        ],
+        steps: [
+            {
+                title: "Select iPhone HEIC Photos",
+                description:
+                    "Drag and drop your .heic or .heif pictures from your iPhone, Mac, or PC.",
+            },
+            {
+                title: "Local Processing",
+                description:
+                    "The browser engine decodes HEIC data and maps it to standard JPG formatting.",
+            },
+            {
+                title: "Download Compatible JPGs",
+                description:
+                    "Save individual JPG files or grab your entire converted gallery in a ZIP file.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Works on Any Operating System",
+                description:
+                    "View and edit your iPhone pictures on Windows 10, Windows 11, and Android with ease.",
+            },
+            {
+                title: "Total Photo Privacy",
+                description:
+                    "Private family pictures and documents remain secure on your personal device.",
+            },
+            {
+                title: "Bulk Photo Conversion",
+                description:
+                    "Transform dozens of high-resolution camera shots in seconds with zero restrictions.",
+            },
+        ],
         faqs: [
             {
-                question: "What is a HEIC file and why can't I open it?",
-                answer: "HEIC is the default, space-saving image format for modern iPhones. However, it isn't universally compatible, which is why converting to JPG is necessary for Windows or Android.",
+                question: "Why can't I open HEIC photos on my Windows PC?",
+                answer: "HEIC is Apple's proprietary default format. Windows PCs require special paid codecs to display them natively. Converting to JPG makes them universally accessible.",
             },
             {
-                question: "Can I convert multiple HEIC files at once (batch convert)?",
-                answer: "Yes! You can select multiple HEIC files from your iPhone or computer and convert them all at once into a single, easy-to-download ZIP file.",
+                question: "Does converting from HEIC to JPG lower photo quality?",
+                answer: "No. The converter preserves high resolution, true colors, and image details so your photos look just as sharp as they did on your iPhone screen.",
             },
             {
-                question: "Does this HEIC converter work on Windows 10 and 11?",
-                answer: "Yes, because it runs entirely in your web browser (Chrome, Edge, Firefox, Safari), it works perfectly on Windows, Mac, Linux, and mobile devices without installing any software.",
+                question: "Can I convert multiple HEIC photos at the same time?",
+                answer: "Yes. You can select multiple HEIC files or entire folders, convert them simultaneously, and download the results together in a ZIP file.",
+            },
+            {
+                question: "Are my personal iPhone photos uploaded to an online server?",
+                answer: "No. All conversion happens locally in your web browser. Your private pictures never touch our servers or any cloud storage system.",
             },
         ],
     },
@@ -187,39 +408,81 @@ export const fileConverterToolMetadataList: BaseTool[] = [
         id: "tiff-to-jpg",
         category: "image",
         name: "TIFF to JPG Converter",
-        tags: ["tiff", "jpg", "convert", "scanner"],
-        keywords: [
-            "tiff to jpg converter",
-            "convert tif to jpg online free",
-            "tiff to jpeg",
-            "reduce tiff file size",
-            "open tiff file online",
-            "scanner image to jpg",
-            "tiff to jpg no watermark",
-            "batch convert tiff to jpg",
-        ],
-        description:
-            "Convert TIFF to JPG online for free. Reduce massive scanner or camera TIFF file sizes instantly. 100% private, no uploads.",
-        longDescription:
-            "Convert large TIFF or TIF image files to standard, web-friendly JPG format instantly. TIFF files are commonly used by document scanners and professional cameras, but they are often too large for email, web uploads, or everyday viewing. Our client-side converter shrinks file sizes dramatically while preserving visual quality, all processed locally in your browser. No uploads, no watermarks, and complete privacy for your sensitive scanned documents.",
+        longName: "Free Online TIFF to JPG Converter - Shrink Scanner Files",
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/1104748bcc52cda06b8e73a1977a75f9053bf6ab-1376x768.jpg",
+        description:
+            "Convert large scanner TIFF and TIF images to lightweight JPG format online for free. 100% private in-browser conversion with zero file size limits.",
+        longDescription:
+            "Convert heavy TIFF and TIF files from document scanners and professional cameras into lightweight, web-ready JPG images. While TIFF files provide pristine uncompressed quality for archival preservation, their huge file sizes make them impractical for email attachments, web uploads, and everyday viewing on mobile devices.\n\nScanned documents often contain sensitive personal information like bank records, tax forms, passports, and signed legal agreements. Because this converter operates 100% locally within your browser, your scanned records never travel over the internet. You get instant conversion without exposing private documents to external server vulnerabilities.\n\nReduce gigabytes of raw scanner output down to compact, clear JPEGs in moments. Process single pages or batch convert multi-page archives without artificial limits, subscription paywalls, or added watermarks.",
+        tags: [
+            "tiff to jpg",
+            "scanner converter",
+            "tif to jpeg",
+            "document images",
+            "image converter",
+        ],
+        keywords: [
+            "convert tiff to jpg online free",
+            "tif to jpg converter no upload",
+            "shrink scanned tiff file size",
+            "convert scanner tiff to jpeg free",
+            "private tiff to jpg converter browser",
+            "batch tiff to jpg converter",
+            "open tiff file online free",
+            "free tiff converter no watermark",
+            "reduce large tiff to small jpg",
+        ],
+        steps: [
+            {
+                title: "Upload TIFF Scans",
+                description:
+                    "Select or drop your large .tiff or .tif scanned files into the converter.",
+            },
+            {
+                title: "Process Locally",
+                description:
+                    "The tool renders your uncompressed scan data and converts it into optimized JPG.",
+            },
+            {
+                title: "Download Compact JPG",
+                description:
+                    "Save the reduced JPG file, ready for hassle-free emailing and uploading.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Massive Size Reduction",
+                description:
+                    "Turn 50MB+ scanner files into lightweight, easily shareable 2MB JPEGs.",
+            },
+            {
+                title: "Confidential Document Safety",
+                description:
+                    "Personal records, contracts, and IDs stay secure on your local machine.",
+            },
+            {
+                title: "High Legibility",
+                description:
+                    "Fine text, signatures, and document details remain clear and readable.",
+            },
+        ],
         faqs: [
             {
-                question: "What is a TIFF file?",
-                answer: "TIFF (Tagged Image File Format) is a high-quality, lossless image format commonly used by document scanners, archivists, and professional photographers. However, the files are often very large.",
+                question: "Why are TIFF files so large compared to JPGs?",
+                answer: "TIFF is an uncompressed or losslessly compressed raster format designed for archiving raw scan detail, whereas JPG applies smart compression to minimize file size.",
             },
             {
-                question: "Why should I convert TIFF to JPG?",
-                answer: "Converting to JPG drastically reduces the file size, making it easy to email, upload to websites, or view on any device without specialized software.",
+                question: "Is it safe to convert sensitive legal contracts and IDs with this tool?",
+                answer: "Yes. Processing takes place exclusively inside your browser using client-side JavaScript. Your documents never upload to any remote server or database.",
             },
             {
-                question: "Is it safe to convert sensitive scanned documents?",
-                answer: "Yes, absolutely. Our tool processes everything 100% locally in your browser. Your scanned documents, IDs, or contracts are never uploaded to any server.",
+                question: "Can I convert both .tif and .tiff file extensions?",
+                answer: "Yes. Both .tif and .tiff file formats are fully supported for conversion into standard JPG images.",
             },
             {
-                question: "Can I convert multiple TIFF files at once?",
-                answer: "Yes, you can drag and drop multiple .tif or .tiff files to batch convert them all at once into a single downloadable ZIP file.",
+                question: "Will text on scanned documents remain readable after converting to JPG?",
+                answer: "Yes. Our conversion algorithm maintains sharp contrast and resolution so fine print, legal clauses, and stamps stay legible.",
             },
         ],
     },
@@ -227,34 +490,80 @@ export const fileConverterToolMetadataList: BaseTool[] = [
         id: "pdf-to-jpg",
         category: "document",
         name: "PDF to JPG Converter",
-        keywords: [
-            "pdf to jpg",
-            "convert pdf to jpg",
-            "pdf to image",
-            "extract images from pdf",
-            "pdf to jpeg converter",
-            "save pdf as image",
-            "pdf to jpg online free",
-        ],
-        tags: ["pdf", "jpg", "convert", "extract"],
-        description:
-            "Convert PDF pages to high-quality JPG images online for free. Extract images securely. 100% private.",
-        longDescription:
-            "Convert your PDF documents into high-quality JPG images instantly. Extract pages as images securely in your browser. No server uploads, ensuring complete privacy and security for your sensitive documents.",
+        longName: "Free PDF to JPG Converter Online - Extract Pages as Images",
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/e2424a4bf9f0aa4efdfa190f613c18aada349181-1376x768.jpg",
+        description:
+            "Convert PDF pages to high-resolution JPG images online for free. Extract individual pages or full documents privately in your browser with no uploads.",
+        longDescription:
+            "Turn multi-page PDF documents into crystal-clear JPG pictures without downloading bloated desktop utility software. Whether you need to pull high-res slides from a PDF presentation, extract figures from an academic paper, or convert document pages for social media sharing, this tool renders each page into an independent image file.\n\nPrivacy is essential when handling bank statements, employment contracts, and academic transcripts. Unlike conventional PDF websites that store your confidential documents on cloud servers, this tool renders pages locally using browser-based WebAssembly and Canvas APIs. Your documents never travel across the internet.\n\nEnjoy fast conversions with zero artificial limitations. Convert single-page certificates or thick multi-page manuals in seconds. Download specific individual pages as needed or export the entire collection in a well-structured ZIP archive.",
+        tags: [
+            "pdf to jpg",
+            "pdf converter",
+            "extract pdf images",
+            "document converter",
+            "pdf tools",
+        ],
+        keywords: [
+            "convert pdf to jpg online free",
+            "extract images from pdf no upload",
+            "save pdf as high quality jpg",
+            "pdf to jpeg converter client side",
+            "convert multi page pdf to jpg free",
+            "private pdf to image converter",
+            "batch pdf to jpg converter browser",
+            "free pdf page extractor no watermark",
+            "turn pdf into picture online",
+        ],
+        steps: [
+            {
+                title: "Choose PDF Document",
+                description: "Drag and drop your PDF file into the local in-browser converter.",
+            },
+            {
+                title: "Render Pages",
+                description:
+                    "The tool generates high-resolution JPG previews of every individual page.",
+            },
+            {
+                title: "Download Images",
+                description:
+                    "Save individual page images or download all rendered pages in a single ZIP file.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Sharp Text & Graphics",
+                description:
+                    "Extract pages at full visual fidelity with clean typography and vivid diagrams.",
+            },
+            {
+                title: "Complete Document Privacy",
+                description:
+                    "Sensitive PDFs remain confined to your device with zero cloud processing.",
+            },
+            {
+                title: "Full Multi-Page Support",
+                description:
+                    "Convert comprehensive multi-page brochures, ebooks, and reports in one step.",
+            },
+        ],
         faqs: [
             {
-                question: "Can I convert multi-page PDFs?",
-                answer: "Yes, you can upload multi-page PDFs and convert them. Each page will be processed as a separate image.",
+                question: "Can I convert multi-page PDF files into separate images?",
+                answer: "Yes. Every page in your PDF document is converted into an individual high-resolution JPG file that you can download separately or in a ZIP archive.",
             },
             {
-                question: "Is my PDF uploaded to a server?",
-                answer: "No. All processing happens 100% locally in your browser. Your documents never leave your device, ensuring maximum privacy.",
+                question: "Is my confidential PDF uploaded to your servers?",
+                answer: "No. The document is rendered locally inside your browser memory using WebAssembly. Your files are never transmitted across the network.",
             },
             {
-                question: "What quality will the JPG images be?",
-                answer: "The converter extracts pages at a high resolution, ensuring your text and images remain clear and readable.",
+                question: "Will the text and diagrams in the exported JPG look blurry?",
+                answer: "No. The converter renders PDF pages at a high pixel density to guarantee that text, tables, and vector graphics remain crisp and clear.",
+            },
+            {
+                question: "Is there a limit on file size or page count?",
+                answer: "Because processing happens locally on your computer or phone, there are no artificial file size caps or page count restrictions.",
             },
         ],
     },
