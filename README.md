@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PrivateTools
 
-## Getting Started
+[![Visit Website](https://img.shields.io/badge/Visit-privatetools.in-00ff88?style=for-the-badge&logo=google-chrome&logoColor=white)](https://privatetools.in)
+[![100% Private](https://img.shields.io/badge/Privacy-100%25_Client_Side-blue?style=for-the-badge&logo=shield&logoColor=white)](https://privatetools.in)
+[![Free Forever](https://img.shields.io/badge/Price-Free_Forever-orange?style=for-the-badge&logo=github&logoColor=white)](https://privatetools.in)
 
-First, run the development server:
+**Your files. Your device. Your privacy.**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Welcome to **PrivateTools**, a free, all-in-one suite of online utilities designed to help you edit, convert, and optimize your files without ever compromising your privacy.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Unlike traditional online tools that force you to upload your personal documents, photos, and videos to their servers, PrivateTools processes everything **100% locally in your web browser**.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌟 Why Choose PrivateTools?
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. 🔒 Uncompromising Privacy
 
-## Learn More
+Your files never leave your device. We don't upload, store, or look at your data. Whether you are editing sensitive legal documents, private family photos, or confidential business videos, your data remains completely secure on your own computer or phone.
 
-To learn more about Next.js, take a look at the following resources:
+### 2. ⚡ Blazing Fast Speeds
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Because there is no uploading or downloading to remote servers, processing happens instantly. Say goodbye to waiting in queue lines or watching slow progress bars.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. 💸 100% Free, Forever
 
-## Deploy on Vercel
+No hidden fees, no "premium" subscriptions, and no forced account registrations. Every tool is completely free to use, as many times as you want.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 4. 🚫 No Limits, No Watermarks
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+We don't restrict your creativity or productivity. There are no daily file limits, no maximum file size caps, and no ugly watermarks stamped on your exported files.
+
+## 🛠️ Our Tools
+
+We offer a growing suite of powerful tools, all running directly in your browser. Click any tool below to get started:
+
+### 🖼️ Image Tools
+
+- **[Image Compressor](https://privatetools.in/tools/image/image-compressor):** Shrink image file sizes (JPG, PNG, WebP) without losing visual quality.
+- **[All-in-One Image Converter](https://privatetools.in/tools/image/all-in-one-image-converter):** Batch convert between JPG, PNG, WEBP, HEIC, and TIFF formats.
+- **[JPG to PNG Converter](https://privatetools.in/tools/image/jpg-to-png):** Convert JPG images to high-quality, lossless PNG format.
+- **[PNG to JPG Converter](https://privatetools.in/tools/image/png-to-jpg):** Reduce PNG file sizes by converting them to compressed JPG.
+- **[WEBP to PNG Converter](https://privatetools.in/tools/image/webp-to-png):** Unlock web images for editing in Photoshop and other software.
+- **[HEIC to JPG Converter](https://privatetools.in/tools/image/heic-to-jpg):** Open iPhone HEIC photos on Windows and Android.
+- **[Image Cropper](https://privatetools.in/tools/image/image-cropper):** Crop and resize images to your exact specifications.
+- **[Manhwa Cropper](https://privatetools.in/tools/image/manhwa-cropper):** Specialized tool for cropping and formatting manga/manhwa pages.
+- **[Image Emote Converter](https://privatetools.in/tools/image/image-emote-converter):** Turn your images into custom emojis.
+
+### 📄 Document & PDF Tools
+
+- **[PDF Compressor](https://privatetools.in/tools/document/pdf-compressor):** Reduce the file size of heavy PDF documents securely.
+- **[PDF Redactor](https://privatetools.in/tools/document/pdf-redactor):** Permanently black out sensitive text and remove hidden metadata.
+- **[PDF to JPG Converter](https://privatetools.in/tools/document/pdf-to-jpg):** Extract PDF pages as high-resolution JPG images.
+- **[JPG to PDF Converter](https://privatetools.in/tools/document/jpg-to-pdf):** Combine multiple JPG photos into a single PDF document.
+- **[PNG to PDF Converter](https://privatetools.in/tools/document/png-to-pdf):** Convert PNG graphics and transparent images to PDF.
+- **[PDF to PNG Converter](https://privatetools.in/tools/document/pdf-to-png):** Extract PDF pages as lossless PNG images.
+
+### 🎵 Audio & Video Tools
+
+- **[Audio Trimmer](https://privatetools.in/tools/audio/audio-trimmer):** Cut and trim audio files to get the exact clip you need.
+- **[Remove Silence](https://privatetools.in/tools/audio/remove-silence):** Automatically detect and remove silent pauses from audio recordings.
+- **[Video Watermark](https://privatetools.in/tools/video/video-watermark):** Add custom text or image watermarks to your videos locally.
+
+## 🚀 How It Works
+
+Using PrivateTools is as simple as 1-2-3:
+
+1. **Choose Your Tool:** Select the utility you need from our [homepage](https://privatetools.in) or the links above.
+2. **Drop Your File:** Drag and drop your file into the browser, or click to select it.
+3. **Download:** Watch the magic happen instantly, then download your processed file.
+
+## 🤝 Frequently Asked Questions
+
+**Are my files really safe?**
+Yes. PrivateTools uses advanced browser technologies (WebAssembly, Canvas API, and Web Workers) to process files directly on your device's hardware. The data never travels over the internet to our servers. If you turn off your Wi-Fi after the page loads, the tools will still work perfectly.
+
+**Do I need to install any software?**
+No. PrivateTools is a Progressive Web App (PWA). You can use it directly in your web browser on any device—Windows, Mac, Linux, Android, or iOS—without installing anything.
+
+**Is there a file size limit?**
+Because processing relies on your device's memory rather than our servers, there are no artificial file size limits. As long as your device can handle the file, we can process it.

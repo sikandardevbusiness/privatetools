@@ -1,6 +1,7 @@
 "use client";
 
 import { Redo, Trash2, Undo } from "lucide-react";
+import type { RedactionSettings } from "@sikandardevbusiness/pdf-redactor";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,8 +14,6 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-
-import type { RedactionSettings } from "../../../../../../packages/packages/pdf-redactor";
 
 interface PDFRedactorSettingsProps {
     settings: RedactionSettings;

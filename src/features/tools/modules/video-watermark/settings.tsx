@@ -12,7 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
     type WatermarkImageConfig,
     type WatermarkTextConfig,
-} from "../../../../../../packages/packages/video-watermark/src/index";
+} from "@sikandardevbusiness/video-watermark";
 
 export type LocalWatermarkImageConfig = WatermarkImageConfig & { previewUrl?: string | null };
 

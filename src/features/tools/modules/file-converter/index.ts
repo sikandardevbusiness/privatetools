@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { converter } from "../../../../../../packages/packages/file-converter/src/index";
+import { converter } from "@sikandardevbusiness/file-converter";
 
 import { BaseTool, ToolComponentMap } from "@/features/tools/shared/types";
 
