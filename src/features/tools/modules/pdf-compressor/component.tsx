@@ -1,5 +1,6 @@
 "use client";
 
+import { compressPdf, type PdfCompressOptions } from "@sikandardevbusiness/pdf-compressor";
 import { saveAs } from "file-saver";
 import { useRef, useState } from "react";
 
@@ -10,11 +11,6 @@ import { FileUpload } from "@/features/tools/shared/components/uploads/file-uplo
 
 import type { BaseTool, ProcessedFile } from "@/features/tools/shared/types";
 import { createAndDownloadZip, type ZipFile } from "@/lib/zip";
-
-import {
-    compressPdf,
-    type PdfCompressOptions,
-} from "../../../../../../packages/packages/pdf-compressor/src/index";
 import { CompressionSettings, type QualityPreset, type SizeUnit } from "./settings";
 
 export default function PdfCompressorClient({ tool }: { tool: BaseTool }) {

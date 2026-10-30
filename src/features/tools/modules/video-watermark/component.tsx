@@ -1,5 +1,10 @@
 "use client";
 
+import {
+    processVideoWatermark,
+    type WatermarkImageConfig,
+    type WatermarkTextConfig,
+} from "@sikandardevbusiness/video-watermark";
 import { saveAs } from "file-saver";
 import { Video, Wand2 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -9,13 +14,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ToolShell } from "@/features/tools/shared/components/layouts/tool-shell";
 import { FileUpload } from "@/features/tools/shared/components/uploads/file-upload";
 
+import { ToolHeader } from "@/features/tools/shared/components/layouts/tool-header";
 import type { BaseTool } from "@/features/tools/shared/types";
-import {
-    processVideoWatermark,
-    type WatermarkImageConfig,
-    type WatermarkTextConfig,
-} from "../../../../../../packages/packages/video-watermark/src/index";
-import { ToolHeader } from "../../shared/components/layouts/tool-header";
 import { WatermarkSettings, type LocalWatermarkImageConfig } from "./settings";
 
 export default function VideoWatermarkClient({ tool }: { tool: BaseTool }) {
@@ -280,10 +280,10 @@ export default function VideoWatermarkClient({ tool }: { tool: BaseTool }) {
                 )}
             </ToolHeader>
 
-            {!outputVideoUrl && (
-                <div className="w-full max-w-4xl mx-auto space-y-6">
+            {videoFile && (
+                <div className="w-full max-w-4xl mx-auto pt-8 space-y-6">
                     <Card>
-                        <CardContent>
+                        <CardContent className="py-2 px-4">
                             <WatermarkSettings
                                 watermarkType={watermarkType}
                                 setWatermarkType={handleTypeChange}

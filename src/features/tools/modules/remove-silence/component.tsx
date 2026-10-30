@@ -1,8 +1,8 @@
 "use client";
 
+import { removeSilenceFromAudio } from "@sikandardevbusiness/remove-silence";
 import { saveAs } from "file-saver";
 import { useRef, useState } from "react";
-import { removeSilenceFromAudio } from "../../../../../../packages/packages/remove-silence/src/index";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { ToolHeader } from "@/features/tools/shared/components/layouts/tool-header";

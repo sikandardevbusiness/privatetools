@@ -1,5 +1,7 @@
 "use client";
 
+import { pdfToPageFiles } from "@sikandardevbusiness/file-converter";
+import { cropManhwaPanels, type ManhwaCropOptions } from "@sikandardevbusiness/manhwa-cropper";
 import { useRef, useState } from "react";
 
 import { ImageGrid } from "@/features/tools/shared/components/image-grid";
@@ -9,11 +11,6 @@ import { FileList } from "@/features/tools/shared/components/uploads/file-list";
 import { FileUpload } from "@/features/tools/shared/components/uploads/file-upload";
 
 import type { BaseTool, ProcessedFile } from "@/features/tools/shared/types";
-import {
-    cropManhwaPanels,
-    type ManhwaCropOptions,
-} from "../../../../../../packages/packages/manhwa-cropper";
-import { pdfToPageFiles } from "../../../../../../packages/packages/file-converter/src";
 import { CropperSettings } from "./settings";
 
 export default function ManhwaCropperClient({ tool }: { tool: BaseTool }) {
@@ -204,10 +201,12 @@ export default function ManhwaCropperClient({ tool }: { tool: BaseTool }) {
             </ToolHeader>
 
             {files.length > 0 && (
-                <div className="px-4 pt-8 -mb-4">
+                <>
                     {/* Visual Grid for Completed Panels */}
                     {completed.length > 0 && (
-                        <ImageGrid panels={completed} onRemove={removePanel} />
+                        <div className="px-4 pt-8 -mb-4">
+                            <ImageGrid panels={completed} onRemove={removePanel} />
+                        </div>
                     )}
 
                     {/* File List for Pending/Processing Files */}
@@ -221,7 +220,7 @@ export default function ManhwaCropperClient({ tool }: { tool: BaseTool }) {
                             supportedFormats={["png", "jpg", "jpeg", "webp", "pdf"]}
                         />
                     )}
-                </div>
+                </>
             )}
 
             <input

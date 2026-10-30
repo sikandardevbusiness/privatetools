@@ -1,5 +1,6 @@
 "use client";
 
+import { compressImage, type CompressOptions } from "@sikandardevbusiness/image-compressor";
 import { saveAs } from "file-saver";
 import { useRef, useState } from "react";
 
@@ -7,14 +8,10 @@ import { ToolHeader } from "@/features/tools/shared/components/layouts/tool-head
 import { ToolShell } from "@/features/tools/shared/components/layouts/tool-shell";
 import { FileList } from "@/features/tools/shared/components/uploads/file-list";
 import { FileUpload } from "@/features/tools/shared/components/uploads/file-upload";
+import { CompressionSettings, type Format, type QualityPreset, type SizeUnit } from "./settings";
+
 import type { BaseTool, ProcessedFile } from "@/features/tools/shared/types";
 import { createAndDownloadZip, type ZipFile } from "@/lib/zip";
-
-import {
-    compressImage,
-    type CompressOptions,
-} from "../../../../../../packages/packages/image-compressor/src/index";
-import { CompressionSettings, type QualityPreset, type Format, type SizeUnit } from "./settings";
 
 export default function ImageCompressorClient({ tool }: { tool: BaseTool }) {
     const [files, setFiles] = useState<ProcessedFile[]>([]);

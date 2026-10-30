@@ -1,5 +1,6 @@
 "use client";
 
+import { usePDFRedactor, type TextOverlayType } from "@sikandardevbusiness/pdf-redactor";
 import { Trash2, ZoomIn, ZoomOut } from "lucide-react";
 import { useState } from "react";
 
@@ -10,10 +11,6 @@ import { FileUpload } from "@/features/tools/shared/components/uploads/file-uplo
 import { PDFRedactorSettings } from "./settings";
 
 import type { BaseTool } from "@/features/tools/shared/types";
-import {
-    usePDFRedactor,
-    type TextOverlayType,
-} from "../../../../../../packages/packages/pdf-redactor";
 
 // Keep this local as it's only used for UI styling
 type ResizeDirection = "nw" | "n" | "ne" | "e" | "se" | "s" | "sw" | "w";

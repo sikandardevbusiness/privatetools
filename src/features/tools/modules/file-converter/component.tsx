@@ -1,5 +1,6 @@
 "use client";
 
+import { converter } from "@sikandardevbusiness/file-converter";
 import { saveAs } from "file-saver";
 import { useRef, useState } from "react";
 
@@ -10,8 +11,6 @@ import { FileUpload } from "@/features/tools/shared/components/uploads/file-uplo
 
 import type { BaseTool, ProcessedFile } from "@/features/tools/shared/types";
 import { createAndDownloadZip, type ZipFile } from "@/lib/zip";
-
-import { converter } from "../../../../../../packages/packages/file-converter/src/index";
 import { fileConverterToolConfigMap } from "./index";
 
 export default function FileConverterClient({ tool }: { tool: BaseTool }) {

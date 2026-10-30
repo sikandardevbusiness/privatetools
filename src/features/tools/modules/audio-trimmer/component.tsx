@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useCallback, useRef, useState } from "react";
 import { RotateCcw, Scissors } from "lucide-react";
+import React, { useCallback, useRef, useState } from "react";
 
 import {
     AudioVisualizer,
-    useAudioTrimmer,
     formatTimeHHMMSS,
     parseTimeHHMMSS,
+    useAudioTrimmer,
     type AudioVisualizerRef,
-} from "../../../../../../packages/packages/audio-trimmer/src/index";
-import "../../../../../../packages/packages/audio-trimmer/src/styles.css";
+} from "@sikandardevbusiness/audio-trimmer";
+import "@sikandardevbusiness/audio-trimmer/styles.css";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -19,6 +19,7 @@ import { Label } from "@/components/ui/label";
 import { ToolHeader } from "@/features/tools/shared/components/layouts/tool-header";
 import { ToolShell } from "@/features/tools/shared/components/layouts/tool-shell";
 import { FileUpload } from "@/features/tools/shared/components/uploads/file-upload";
+
 import type { BaseTool } from "@/features/tools/shared/types";
 
 export default function AudioTrimmerClient({ tool }: { tool: BaseTool }): React.JSX.Element {
