@@ -1020,7 +1020,7 @@ export const fileConverterToolMetadataList: BaseTool[] = [
         name: "Video to MP3 Converter",
         longName: "Free Video to MP3 Extractor Online - No Upload",
         thumbnailUrl:
-            "https://cdn.sanity.io/images/1cv2yjn3/production/e2424a4bf9f0aa4efdfa190f613c18aada349181-1376x768.jpg",
+            "https://cdn.sanity.io/images/1cv2yjn3/production/f59739c019f9b1b7d16e8c38b8a355b8bff08582-1280x720.png",
         description:
             "Extract high-quality MP3 audio from MP4, WEBM, and MOV videos instantly in your browser.",
         longDescription:
@@ -1079,7 +1079,7 @@ export const fileConverterToolMetadataList: BaseTool[] = [
         name: "WAV to MP3 Converter",
         longName: "Free WAV to MP3 Compressor Online - Shrink Audio Files",
         thumbnailUrl:
-            "https://cdn.sanity.io/images/1cv2yjn3/production/e2424a4bf9f0aa4efdfa190f613c18aada349181-1376x768.jpg",
+            "https://cdn.sanity.io/images/1cv2yjn3/production/0e67a306765b2f3f3171080b89e68e3159a5ff41-1280x720.png",
         description:
             "Compress large, uncompressed WAV audio files into lightweight, shareable MP3 format.",
         longDescription:
@@ -1139,7 +1139,7 @@ export const fileConverterToolMetadataList: BaseTool[] = [
         name: "M4A to MP3 Converter",
         longName: "Free M4A to MP3 Converter Online - Universal Compatibility",
         thumbnailUrl:
-            "https://cdn.sanity.io/images/1cv2yjn3/production/e2424a4bf9f0aa4efdfa190f613c18aada349181-1376x768.jpg",
+            "https://cdn.sanity.io/images/1cv2yjn3/production/8d031ee74a89a6477e7193cc1c0c971c09a79bc7-1280x720.png",
         description: "Convert Apple M4A audio files to universally compatible MP3 format locally.",
         longDescription:
             "Convert Apple's proprietary M4A audio files into standard MP3 format. While M4A offers great compression, it often fails to play on older car stereos, Android devices, or specific editing software. This tool solves that compatibility issue instantly in your browser.",
@@ -1196,7 +1196,7 @@ export const fileConverterToolMetadataList: BaseTool[] = [
         name: "OGG to MP3 Converter",
         longName: "Free OGG to MP3 Converter Online - Fix Compatibility",
         thumbnailUrl:
-            "https://cdn.sanity.io/images/1cv2yjn3/production/e2424a4bf9f0aa4efdfa190f613c18aada349181-1376x768.jpg",
+            "https://cdn.sanity.io/images/1cv2yjn3/production/d472ebc93000a92d79e82e2f2fe7cc0fdc9379c0-1280x720.png",
         description:
             "Convert OGG Vorbis audio files to standard MP3 format for use in any media player.",
         longDescription:
@@ -1255,7 +1255,7 @@ export const fileConverterToolMetadataList: BaseTool[] = [
         name: "MP4 to WebM Converter",
         longName: "Free MP4 to WebM Converter Online - Optimize for Web",
         thumbnailUrl:
-            "https://cdn.sanity.io/images/1cv2yjn3/production/e2424a4bf9f0aa4efdfa190f613c18aada349181-1376x768.jpg",
+            "https://cdn.sanity.io/images/1cv2yjn3/production/5cfbbd348f945a914757b491c4a94eafd2a2a185-1280x720.png",
         description:
             "Convert MP4 videos to highly efficient WebM format for faster website loading and HTML5 compatibility.",
         longDescription:
@@ -1322,7 +1322,7 @@ export const fileConverterToolMetadataList: BaseTool[] = [
         name: "WebM to MP4 Converter",
         longName: "Free WebM to MP4 Converter Online - Universal Compatibility",
         thumbnailUrl:
-            "https://cdn.sanity.io/images/1cv2yjn3/production/e2424a4bf9f0aa4efdfa190f613c18aada349181-1376x768.jpg",
+            "https://cdn.sanity.io/images/1cv2yjn3/production/e9ce7fa7e0cc48766573911c48a9df474af20f81-1280x720.png",
         description:
             "Convert WebM videos to universally compatible MP4 format for any device or media player.",
         longDescription:
@@ -1389,7 +1389,7 @@ export const fileConverterToolMetadataList: BaseTool[] = [
         name: "MP3 to WAV Converter",
         longName: "Free MP3 to WAV Converter Online - Lossless Audio",
         thumbnailUrl:
-            "https://cdn.sanity.io/images/1cv2yjn3/production/e2424a4bf9f0aa4efdfa190f613c18aada349181-1376x768.jpg",
+            "https://cdn.sanity.io/images/1cv2yjn3/production/68ac9665556691928039f26aab7f7eb28d29ab83-1280x720.png",
         description:
             "Convert compressed MP3 files to uncompressed, lossless WAV format for professional editing.",
         longDescription:
