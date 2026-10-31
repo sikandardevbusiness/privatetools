@@ -22,7 +22,7 @@ interface PageProps {
 
 // ✅ FIX: Tells Next.js this route is allowed to block while resolving params,
 // preventing the "URL data outside of Suspense" warning.
-export const instant = false;
+// export const instant = false;
 
 const BASE_URL = env.NEXT_PUBLIC_SITE_URL;
 
