@@ -55,6 +55,13 @@ We offer a growing suite of powerful tools, all running directly in your browser
 
 ### 🎵 Audio & Video Tools
 
+- **[Video to MP3 Converter](https://privatetools.in/tools/audio/video-to-mp3):** Extract high-quality MP3 audio from MP4, WEBM, and MOV videos instantly in your browser.
+- **[WAV to MP3 Converter](https://privatetools.in/tools/audio/wav-to-mp3):** Compress large, uncompressed WAV audio files into lightweight, shareable MP3 format.
+- **[M4A to MP3 Converter](https://privatetools.in/tools/audio/m4a-to-mp3):** Convert Apple M4A audio files to universally compatible MP3 format locally.
+- **[OGG to MP3 Converter](https://privatetools.in/tools/audio/ogg-to-mp3):** Convert OGG Vorbis audio files to standard MP3 format for use in any media player.
+- **[MP3 to WAV Converter](https://privatetools.in/tools/audio/mp3-to-wav):** Convert compressed MP3 files to uncompressed, lossless WAV format for professional editing.
+- **[MP4 to WebM Converter](https://privatetools.in/tools/video/mp4-to-webm):** Optimize MP4 videos into highly efficient WebM format for faster website loading.
+- **[WebM to MP4 Converter](https://privatetools.in/tools/video/webm-to-mp4):** Convert WebM videos to universally compatible MP4 format for any device or media player.
 - **[Audio Trimmer](https://privatetools.in/tools/audio/audio-trimmer):** Cut and trim audio files to get the exact clip you need.
 - **[Remove Silence](https://privatetools.in/tools/audio/remove-silence):** Automatically detect and remove silent pauses from audio recordings.
 - **[Video Watermark](https://privatetools.in/tools/video/video-watermark):** Add custom text or image watermarks to your videos locally.
