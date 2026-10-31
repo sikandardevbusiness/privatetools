@@ -28,7 +28,7 @@
         "zod": "^4.6.7",
         "@sikandardevbusiness/pdf-redactor": "^1.0.1",
         "@sikandardevbusiness/audio-trimmer": "^1.0.0",
-        "@sikandardevbusiness/file-converter": "^1.0.1",
+        "@sikandardevbusiness/file-converter": "^1.0.2",
         "@sikandardevbusiness/manhwa-cropper": "^1.0.1",
         "@sikandardevbusiness/pdf-compressor": "^1.0.1",
         "@sikandardevbusiness/remove-silence": "^1.0.1",

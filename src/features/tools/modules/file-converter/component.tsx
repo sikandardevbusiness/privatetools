@@ -175,7 +175,6 @@ export default function FileConverterClient({ tool }: { tool: BaseTool }) {
         <ToolShell>
             <ToolHeader title={tool.name} description={tool.description}>
                 <FileUpload
-                    maxSizeMB={50}
                     multiple={true}
                     onFilesSelected={handleFileSelect}
                     accept={fileConverterToolConfigMap[tool.id].acceptType}

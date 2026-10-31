@@ -1014,21 +1014,462 @@ export const fileConverterToolMetadataList: BaseTool[] = [
             },
         ],
     },
+    {
+        id: "video-to-mp3",
+        category: "audio",
+        name: "Video to MP3 Converter",
+        longName: "Free Video to MP3 Extractor Online - No Upload",
+        thumbnailUrl:
+            "https://cdn.sanity.io/images/1cv2yjn3/production/e2424a4bf9f0aa4efdfa190f613c18aada349181-1376x768.jpg",
+        description:
+            "Extract high-quality MP3 audio from MP4, WEBM, and MOV videos instantly in your browser.",
+        longDescription:
+            "Extract the audio track from any video file and save it as a high-quality MP3. Whether you want to save a music video, extract a podcast clip, or get the audio from a lecture, this tool does it entirely in your browser. No server uploads, no watermarks, and no file size limits.",
+        tags: ["video to mp3", "mp4 to mp3", "audio extractor", "video tools", "free converter"],
+        keywords: [
+            "extract audio from video online free",
+            "mp4 to mp3 converter no upload",
+            "video to mp3 client side",
+            "free youtube video to mp3 browser",
+            "convert mov to mp3 locally",
+        ],
+        steps: [
+            {
+                title: "Upload Video",
+                description: "Drag and drop your MP4, WEBM, or MOV file into the browser.",
+            },
+            {
+                title: "Extract Audio",
+                description:
+                    "The tool instantly strips the video track and encodes the audio to MP3.",
+            },
+            {
+                title: "Download MP3",
+                description: "Save your new audio file directly to your device.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "100% Private",
+                description: "Your videos never leave your device. Processing happens locally.",
+            },
+            {
+                title: "High Quality Audio",
+                description: "Preserves the original audio bitrate for crystal-clear sound.",
+            },
+            {
+                title: "Instant Processing",
+                description: "No waiting in server queues. Conversion happens at hardware speed.",
+            },
+        ],
+        faqs: [
+            {
+                question: "Can I extract audio from any video format?",
+                answer: "Yes, the tool supports MP4, WEBM, MOV, and AVI files, converting them to universal MP3 format.",
+            },
+            {
+                question: "Is my video uploaded to a server?",
+                answer: "No. The extraction happens 100% locally in your browser using WebAssembly.",
+            },
+        ],
+    },
+    {
+        id: "wav-to-mp3",
+        category: "audio",
+        name: "WAV to MP3 Converter",
+        longName: "Free WAV to MP3 Compressor Online - Shrink Audio Files",
+        thumbnailUrl:
+            "https://cdn.sanity.io/images/1cv2yjn3/production/e2424a4bf9f0aa4efdfa190f613c18aada349181-1376x768.jpg",
+        description:
+            "Compress large, uncompressed WAV audio files into lightweight, shareable MP3 format.",
+        longDescription:
+            "Shrink massive, uncompressed WAV audio files into lightweight MP3s without losing noticeable quality. WAV files are perfect for recording, but their huge file sizes make them impractical for emailing, sharing, or uploading to the web. This tool compresses them locally in seconds.",
+        tags: ["wav to mp3", "audio compressor", "shrink audio", "audio converter", "free tools"],
+        keywords: [
+            "convert wav to mp3 online free",
+            "compress wav file to mp3",
+            "wav to mp3 converter no upload",
+            "reduce wav file size locally",
+            "free audio compressor browser",
+        ],
+        steps: [
+            {
+                title: "Select WAV File",
+                description: "Upload your large, uncompressed WAV audio file.",
+            },
+            {
+                title: "Compress to MP3",
+                description: "The browser encodes the audio into a highly efficient MP3 format.",
+            },
+            {
+                title: "Download MP3",
+                description: "Save the lightweight file, ready for sharing or uploading.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Massive Size Reduction",
+                description:
+                    "Cut file sizes by up to 90% while maintaining excellent audio clarity.",
+            },
+            {
+                title: "Universal Compatibility",
+                description:
+                    "MP3 plays on every device, car stereo, and media player in the world.",
+            },
+            {
+                title: "Total Privacy",
+                description: "Your audio recordings are processed locally and never uploaded.",
+            },
+        ],
+        faqs: [
+            {
+                question: "Will converting WAV to MP3 ruin the audio quality?",
+                answer: "At standard high-quality settings, the difference is virtually imperceptible to the human ear, while the file size becomes a fraction of the original.",
+            },
+            {
+                question: "Are my audio files uploaded?",
+                answer: "No. Conversion happens entirely on your local machine using client-side web technology.",
+            },
+        ],
+    },
+    {
+        id: "m4a-to-mp3",
+        category: "audio",
+        name: "M4A to MP3 Converter",
+        longName: "Free M4A to MP3 Converter Online - Universal Compatibility",
+        thumbnailUrl:
+            "https://cdn.sanity.io/images/1cv2yjn3/production/e2424a4bf9f0aa4efdfa190f613c18aada349181-1376x768.jpg",
+        description: "Convert Apple M4A audio files to universally compatible MP3 format locally.",
+        longDescription:
+            "Convert Apple's proprietary M4A audio files into standard MP3 format. While M4A offers great compression, it often fails to play on older car stereos, Android devices, or specific editing software. This tool solves that compatibility issue instantly in your browser.",
+        tags: ["m4a to mp3", "apple audio", "audio converter", "compatibility", "free tools"],
+        keywords: [
+            "convert m4a to mp3 online free",
+            "apple audio to mp3 converter",
+            "m4a to mp3 no upload",
+            "play m4a on android converter",
+            "client side m4a to mp3",
+        ],
+        steps: [
+            {
+                title: "Upload M4A",
+                description: "Select your Apple M4A audio file from your device.",
+            },
+            {
+                title: "Convert Format",
+                description: "The tool decodes the M4A and repackages it as a standard MP3.",
+            },
+            {
+                title: "Download MP3",
+                description: "Save the universally compatible file to your computer or phone.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Fix Compatibility Issues",
+                description: "Make your Apple audio files playable on any device or software.",
+            },
+            {
+                title: "Lossless to Lossy Control",
+                description: "Maintain high audio fidelity during the conversion process.",
+            },
+            {
+                title: "100% Local Processing",
+                description: "Your personal recordings and music stay on your device.",
+            },
+        ],
+        faqs: [
+            {
+                question: "Why won't my M4A file play on my Android or car?",
+                answer: "M4A is an Apple-centric format. Converting it to MP3 ensures it will play on literally any media player in the world.",
+            },
+            {
+                question: "Is this converter really free and private?",
+                answer: "Yes. It is 100% free, has no file limits, and processes everything locally in your browser.",
+            },
+        ],
+    },
+    {
+        id: "ogg-to-mp3",
+        category: "audio",
+        name: "OGG to MP3 Converter",
+        longName: "Free OGG to MP3 Converter Online - Fix Compatibility",
+        thumbnailUrl:
+            "https://cdn.sanity.io/images/1cv2yjn3/production/e2424a4bf9f0aa4efdfa190f613c18aada349181-1376x768.jpg",
+        description:
+            "Convert OGG Vorbis audio files to standard MP3 format for use in any media player.",
+        longDescription:
+            "Turn OGG Vorbis audio files into standard, universally recognized MP3 files. OGG is a great open-source format, but many mainstream media players, editing software, and mobile devices still struggle to open it. This converter solves incompatibility issues in a single click.",
+        tags: ["ogg to mp3", "vorbis converter", "audio format", "compatibility", "free tools"],
+        keywords: [
+            "convert ogg to mp3 online free",
+            "vorbis to mp3 converter",
+            "ogg to mp3 no upload",
+            "play ogg file on iphone",
+            "client side ogg to mp3 changer",
+        ],
+        steps: [
+            {
+                title: "Drop OGG Files",
+                description: "Drag and drop your OGG audio files into the browser window.",
+            },
+            {
+                title: "Convert Instantly",
+                description: "The converter decodes the OGG format and encodes standard MP3s.",
+            },
+            {
+                title: "Download Universal MP3",
+                description: "Save the converted MP3s to your device, ready to play anywhere.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Everywhere Compatibility",
+                description:
+                    "Open and play your converted audio in iTunes, Windows Media Player, and smartphones.",
+            },
+            {
+                title: "Zero Upload Latency",
+                description: "Files process immediately inside your browser without wait times.",
+            },
+            {
+                title: "Strict Local Privacy",
+                description: "Your audio files stay safely contained on your computer.",
+            },
+        ],
+        faqs: [
+            {
+                question: "Why do some audio files save as OGG?",
+                answer: "Many open-source applications and game engines use OGG because it's royalty-free. However, consumer devices often require MP3.",
+            },
+            {
+                question: "Does converting OGG to MP3 degrade quality?",
+                answer: "No. Our converter maintains high compression bitrates so the converted MP3 matches the clarity of the original OGG file.",
+            },
+        ],
+    },
+    {
+        id: "mp4-to-webm",
+        category: "video",
+        name: "MP4 to WebM Converter",
+        longName: "Free MP4 to WebM Converter Online - Optimize for Web",
+        thumbnailUrl:
+            "https://cdn.sanity.io/images/1cv2yjn3/production/e2424a4bf9f0aa4efdfa190f613c18aada349181-1376x768.jpg",
+        description:
+            "Convert MP4 videos to highly efficient WebM format for faster website loading and HTML5 compatibility.",
+        longDescription:
+            "Optimize your MP4 videos for the modern web by converting them to Google's highly efficient WebM format. WebM files are significantly smaller than MP4s while maintaining excellent visual quality, making them the gold standard for fast-loading websites, Discord, and web apps.",
+        tags: [
+            "mp4 to webm",
+            "video optimizer",
+            "web performance",
+            "video converter",
+            "free tools",
+        ],
+        keywords: [
+            "convert mp4 to webm online free",
+            "optimize video for web free",
+            "mp4 to webm converter no upload",
+            "reduce video file size to webm",
+            "client side mp4 to webm tool",
+        ],
+        steps: [
+            {
+                title: "Select MP4 Video",
+                description: "Upload the MP4 video you want to optimize for the web.",
+            },
+            {
+                title: "Optimize to WebM",
+                description:
+                    "The browser compresses and converts the video to the efficient WebM format.",
+            },
+            {
+                title: "Download Optimized File",
+                description: "Save the lightweight WebM video, ready for website upload.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Massive Size Reduction",
+                description:
+                    "Cut video file sizes significantly without noticeable loss in visual quality.",
+            },
+            {
+                title: "Faster Website Speeds",
+                description: "WebM videos load faster, improving user experience and SEO.",
+            },
+            {
+                title: "Local Processing",
+                description:
+                    "Optimize your videos privately on your own machine without server uploads.",
+            },
+        ],
+        faqs: [
+            {
+                question: "Why should I convert MP4 to WebM?",
+                answer: "WebM provides superior compression for web delivery, resulting in much smaller file sizes that load faster on websites.",
+            },
+            {
+                question: "Are my videos uploaded to a server?",
+                answer: "No. The conversion happens 100% locally in your browser memory. Your files never leave your device.",
+            },
+        ],
+    },
+    {
+        id: "webm-to-mp4",
+        category: "video",
+        name: "WebM to MP4 Converter",
+        longName: "Free WebM to MP4 Converter Online - Universal Compatibility",
+        thumbnailUrl:
+            "https://cdn.sanity.io/images/1cv2yjn3/production/e2424a4bf9f0aa4efdfa190f613c18aada349181-1376x768.jpg",
+        description:
+            "Convert WebM videos to universally compatible MP4 format for any device or media player.",
+        longDescription:
+            "Turn WebM videos into standard, universally recognized MP4 files. While WebM is great for web browsers, many desktop video editors (like Premiere Pro), older operating systems, and mobile devices still refuse to open WebM files. This converter solves incompatibility issues instantly.",
+        tags: [
+            "webm to mp4",
+            "video converter",
+            "video compatibility",
+            "media tools",
+            "free tools",
+        ],
+        keywords: [
+            "convert webm to mp4 online free",
+            "save webm as mp4",
+            "webm to mp4 converter no upload",
+            "open webm file in premiere pro",
+            "batch webm to mp4 converter free",
+        ],
+        steps: [
+            {
+                title: "Drop WebM Files",
+                description: "Drag and drop your WebM videos into the browser window.",
+            },
+            {
+                title: "Convert Instantly",
+                description: "The converter decodes the WebM format and encodes standard MP4s.",
+            },
+            {
+                title: "Download Universal MP4",
+                description:
+                    "Save the converted MP4s to your device, ready to edit or share anywhere.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Everywhere Compatibility",
+                description:
+                    "Open and edit your converted videos in any desktop software or mobile app.",
+            },
+            {
+                title: "Zero Upload Latency",
+                description: "Videos process immediately inside your browser without wait times.",
+            },
+            {
+                title: "Strict Local Privacy",
+                description:
+                    "Your downloaded files and graphics stay safely contained on your computer.",
+            },
+        ],
+        faqs: [
+            {
+                question: "Why do downloaded web videos save as WebM?",
+                answer: "Websites use WebM because it provides smaller file sizes for fast page loading. However, many desktop programs still require standard MP4 files.",
+            },
+            {
+                question: "Does converting WebM to MP4 degrade visual quality?",
+                answer: "No. Our converter maintains high compression bitrates so the converted MP4 matches the clarity of the original WebM video.",
+            },
+        ],
+    },
+    {
+        id: "mp3-to-wav",
+        category: "audio",
+        name: "MP3 to WAV Converter",
+        longName: "Free MP3 to WAV Converter Online - Lossless Audio",
+        thumbnailUrl:
+            "https://cdn.sanity.io/images/1cv2yjn3/production/e2424a4bf9f0aa4efdfa190f613c18aada349181-1376x768.jpg",
+        description:
+            "Convert compressed MP3 files to uncompressed, lossless WAV format for professional editing.",
+        longDescription:
+            "Turn compressed MP3 audio files into pristine, uncompressed WAV format. While MP3 is great for sharing, professional audio editing software, DJ tools, and archival purposes require the lossless fidelity of a WAV file. This tool unpacks your audio locally in your browser.",
+        tags: [
+            "mp3 to wav",
+            "lossless audio",
+            "audio converter",
+            "professional editing",
+            "free tools",
+        ],
+        keywords: [
+            "convert mp3 to wav online free",
+            "mp3 to wav converter no upload",
+            "uncompress mp3 to wav",
+            "free audio converter for editing",
+            "client side mp3 to wav tool",
+        ],
+        steps: [
+            { title: "Upload MP3", description: "Select your compressed MP3 audio file." },
+            {
+                title: "Decode to WAV",
+                description:
+                    "The tool unpacks the audio into a full-quality, uncompressed WAV format.",
+            },
+            {
+                title: "Download WAV",
+                description: "Save the lossless file, ready for professional editing or archiving.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Lossless Quality",
+                description:
+                    "Prepare your audio for professional editing software without further compression artifacts.",
+            },
+            {
+                title: "Universal Editing Support",
+                description:
+                    "WAV is the industry standard format accepted by every DAW and audio editor.",
+            },
+            {
+                title: "Complete Privacy",
+                description:
+                    "Your audio tracks are processed locally and never uploaded to any server.",
+            },
+        ],
+        faqs: [
+            {
+                question: "Will converting MP3 to WAV improve the audio quality?",
+                answer: "It cannot restore data lost to MP3 compression, but it prevents any further quality loss during professional editing and saving.",
+            },
+            {
+                question: "Why is the WAV file so much larger?",
+                answer: "WAV is an uncompressed format that retains every single audio sample, resulting in a much larger file size but perfect fidelity for editing.",
+            },
+        ],
+    },
 ];
 
 export const fileConverterToolComponentMap: ToolComponentMap = {
     "jpg-to-png": dynamic(() => import("./component")),
     "png-to-jpg": dynamic(() => import("./component")),
     "pdf-to-jpg": dynamic(() => import("./component")),
+    "jpg-to-pdf": dynamic(() => import("./component")),
+    "png-to-pdf": dynamic(() => import("./component")),
+    "pdf-to-png": dynamic(() => import("./component")),
     "webp-to-jpg": dynamic(() => import("./component")),
     "heic-to-jpg": dynamic(() => import("./component")),
     "tiff-to-jpg": dynamic(() => import("./component")),
-    "jpg-to-pdf": dynamic(() => import("./component")),
-    "png-to-pdf": dynamic(() => import("./component")),
     "webp-to-png": dynamic(() => import("./component")),
     "jpg-to-webp": dynamic(() => import("./component")),
     "tiff-to-png": dynamic(() => import("./component")),
-    "pdf-to-png": dynamic(() => import("./component")),
+    "video-to-mp3": dynamic(() => import("./component")),
+    "wav-to-mp3": dynamic(() => import("./component")),
+    "m4a-to-mp3": dynamic(() => import("./component")),
+    "ogg-to-mp3": dynamic(() => import("./component")),
+    "mp3-to-wav": dynamic(() => import("./component")),
+    "webm-to-mp4": dynamic(() => import("./component")),
+    "mp4-to-webm": dynamic(() => import("./component")),
     "all-in-one-image-converter": dynamic(() => import("./component")),
 };
 
@@ -1136,5 +1577,47 @@ export const fileConverterToolConfigMap: Record<
         ],
         outputFormats: [],
         defaultFormat: "png", // Default for all-in-one
+    },
+    "video-to-mp3": {
+        acceptType: ".mp4,.webm,.mov,.avi",
+        inputFormats: ["mp4", "webm", "mov", "avi"],
+        outputFormats: ["mp3"],
+        defaultFormat: "mp3",
+    },
+    "wav-to-mp3": {
+        acceptType: ".wav",
+        inputFormats: ["wav"],
+        outputFormats: ["mp3"],
+        defaultFormat: "mp3",
+    },
+    "m4a-to-mp3": {
+        acceptType: ".m4a",
+        inputFormats: ["m4a"],
+        outputFormats: ["mp3"],
+        defaultFormat: "mp3",
+    },
+    "ogg-to-mp3": {
+        acceptType: ".ogg",
+        inputFormats: ["ogg"],
+        outputFormats: ["mp3"],
+        defaultFormat: "mp3",
+    },
+    "mp4-to-webm": {
+        acceptType: ".mp4",
+        inputFormats: ["mp4"],
+        outputFormats: ["webm"],
+        defaultFormat: "webm",
+    },
+    "webm-to-mp4": {
+        acceptType: ".webm",
+        inputFormats: ["webm"],
+        outputFormats: ["mp4"],
+        defaultFormat: "mp4",
+    },
+    "mp3-to-wav": {
+        acceptType: ".mp3",
+        inputFormats: ["mp3"],
+        outputFormats: ["wav"],
+        defaultFormat: "wav",
     },
 };

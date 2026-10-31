@@ -17,7 +17,7 @@ interface FileUploadProps {
 
 export function FileUpload({
     accept,
-    maxSizeMB = 50,
+    maxSizeMB = 2000,
     multiple = false,
     allowedFormats,
     onFilesSelected,
