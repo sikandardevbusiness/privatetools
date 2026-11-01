@@ -53,7 +53,7 @@ export default function ImageCropperTool({ tool }: { tool: BaseTool }) {
 
     if (!image) {
         return (
-            <ToolHeader title={tool.name} description={tool.description}>
+            <ToolHeader tool={tool}>
                 <FileUpload
                     multiple={false}
                     accept="image/*"

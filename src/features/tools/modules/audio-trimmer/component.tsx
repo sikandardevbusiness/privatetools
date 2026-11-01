@@ -97,7 +97,7 @@ export default function AudioTrimmerClient({ tool }: { tool: BaseTool }): React.
 
     return (
         <ToolShell>
-            <ToolHeader title={tool.name} description={tool.description}>
+            <ToolHeader tool={tool}>
                 {!file ? (
                     <FileUpload
                         accept="audio/*,video/*"

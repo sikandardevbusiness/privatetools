@@ -7,13 +7,13 @@ import {
 } from "./modules/data-transformer";
 import { exifWiperToolComponentMap, exifWiperToolMetadataList } from "./modules/exif-wiper";
 import {
-    imageCompressorToolComponentMap,
-    imageCompressorToolMetadataList,
-} from "./modules/image-compressor";
-import {
     fileConverterToolComponentMap,
     fileConverterToolMetadataList,
 } from "./modules/file-converter";
+import {
+    fileCompressorToolComponentMap,
+    fileCompressorToolMetadataList,
+} from "./modules/file-compressor";
 import {
     imageCropperToolComponentMap,
     imageCropperToolMetadataList,
@@ -26,10 +26,6 @@ import {
     manhwaCropperToolComponentMap,
     manhwaCropperToolMetadataList,
 } from "./modules/manhwa-cropper";
-import {
-    pdfCompressorToolComponentMap,
-    pdfCompressorToolMetadataList,
-} from "./modules/pdf-compressor";
 import { pdfRedactorToolComponentMap, pdfRedactorToolMetadata } from "./modules/pdf-redactor";
 import {
     removeSilenceToolComponentMap,
@@ -50,9 +46,8 @@ export const toolMetadataList: BaseTool[] = [
     ...manhwaCropperToolMetadataList,
     ...removeSilenceToolMetadataList,
     ...audioTrimmerToolMetadata,
-    ...pdfCompressorToolMetadataList,
     ...fileConverterToolMetadataList,
-    ...imageCompressorToolMetadataList,
+    ...fileCompressorToolMetadataList,
     ...videoWatermarkToolMetadataList,
     ...thumbnailPreviewToolMetadataList,
     ...imageEmoteConverterToolMetadataList,
@@ -66,11 +61,10 @@ export const toolComponentMap: ToolComponentMap = {
     ...imageCropperToolComponentMap,
     ...audioTrimmerToolComponentMap,
     ...manhwaCropperToolComponentMap,
-    ...pdfCompressorToolComponentMap,
     ...removeSilenceToolComponentMap,
     ...fileConverterToolComponentMap,
+    ...fileCompressorToolComponentMap,
     ...videoWatermarkToolComponentMap,
-    ...imageCompressorToolComponentMap,
     ...dataTransformerToolComponentMap,
     ...thumbnailPreviewToolComponentMap,
     ...imageEmoteConverterToolComponentMap,

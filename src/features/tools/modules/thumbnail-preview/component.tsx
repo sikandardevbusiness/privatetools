@@ -94,7 +94,7 @@ export default function ThumbnailPreviewClient({ tool }: { tool: BaseTool }) {
     // Upload Screen
     if (thumbs.length === 0) {
         return (
-            <ToolHeader title={tool.name} description={tool.description}>
+            <ToolHeader tool={tool}>
                 <FileUpload
                     accept="image/*"
                     maxSizeMB={10}

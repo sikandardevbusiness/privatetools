@@ -178,7 +178,7 @@ export default function RemoveSilenceAudioClient({ tool }: { tool: BaseTool }) {
 
     return (
         <ToolShell>
-            <ToolHeader title={tool.name} description={tool.description}>
+            <ToolHeader tool={tool}>
                 {files.length === 0 ? (
                     <FileUpload
                         accept="audio/*"

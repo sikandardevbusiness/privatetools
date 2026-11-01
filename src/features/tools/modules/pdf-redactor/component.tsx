@@ -64,7 +64,7 @@ export default function PDFRedactorClient({ tool }: { tool: BaseTool }) {
     // Upload Screen
     if (!file) {
         return (
-            <ToolHeader title={tool.name} description={tool.description}>
+            <ToolHeader tool={tool}>
                 <FileUpload
                     accept="application/pdf"
                     maxSizeMB={50}

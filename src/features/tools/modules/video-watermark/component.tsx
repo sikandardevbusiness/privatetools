@@ -192,7 +192,7 @@ export default function VideoWatermarkClient({ tool }: { tool: BaseTool }) {
 
     return (
         <ToolShell>
-            <ToolHeader title={tool.name} description={tool.description}>
+            <ToolHeader tool={tool}>
                 {!videoFile ? (
                     <FileUpload
                         accept="video/*"

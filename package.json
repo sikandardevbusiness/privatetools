@@ -39,10 +39,9 @@
         "@sikandardevbusiness/audio-trimmer": "^1.0.0",
         "@sikandardevbusiness/file-converter": "^1.0.2",
         "@sikandardevbusiness/manhwa-cropper": "^1.0.1",
-        "@sikandardevbusiness/pdf-compressor": "^1.0.1",
         "@sikandardevbusiness/remove-silence": "^1.0.1",
         "@sikandardevbusiness/video-watermark": "^1.0.1",
-        "@sikandardevbusiness/image-compressor": "^1.0.1"
+        "@sikandardevbusiness/file-compressor": "^1.0.0"
     },
     "devDependencies": {
         "@t3-oss/env-nextjs": "^0.13.11",

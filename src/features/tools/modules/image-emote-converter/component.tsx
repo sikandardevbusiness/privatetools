@@ -95,7 +95,7 @@ export default function EmoteResizerClient({ tool }: { tool: BaseTool }) {
 
     return (
         <ToolShell>
-            <ToolHeader title={tool.name} description={tool.description}>
+            <ToolHeader tool={tool}>
                 {!currentFile ? (
                     <FileUpload
                         accept="image/*"

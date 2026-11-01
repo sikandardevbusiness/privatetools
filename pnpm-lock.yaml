@@ -23,18 +23,15 @@ importers:
       '@sikandardevbusiness/audio-trimmer':
         specifier: ^1.0.0
         version: 1.0.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@sikandardevbusiness/file-compressor':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@sikandardevbusiness/file-converter':
         specifier: ^1.0.2
         version: 1.0.2(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@sikandardevbusiness/image-compressor':
-        specifier: ^1.0.1
-        version: 1.0.1
       '@sikandardevbusiness/manhwa-cropper':
         specifier: ^1.0.1
         version: 1.0.1
-      '@sikandardevbusiness/pdf-compressor':
-        specifier: ^1.0.1
-        version: 1.0.1(@fileslim/compress@2.5.0)
       '@sikandardevbusiness/pdf-redactor':
         specifier: ^1.0.1
         version: 1.0.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -1029,30 +1026,6 @@ packages:
   '@ffmpeg/util@0.12.2':
     resolution: {integrity: sha512-ouyoW+4JB7WxjeZ2y6KpRvB+dLp7Cp4ro8z0HIVpZVCM7AwFlHa0c4R8Y/a4M3wMqATpYKhC7lSFHQ0T11MEDw==}
     engines: {node: '>=18.x'}
-
-  '@fileslim/compress@2.5.0':
-    resolution: {integrity: sha512-uMauDg16uT5YZ33Wwd0undBByxFU1bhLWmtl9i7L5iilZ8fwwnVJdHrJyIpmkPLJXc62qHBSVr4XNEe5x4d5Yg==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      '@jsquash/avif': ^2.1.0
-      '@jsquash/jpeg': ^1.6.0
-      '@jsquash/jxl': ^1.3.0
-      '@jsquash/oxipng': ^2.3.0
-      '@jsquash/png': ^3.1.1
-      '@jsquash/webp': ^1.5.0
-    peerDependenciesMeta:
-      '@jsquash/avif':
-        optional: true
-      '@jsquash/jpeg':
-        optional: true
-      '@jsquash/jxl':
-        optional: true
-      '@jsquash/oxipng':
-        optional: true
-      '@jsquash/png':
-        optional: true
-      '@jsquash/webp':
-        optional: true
 
   '@floating-ui/core@1.8.0':
     resolution: {integrity: sha512-0CIZ5itps/8x7BG8dEIhs53BvCUH2PCoogtakwRTut+Arm58sJooJ0AuZhLw2HJYIR5cMLNPBSS728sPho2khQ==}
@@ -2659,25 +2632,17 @@ packages:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
 
+  '@sikandardevbusiness/file-compressor@1.0.0':
+    resolution: {integrity: sha512-MrlmaBFuBb+JuPnWfoHWEUDjuELi8m6f2U8wgNDcZvCtsZurhEbcpEhCMiD/TSZKCBYSU/Ae3ELsToIIdA8XEA==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/file-compressor/1.0.0/50023aa8b7fb04d0ac26c94ac28d36dc4c2ce6f1}
+
   '@sikandardevbusiness/file-converter@1.0.2':
     resolution: {integrity: sha512-mAGkU+lpv4V1fpQzAq72ZIU7TZ7BrP3rG1C4kCyAoJAeytXDJeTmUBKzgRxXbFN6rVia/YO2x23c7F96EkDQuw==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/file-converter/1.0.2/36d8ca16b3c1968b959fd1e6685388d78a97811a}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
 
-  '@sikandardevbusiness/image-compressor@1.0.1':
-    resolution: {integrity: sha512-SBJNl2w/VLnoDA0P0kG5L1H5dWw3ZsOCtraOdrz5Wm0IUfCvaMJP4wzplhqYF+Lbsl8ZHXiF1EJHC3wrbB7LXw==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/image-compressor/1.0.1/51491be9fba85b8ebb41829714208714a6894241}
-
   '@sikandardevbusiness/manhwa-cropper@1.0.1':
     resolution: {integrity: sha512-yoQqzGpqYaIl6fbCTJEpHmqaRPadZIDPmzkggfIKUL4Vrq76rVmaoX6cB6aEh0SoYH6P+xmJrpoatAXNdmDpzw==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/manhwa-cropper/1.0.1/c05870f38afaf931ba03264814626b4d32b8805d}
-
-  '@sikandardevbusiness/pdf-compressor@1.0.1':
-    resolution: {integrity: sha512-CPTLnaWuZBmiN1bSauhXnqauSifyee8HX/Mh489keb9S940pv35Ao1y3bMiwGYwGhd5DrIrFg3j+g0tmaWf9Ig==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/pdf-compressor/1.0.1/aa050a37291c3b6aaf55b0d494d9e632b2ebd87f}
-    peerDependencies:
-      '@fileslim/compress': '*'
-    peerDependenciesMeta:
-      '@fileslim/compress':
-        optional: true
 
   '@sikandardevbusiness/pdf-redactor@1.0.1':
     resolution: {integrity: sha512-ETWKFYdVEsgh4htASZU6AagUuQBhu5FoaNeFmtka0IcFEV847WNLddpwenrBPJDaciU/CiIHS6/rlWFJ6/MTNg==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/pdf-redactor/1.0.1/3da8bc6b5f1c62a7c5c0ed984cd279c374832833}
@@ -3506,9 +3471,6 @@ packages:
   braces@3.0.3:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
     engines: {node: '>=8'}
-
-  browser-image-compression@2.0.2:
-    resolution: {integrity: sha512-pBLlQyUf6yB8SmmngrcOw3EoS4RpQ1BcylI3T9Yqn7+4nrQTXJD4sJDe5ODnJdrvNMaio5OicFo75rDyJD2Ucw==}
 
   browserify-zlib@0.1.4:
     resolution: {integrity: sha512-19OEpq7vWgsH6WkvkBJQDFvJS1uPcbFOQ4v9CU839dO+ZZXUZO6XpE6hNCqvlIIj+4fZvRiJ6DsAQ382GwiyTQ==}
@@ -7008,9 +6970,6 @@ packages:
     resolution: {integrity: sha512-jjRGChg03uGp9f6wQYSO8qXkweJwRbA5WRuEQE8xLIiehIzIIi23qZSzsyvZPCPoFqkeLtZuz7Plt1LGukAInA==}
     hasBin: true
 
-  uzip@0.20201231.0:
-    resolution: {integrity: sha512-OZeJfZP+R0z9D6TmBgLq2LHzSSptGMGDGigGiEe0pr8UBe/7fdflgHlHBNDASTXB5jnFuxHpNaJywSg8YFeGng==}
-
   valibot@1.5.0:
     resolution: {integrity: sha512-nil6AkP2TChWL43Z5uJ6GTxX01CUA+g8LWUM+N/rB9NBbkUMaUsi9PUNzlUPgoKASgmx9f7eGOYpJ04/fSa6FQ==}
     peerDependencies:
@@ -8462,12 +8421,6 @@ snapshots:
   '@ffmpeg/types@0.12.4': {}
 
   '@ffmpeg/util@0.12.2': {}
-
-  '@fileslim/compress@2.5.0':
-    dependencies:
-      browser-image-compression: 2.0.2
-      pdf-lib: 1.17.1
-    optional: true
 
   '@floating-ui/core@1.8.0':
     dependencies:
@@ -10454,6 +10407,13 @@ snapshots:
       react-dom: 19.3.0(react@19.3.0)
       wavesurfer.js: 7.12.12
 
+  '@sikandardevbusiness/file-compressor@1.0.0':
+    dependencies:
+      '@mediabunny/mp3-encoder': 1.65.0(mediabunny@1.64.0)
+      mediabunny: 1.64.0
+      pdf-lib: 1.17.1
+      pdfjs-dist: 4.10.38
+
   '@sikandardevbusiness/file-converter@1.0.2(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
       '@mediabunny/mp3-encoder': 1.65.0(mediabunny@1.64.0)
@@ -10465,16 +10425,7 @@ snapshots:
       react-dom: 19.3.0(react@19.3.0)
       utif: 3.1.0
 
-  '@sikandardevbusiness/image-compressor@1.0.1': {}
-
   '@sikandardevbusiness/manhwa-cropper@1.0.1': {}
-
-  '@sikandardevbusiness/pdf-compressor@1.0.1(@fileslim/compress@2.5.0)':
-    dependencies:
-      pdf-lib: 1.17.1
-      pdfjs-dist: 4.10.38
-    optionalDependencies:
-      '@fileslim/compress': 2.5.0
 
   '@sikandardevbusiness/pdf-redactor@1.0.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
@@ -11282,11 +11233,6 @@ snapshots:
   braces@3.0.3:
     dependencies:
       fill-range: 7.1.1
-
-  browser-image-compression@2.0.2:
-    dependencies:
-      uzip: 0.20201231.0
-    optional: true
 
   browserify-zlib@0.1.4:
     dependencies:
@@ -15189,9 +15135,6 @@ snapshots:
   uuid@14.0.3: {}
 
   uuidv7@0.4.4: {}
-
-  uzip@0.20201231.0:
-    optional: true
 
   valibot@1.5.0(typescript@5.9.3):
     optionalDependencies:
