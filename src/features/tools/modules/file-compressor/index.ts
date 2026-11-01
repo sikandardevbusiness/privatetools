@@ -172,7 +172,7 @@ export const fileCompressorToolMetadataList: BaseTool[] = [
         name: "Video Compressor",
         longName: "Free Video Compressor Online - Shrink MP4 & WebM Files Locally",
         thumbnailUrl:
-            "https://cdn.sanity.io/images/1cv2yjn3/production/e9ce7fa7e0cc48766573911c48a9df474af20f81-1280x720.png",
+            "https://cdn.sanity.io/images/1cv2yjn3/production/f37c9e130df0c30b3b715001ef83923784a0a3a8-1376x768.jpg",
         description:
             "Compress MP4 and WebM videos online for free. Reduce video file size by up to 80% locally in your browser using GPU acceleration, with zero server uploads.",
         longDescription:
@@ -253,7 +253,7 @@ export const fileCompressorToolMetadataList: BaseTool[] = [
         name: "Audio Compressor",
         longName: "Free Audio Compressor Online - Shrink MP3, WAV, M4A Files Locally",
         thumbnailUrl:
-            "https://cdn.sanity.io/images/1cv2yjn3/production/68ac9665556691928039f26aab7f7eb28d29ab83-1280x720.png",
+            "https://cdn.sanity.io/images/1cv2yjn3/production/f592c44a28ecfbf9ac3edd934de814d7cdb832a1-1376x768.jpg",
         description:
             "Compress MP3, WAV, M4A, OGG, and AAC audio files online for free. Reduce audio file size by up to 80% locally in your browser with zero server uploads.",
         longDescription:
@@ -335,7 +335,7 @@ export const fileCompressorToolMetadataList: BaseTool[] = [
         isExperimental: true,
         longName: "Free Video Compressor for Discord - Shrink to 8MB Locally",
         thumbnailUrl:
-            "https://cdn.sanity.io/images/1cv2yjn3/production/e9ce7fa7e0cc48766573911c48a9df474af20f81-1280x720.png",
+            "https://cdn.sanity.io/images/1cv2yjn3/production/8d5d109eeba02440c8f12a7b8ae3157c237e9294-1376x768.jpg",
         description:
             "Compress videos to exactly 8MB for Discord uploads. Free, local, and fast with zero server uploads.",
         longDescription:

@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 
 import { FaqSection } from "@/features/tools/shared/components/sections/faq-section";
 import { RelatedTools } from "@/features/tools/shared/components/sections/related-tools";
 import { StepsSection } from "@/features/tools/shared/components/sections/steps-section";
 import { WhatToExpect } from "@/features/tools/shared/components/sections/what-to-expect";
+import { Badge } from "@/components/ui/badge";
 
 import { toolComponentMap, toolMetadataList } from "@/features/tools/registry";
 import { getDiverseTools, getRelatedTools, getToolByPath } from "@/features/tools/shared/actions";
@@ -223,6 +225,53 @@ export default async function DynamicToolPage({ params }: PageProps) {
                 {tool.steps && tool.steps.length > 0 && <StepsSection steps={tool.steps} />}
 
                 {tool.faqs && tool.faqs.length > 0 && <FaqSection items={tool.faqs} />}
+
+                {/* ✅ NEW: Thumbnail, Long Description & Tags Section */}
+                {(tool.thumbnailUrl ||
+                    tool.longDescription ||
+                    (tool.tags && tool.tags.length > 0)) && (
+                    <section className="w-full space-y-6 mt-12">
+                        {/* Flex container for Thumbnail and Long Description */}
+                        <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+                            {/* 1. Thumbnail Image (16:9 Aspect Ratio & SEO Optimized) */}
+                            {tool.thumbnailUrl && (
+                                <div className="w-full md:w-1/2 aspect-video relative rounded-xl overflow-hidden shadow-lg border border-border bg-muted group">
+                                    <Image
+                                        src={tool.thumbnailUrl}
+                                        alt={`${tool.name} - ${tool.description}`}
+                                        fill
+                                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        priority
+                                    />
+                                </div>
+                            )}
+
+                            {/* 2. Long Description */}
+                            {tool.longDescription && (
+                                <div className="w-full md:w-1/2 space-y-4 text-center md:text-left">
+                                    <h2 className="text-2xl font-bold text-foreground">
+                                        About This Tool
+                                    </h2>
+                                    <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
+                                        {tool.longDescription}
+                                    </p>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* 3. Tags / Badges */}
+                        {tool.tags && tool.tags.length > 0 && (
+                            <div className="flex flex-wrap gap-2">
+                                {tool.tags.map((tag, index) => (
+                                    <Badge key={index} variant="secondary" className="p-4 text-sm">
+                                        {tag}
+                                    </Badge>
+                                ))}
+                            </div>
+                        )}
+                    </section>
+                )}
 
                 <div className="w-full space-y-12 mt-12">
                     {relatedTools.length > 0 && (

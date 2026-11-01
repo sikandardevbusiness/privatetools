@@ -34,7 +34,7 @@ We offer a growing suite of powerful tools, all running directly in your browser
 
 ### 🖼️ Image Tools
 
-- **[Image Compressor](https://privatetools.in/tools/image/image-compressor):** Shrink image file sizes (JPG, PNG, WebP) without losing visual quality.
+- **[Image Compressor](https://privatetools.in/tools/image/image-compressor):** Shrink image file sizes (JPG, PNG, WebP) by up to 80% locally in your browser with zero quality loss.
 - **[All-in-One Image Converter](https://privatetools.in/tools/image/all-in-one-image-converter):** Batch convert between JPG, PNG, WEBP, HEIC, and TIFF formats.
 - **[JPG to PNG Converter](https://privatetools.in/tools/image/jpg-to-png):** Convert JPG images to high-quality, lossless PNG format.
 - **[PNG to JPG Converter](https://privatetools.in/tools/image/png-to-jpg):** Reduce PNG file sizes by converting them to compressed JPG.
@@ -46,7 +46,7 @@ We offer a growing suite of powerful tools, all running directly in your browser
 
 ### 📄 Document & PDF Tools
 
-- **[PDF Compressor](https://privatetools.in/tools/document/pdf-compressor):** Reduce the file size of heavy PDF documents securely.
+- **[PDF Compressor](https://privatetools.in/tools/document/pdf-compressor):** Reduce the file size of heavy PDF documents securely with custom target sizes and zero server uploads.
 - **[PDF Redactor](https://privatetools.in/tools/document/pdf-redactor):** Permanently black out sensitive text and remove hidden metadata.
 - **[PDF to JPG Converter](https://privatetools.in/tools/document/pdf-to-jpg):** Extract PDF pages as high-resolution JPG images.
 - **[JPG to PDF Converter](https://privatetools.in/tools/document/jpg-to-pdf):** Combine multiple JPG photos into a single PDF document.
@@ -55,6 +55,9 @@ We offer a growing suite of powerful tools, all running directly in your browser
 
 ### 🎵 Audio & Video Tools
 
+- **[Video Compressor for Discord (8MB)](https://privatetools.in/tools/video/video-compressor-discord):** Automatically compress videos to perfectly fit Discord's strict 8MB upload limit without sacrificing watchable quality.
+- **[Video Compressor](https://privatetools.in/tools/video/video-compressor):** Shrink MP4 and WebM video file sizes by up to 80% locally using hardware-accelerated GPU encoding.
+- **[Audio Compressor](https://privatetools.in/tools/audio/audio-compressor):** Reduce MP3, WAV, M4A, OGG, and AAC audio file sizes locally with smart bitrate allocation.
 - **[Video to MP3 Converter](https://privatetools.in/tools/audio/video-to-mp3):** Extract high-quality MP3 audio from MP4, WEBM, and MOV videos instantly in your browser.
 - **[WAV to MP3 Converter](https://privatetools.in/tools/audio/wav-to-mp3):** Compress large, uncompressed WAV audio files into lightweight, shareable MP3 format.
 - **[M4A to MP3 Converter](https://privatetools.in/tools/audio/m4a-to-mp3):** Convert Apple M4A audio files to universally compatible MP3 format locally.
