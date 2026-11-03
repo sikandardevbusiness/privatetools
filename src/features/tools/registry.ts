@@ -39,6 +39,10 @@ import {
     videoWatermarkToolComponentMap,
     videoWatermarkToolMetadataList,
 } from "./modules/video-watermark";
+import {
+    dataConverterToolMetadataList,
+    dataConverterToolComponentMap,
+} from "@/features/tools/modules/data-converter";
 
 export const toolMetadataList: BaseTool[] = [
     ...imageCropperToolMetadataList,
@@ -46,6 +50,7 @@ export const toolMetadataList: BaseTool[] = [
     ...manhwaCropperToolMetadataList,
     ...removeSilenceToolMetadataList,
     ...audioTrimmerToolMetadata,
+    ...dataConverterToolMetadataList,
     ...fileConverterToolMetadataList,
     ...fileCompressorToolMetadataList,
     ...videoWatermarkToolMetadataList,
@@ -63,6 +68,7 @@ export const toolComponentMap: ToolComponentMap = {
     ...manhwaCropperToolComponentMap,
     ...removeSilenceToolComponentMap,
     ...fileConverterToolComponentMap,
+    ...dataConverterToolComponentMap,
     ...fileCompressorToolComponentMap,
     ...videoWatermarkToolComponentMap,
     ...dataTransformerToolComponentMap,

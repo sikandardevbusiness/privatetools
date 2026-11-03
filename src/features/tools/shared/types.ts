@@ -15,6 +15,7 @@ export const faqItemSchema = z.object({
 export type FAQItem = z.infer<typeof faqItemSchema>;
 
 export const toolCategorySchema = z.enum([
+    "data",
     "text",
     "audio",
     "image",

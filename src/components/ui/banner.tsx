@@ -17,7 +17,7 @@ const variantStyles = {
 
 export function Banner({ variant = "primary", message, className }: BannerProps) {
     return (
-        <div className={cn("w-full py-3 px-4", variantStyles[variant], className)}>
+        <div className={cn("w-full py-2 px-4", variantStyles[variant], className)}>
             <div className="max-w-7xl mx-auto flex items-center justify-center gap-2 text-sm">
                 <span className="text-center leading-snug">{message}</span>
             </div>
