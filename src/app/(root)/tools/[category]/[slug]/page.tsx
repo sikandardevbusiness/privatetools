@@ -2,12 +2,17 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Shield, Eye, Lock, Code2, Mail, Bug, Lightbulb, Globe } from "lucide-react";
 
 import { FaqSection } from "@/features/tools/shared/components/sections/faq-section";
 import { RelatedTools } from "@/features/tools/shared/components/sections/related-tools";
 import { StepsSection } from "@/features/tools/shared/components/sections/steps-section";
 import { WhatToExpect } from "@/features/tools/shared/components/sections/what-to-expect";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 import { toolComponentMap, toolMetadataList } from "@/features/tools/registry";
 import { getDiverseTools, getRelatedTools, getToolByPath } from "@/features/tools/shared/actions";
@@ -21,10 +26,6 @@ interface PageProps {
         slug: string;
     }>;
 }
-
-// ✅ FIX: Tells Next.js this route is allowed to block while resolving params,
-// preventing the "URL data outside of Suspense" warning.
-// export const instant = false;
 
 const BASE_URL = env.NEXT_PUBLIC_SITE_URL;
 
@@ -226,52 +227,215 @@ export default async function DynamicToolPage({ params }: PageProps) {
 
                 {tool.faqs && tool.faqs.length > 0 && <FaqSection items={tool.faqs} />}
 
-                {/* ✅ NEW: Thumbnail, Long Description & Tags Section */}
-                {(tool.thumbnailUrl ||
-                    tool.longDescription ||
-                    (tool.tags && tool.tags.length > 0)) && (
-                    <section className="w-full space-y-6 mt-12">
-                        {/* Flex container for Thumbnail and Long Description */}
-                        <div className="flex flex-col md:flex-row gap-6 md:gap-8">
-                            {/* 1. Thumbnail Image (16:9 Aspect Ratio & SEO Optimized) */}
-                            {tool.thumbnailUrl && (
-                                <div className="w-full md:w-1/2 aspect-video relative rounded-xl overflow-hidden shadow-lg border border-border bg-muted group">
-                                    <Image
-                                        src={tool.thumbnailUrl}
-                                        alt={`${tool.name} - ${tool.description}`}
-                                        fill
-                                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                                        sizes="(max-width: 768px) 100vw, 50vw"
-                                        priority
-                                    />
-                                </div>
-                            )}
-
-                            {/* 2. Long Description */}
-                            {tool.longDescription && (
-                                <div className="w-full md:w-1/2 space-y-4 text-center md:text-left">
-                                    <h2 className="text-2xl font-bold text-foreground">
-                                        About This Tool
-                                    </h2>
-                                    <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
-                                        {tool.longDescription}
-                                    </p>
-                                </div>
-                            )}
-                        </div>
-
-                        {/* 3. Tags / Badges */}
-                        {tool.tags && tool.tags.length > 0 && (
-                            <div className="flex flex-wrap gap-2">
-                                {tool.tags.map((tag, index) => (
-                                    <Badge key={index} variant="secondary" className="p-4 text-sm">
-                                        {tag}
-                                    </Badge>
-                                ))}
+                <section className="w-full space-y-6 mt-12">
+                    {/* Flex container for Thumbnail and Long Description */}
+                    <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+                        {/* 1. Thumbnail Image (16:9 Aspect Ratio & SEO Optimized) */}
+                        {tool.thumbnailUrl && (
+                            <div className="w-full md:w-1/2 aspect-video relative rounded-xl overflow-hidden shadow-lg border border-border bg-muted group">
+                                <Image
+                                    src={tool.thumbnailUrl}
+                                    alt={`${tool.name} - ${tool.description}`}
+                                    fill
+                                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                    priority
+                                />
                             </div>
                         )}
-                    </section>
-                )}
+
+                        {/* 2. Long Description */}
+                        {tool.longDescription && (
+                            <div className="w-full md:w-1/2 space-y-4 text-center md:text-left">
+                                <h2 className="text-2xl font-bold text-foreground">
+                                    About This Tool
+                                </h2>
+                                <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
+                                    {tool.longDescription}
+                                </p>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* 3. Tags / Badges */}
+                    {tool.tags && tool.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                            {tool.tags.map((tag, index) => (
+                                <Badge key={index} variant="secondary" className="p-4 text-sm">
+                                    {tag}
+                                </Badge>
+                            ))}
+                        </div>
+                    )}
+                </section>
+
+                <section className="w-full mt-12">
+                    <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+                        <Card className="px-4 py-8">
+                            <CardHeader className="flex items-center gap-3">
+                                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-secondary text-foreground">
+                                    <Shield size={22} />
+                                </div>
+                                <CardTitle className="text-xl font-bold text-foreground">
+                                    100% Open Source &amp; Trustworthy
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground leading-relaxed mb-5">
+                                    Every tool on{" "}
+                                    <span className="font-semibold text-foreground">
+                                        PrivateTools
+                                    </span>{" "}
+                                    is <strong>fully open source</strong> and runs{" "}
+                                    <strong>entirely in your browser</strong>. No server uploads. No
+                                    tracking. No hidden code. You can{" "}
+                                    <Link
+                                        href={env.NEXT_PUBLIC_GITHUB_URL}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-primary underline underline-offset-2 hover:text-primary/80"
+                                    >
+                                        verify the source code yourself
+                                    </Link>{" "}
+                                    on GitHub at any time.
+                                </p>
+
+                                <div className="space-y-4">
+                                    <div className="flex items-start gap-3">
+                                        <div className="mt-0.5 flex items-center justify-center w-7 h-7 rounded-md bg-blue-500/10 text-blue-500 shrink-0">
+                                            <Code2 size={15} />
+                                        </div>
+                                        <div>
+                                            <p className="text-sm font-semibold text-foreground">
+                                                Open Source Code
+                                            </p>
+                                            <p className="text-xs text-muted-foreground">
+                                                Full source code available on GitHub — inspect,
+                                                fork, or contribute.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-start gap-3">
+                                        <div className="mt-0.5 flex items-center justify-center w-7 h-7 rounded-md bg-purple-500/10 text-purple-500 shrink-0">
+                                            <Eye size={15} />
+                                        </div>
+                                        <div>
+                                            <p className="text-sm font-semibold text-foreground">
+                                                Verify &amp; Audit
+                                            </p>
+                                            <p className="text-xs text-muted-foreground">
+                                                Read every line of code. Nothing is hidden. Total
+                                                transparency.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-start gap-3">
+                                        <div className="mt-0.5 flex items-center justify-center w-7 h-7 rounded-md bg-emerald-500/10 text-emerald-500 shrink-0">
+                                            <Lock size={15} />
+                                        </div>
+                                        <div>
+                                            <p className="text-sm font-semibold text-foreground">
+                                                Browser-Local Processing
+                                            </p>
+                                            <p className="text-xs text-muted-foreground">
+                                                Files never leave your device. Zero server uploads.
+                                                100% private.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        <Card className="px-4 py-8">
+                            <CardHeader className="flex items-center gap-3">
+                                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-secondary text-foreground">
+                                    <Globe size={22} />
+                                </div>
+                                <CardTitle className="text-xl font-bold text-foreground">
+                                    Community &amp; Support
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground leading-relaxed mb-5">
+                                    PrivateTools is built by the community, for the community. Found
+                                    a bug? Have a tool idea? Want to report an issue? We{"'"}d love
+                                    to hear from you. Every contribution makes these tools better
+                                    for everyone.
+                                </p>
+                                <div className="space-y-3">
+                                    <Button size="lg" className="w-full gap-2">
+                                        <Link
+                                            href={`${env.NEXT_PUBLIC_GITHUB_URL}/issues/new?labels=enhancement&template=feature_request.md`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center justify-center gap-2 w-full"
+                                        >
+                                            <Lightbulb size={16} />
+                                            Suggest a Tool
+                                            <ArrowRight size={16} />
+                                        </Link>
+                                    </Button>
+
+                                    <Button variant="outline" size="lg" className="w-full gap-2">
+                                        <Link
+                                            href={`${env.NEXT_PUBLIC_GITHUB_URL}/issues/new?labels=bug&template=bug_report.md`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center justify-center gap-2 w-full"
+                                        >
+                                            <Bug size={16} />
+                                            Report a Bug
+                                            <ArrowRight size={16} />
+                                        </Link>
+                                    </Button>
+
+                                    <Button variant="outline" size="lg" className="w-full gap-2">
+                                        <a
+                                            href="mailto:support@privatetools.in"
+                                            className="flex items-center justify-center gap-2 w-full"
+                                        >
+                                            <Mail size={16} />
+                                            Email Us
+                                            <ArrowRight size={16} />
+                                        </a>
+                                    </Button>
+                                </div>
+
+                                {/* GitHub Repo Link */}
+                                <div className="mt-5 pt-5 border-t border-border">
+                                    <div className="flex items-center justify-between gap-4">
+                                        <div className="flex-1 min-w-0">
+                                            <h4 className="font-semibold text-sm text-foreground">
+                                                PrivateTools on GitHub
+                                            </h4>
+                                            <p className="text-xs text-muted-foreground truncate">
+                                                {env.NEXT_PUBLIC_GITHUB_URL}
+                                            </p>
+                                        </div>
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            className="shrink-0 gap-2"
+                                        >
+                                            <Link
+                                                href={env.NEXT_PUBLIC_GITHUB_URL}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-2"
+                                            >
+                                                Visit Repository
+                                                <ArrowRight size={14} />
+                                            </Link>
+                                        </Button>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </section>
 
                 <div className="w-full space-y-12 mt-12">
                     {relatedTools.length > 0 && (
