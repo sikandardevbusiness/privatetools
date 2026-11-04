@@ -26,6 +26,9 @@ importers:
       '@sikandardevbusiness/data-toolkit':
         specifier: ^1.0.1
         version: 1.0.1
+      '@sikandardevbusiness/epub-engine':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@sikandardevbusiness/file-compressor':
         specifier: ^1.0.0
         version: 1.0.0
@@ -2640,6 +2643,9 @@ packages:
 
   '@sikandardevbusiness/data-toolkit@1.0.1':
     resolution: {integrity: sha512-IvREGl8wJrAYyhwZMtgGJM4PPIce/LaYGLZ1OLnEdaHjh6HrArHVhQTvk0XE1f001HR9AdU0Tb9zOLK9mUOMSw==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/data-toolkit/1.0.1/806133af30e5ae3620268bcc75b1e0d03fe6cbc6}
+
+  '@sikandardevbusiness/epub-engine@1.0.0':
+    resolution: {integrity: sha512-eJOzWTfAx/IrZINXFy6DvaiDxv0GmGrsAblirGeU54s5CKkNb0OhJSNMSVaLw1mzMCYf43u3JF8e0phoZ1PKHw==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/epub-engine/1.0.0/25ef6c2feaf683807a7b65a54dd997b20fb774f4}
 
   '@sikandardevbusiness/file-compressor@1.0.0':
     resolution: {integrity: sha512-MrlmaBFuBb+JuPnWfoHWEUDjuELi8m6f2U8wgNDcZvCtsZurhEbcpEhCMiD/TSZKCBYSU/Ae3ELsToIIdA8XEA==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/file-compressor/1.0.0/50023aa8b7fb04d0ac26c94ac28d36dc4c2ce6f1}
@@ -5387,6 +5393,11 @@ packages:
   make-dir@2.1.0:
     resolution: {integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==}
     engines: {node: '>=6'}
+
+  marked@18.1.3:
+    resolution: {integrity: sha512-9ChMH8EVVgjgID49nsL6IWxWk5c6GtAsq/xw7U1ggkjkU5AGuv68oLTVlFRtvcUYZtpbNyjyvGo3YDu0fGapiw==}
+    engines: {node: '>= 20'}
+    hasBin: true
 
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
@@ -10481,6 +10492,12 @@ snapshots:
       vcard-parser: 1.0.0
       xlsx: 0.18.5
 
+  '@sikandardevbusiness/epub-engine@1.0.0':
+    dependencies:
+      jszip: 3.10.2
+      marked: 18.1.3
+      uuid: 14.0.3
+
   '@sikandardevbusiness/file-compressor@1.0.0':
     dependencies:
       '@mediabunny/mp3-encoder': 1.65.0(mediabunny@1.64.0)
@@ -13323,6 +13340,8 @@ snapshots:
     dependencies:
       pify: 4.0.1
       semver: 5.7.2
+
+  marked@18.1.3: {}
 
   math-intrinsics@1.1.0: {}
 

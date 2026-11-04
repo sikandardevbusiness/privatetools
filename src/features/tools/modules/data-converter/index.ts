@@ -11,7 +11,7 @@ export const dataConverterToolMetadataList: BaseTool[] = [
         name: "VCF to CSV/Excel Converter",
         longName: "Free VCF to CSV & Excel Converter - Convert vCard Contacts Locally & Privately",
         thumbnailUrl:
-            "https://cdn.sanity.io/images/1cv2yjn3/production/51d91055d270b211c4bfdb0ac3c81427977a01f9-1376x768.jpg",
+            "https://cdn.sanity.io/images/1cv2yjn3/production/74c20280b3b61220a21ecea58c01496cd2089d8e-1376x768.jpg",
         description:
             "Convert iPhone/Android .vcf contact files to clean CSV or Excel formats instantly. 100% private, client-side processing with zero server uploads.",
         longDescription:

@@ -12,7 +12,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
                 variant="primary"
                 message={
                     <>
-                        ✨ New Release:{" "}
+                        <span className="font-bold">✨ New Release:</span>{" "}
                         <Link
                             href="/tools/document/pdf-redactor"
                             className="underline font-semibold"

@@ -43,6 +43,7 @@ import {
     dataConverterToolMetadataList,
     dataConverterToolComponentMap,
 } from "@/features/tools/modules/data-converter";
+import { epubToolsComponentMap, epubToolsMetadataList } from "./modules/epub-tools";
 
 export const toolMetadataList: BaseTool[] = [
     ...imageCropperToolMetadataList,
@@ -50,6 +51,7 @@ export const toolMetadataList: BaseTool[] = [
     ...manhwaCropperToolMetadataList,
     ...removeSilenceToolMetadataList,
     ...audioTrimmerToolMetadata,
+    ...epubToolsMetadataList,
     ...dataConverterToolMetadataList,
     ...fileConverterToolMetadataList,
     ...fileCompressorToolMetadataList,
@@ -61,6 +63,7 @@ export const toolMetadataList: BaseTool[] = [
 ];
 
 export const toolComponentMap: ToolComponentMap = {
+    ...epubToolsComponentMap,
     ...exifWiperToolComponentMap,
     ...pdfRedactorToolComponentMap,
     ...imageCropperToolComponentMap,
