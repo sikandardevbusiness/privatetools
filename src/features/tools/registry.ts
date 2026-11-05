@@ -43,6 +43,7 @@ import {
     dataConverterToolMetadataList,
     dataConverterToolComponentMap,
 } from "@/features/tools/modules/data-converter";
+import { sqlEngineToolComponentMap, sqlEngineToolMetadataList } from "./modules/sql-engine";
 import { epubToolsComponentMap, epubToolsMetadataList } from "./modules/epub-tools";
 
 export const toolMetadataList: BaseTool[] = [
@@ -59,12 +60,14 @@ export const toolMetadataList: BaseTool[] = [
     ...thumbnailPreviewToolMetadataList,
     ...imageEmoteConverterToolMetadataList,
     ...exifWiperToolMetadataList,
+    ...sqlEngineToolMetadataList,
     ...dataTransformerToolMetadataList,
 ];
 
 export const toolComponentMap: ToolComponentMap = {
     ...epubToolsComponentMap,
     ...exifWiperToolComponentMap,
+    ...sqlEngineToolComponentMap,
     ...pdfRedactorToolComponentMap,
     ...imageCropperToolComponentMap,
     ...audioTrimmerToolComponentMap,

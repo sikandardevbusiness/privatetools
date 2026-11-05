@@ -8,6 +8,7 @@ export const epubToolsMetadataList: BaseTool[] = [
         category: "document",
         name: "EPUB Checker",
         isExperimental: true,
+        createdAt: "05-11-2026",
         longName: "Free EPUB Checker & Validator - Local KDP Pre-Flight Inspector",
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/c88123422f663a4e21b0b64a27c586396759bc06-1376x768.jpg",

@@ -81,16 +81,18 @@ export default function ImageCropperTool({ tool }: { tool: BaseTool }) {
                 />
             }
         >
-            <Cropper
-                ref={cropperRef}
-                src={image}
-                stencilProps={{
-                    aspectRatio,
-                    movable: true,
-                    resizable: true,
-                }}
-                className="cropper-container"
-            />
+            <div className="p-5 max-w-5xl mx-auto">
+                <Cropper
+                    ref={cropperRef}
+                    src={image}
+                    stencilProps={{
+                        aspectRatio,
+                        movable: true,
+                        resizable: true,
+                    }}
+                    className="cropper-container"
+                />
+            </div>
         </ToolFullScreen>
     );
 }
