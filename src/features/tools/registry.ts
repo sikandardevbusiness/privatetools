@@ -57,6 +57,7 @@ import {
     audioTagEditorToolComponentMap,
     audioTagEditorToolMetadataList,
 } from "./modules/audio-tag-editor";
+import { audioMergerToolComponentMap, audioMergerToolMetadataList } from "./modules/audio-merger";
 
 export const toolMetadataList: BaseTool[] = [
     ...imageCropperToolMetadataList,
@@ -65,6 +66,7 @@ export const toolMetadataList: BaseTool[] = [
     ...removeSilenceToolMetadataList,
     ...audioTrimmerToolMetadata,
     ...audioSpeedChangerToolMetadataList,
+    ...audioMergerToolMetadataList,
     ...audioTagEditorToolMetadataList,
     ...audioVolumeNormalizerToolMetadataList,
     ...epubToolsMetadataList,
@@ -83,6 +85,7 @@ export const toolComponentMap: ToolComponentMap = {
     ...epubToolsComponentMap,
     ...exifWiperToolComponentMap,
     ...sqlEngineToolComponentMap,
+    ...audioMergerToolComponentMap,
     ...pdfRedactorToolComponentMap,
     ...imageCropperToolComponentMap,
     ...audioTrimmerToolComponentMap,

@@ -1,6 +1,6 @@
 "use client";
 
-import { Filter, LayoutGrid, Search, Sparkles, X } from "lucide-react";
+import { Filter, LayoutGrid, Search, X } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useMemo, useState } from "react";
 
@@ -8,16 +8,17 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { ToolCard } from "@/features/tools/shared/components/tool-card";
 
 import { toolMetadataList } from "@/features/tools/registry";
 import { getCategoryIcon } from "@/features/tools/shared/actions";
-import { ToolCard } from "@/features/tools/shared/components/tool-card";
+import { isToolNew } from "@/features/tools/shared/actions";
 import type { ToolCategory } from "@/features/tools/shared/types";
 import { cn } from "@/lib/utils";
 
 interface FilterState {
     search: string;
-    category: ToolCategory | "all";
+    category: ToolCategory | "all" | "new";
 }
 
 export function ToolsClient() {
@@ -26,17 +27,22 @@ export function ToolsClient() {
 
     const [filters, setFilters] = useState<FilterState>({
         search: searchParams.get("q") || "",
-        category: (searchParams.get("category") as ToolCategory) || "all",
+        category: (searchParams.get("category") as ToolCategory | "new") || "all",
     });
 
+    // ✅ FIX: Prepend "new" to the categories list
     const allCategories = useMemo(() => {
         const categories = [...new Set(toolMetadataList.map((tool) => tool.category))];
-        return categories.sort();
+        return ["new", ...categories.sort()];
     }, []);
 
+    // ✅ FIX: Count "new" tools separately
     const categoryCounts = useMemo(() => {
-        const counts: Record<string, number> = {};
+        const counts: Record<string, number> = { new: 0 };
         toolMetadataList.forEach((tool) => {
+            if (isToolNew(tool.createdAt)) {
+                counts["new"] = (counts["new"] || 0) + 1;
+            }
             counts[tool.category] = (counts[tool.category] || 0) + 1;
         });
         return counts;
@@ -70,15 +76,45 @@ export function ToolsClient() {
                 const matchesSearch =
                     tool.name.toLowerCase().includes(searchLower) ||
                     tool.description.toLowerCase().includes(searchLower) ||
-                    tool.tags.some((tag) => tag.toLowerCase().includes(searchLower));
+                    (tool.tags && tool.tags.some((tag) => tag.toLowerCase().includes(searchLower)));
                 if (!matchesSearch) return false;
             }
-            if (filters.category !== "all" && tool.category !== filters.category) {
-                return false;
+            if (filters.category !== "all") {
+                // ✅ FIX: Handle "new" category filtering
+                if (filters.category === "new") {
+                    if (!isToolNew(tool.createdAt)) return false;
+                } else if (tool.category !== filters.category) {
+                    return false;
+                }
             }
             return true;
         });
     }, [filters]);
+
+    // Reusable button renderer for DRY code
+    const renderCategoryButton = (category: string, count: number) => {
+        const isActive = filters.category === category;
+        const Icon = getCategoryIcon(category);
+
+        return (
+            <button
+                key={category}
+                onClick={() => handleFilterChange("category", category)}
+                className={cn(
+                    "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors capitalize",
+                    isActive
+                        ? "bg-primary/10 text-primary font-medium"
+                        : "hover:bg-muted text-muted-foreground",
+                )}
+            >
+                <span className="flex items-center gap-2">
+                    <Icon className="h-4 w-4" />
+                    {category === "new" ? "New" : category}
+                </span>
+                <Badge variant="secondary">{count}</Badge>
+            </button>
+        );
+    };
 
     return (
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -90,42 +126,11 @@ export function ToolsClient() {
                             <LayoutGrid className="h-4 w-4" /> Categories
                         </h3>
                         <div className="space-y-1">
-                            <button
-                                onClick={() => handleFilterChange("category", "all")}
-                                className={cn(
-                                    "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors",
-                                    filters.category === "all"
-                                        ? "bg-primary/10 text-primary font-medium"
-                                        : "hover:bg-muted text-muted-foreground",
-                                )}
-                            >
-                                <span className="flex items-center gap-2">
-                                    <Sparkles className="h-4 w-4" /> All Tools
-                                </span>
-                                <Badge variant="secondary">{toolMetadataList.length}</Badge>
-                            </button>
+                            {renderCategoryButton("all", toolMetadataList.length)}
                             {allCategories.map((category) => {
                                 const count = categoryCounts[category] || 0;
-                                if (count === 0) return null;
-                                const Icon = getCategoryIcon(category);
-                                return (
-                                    <button
-                                        key={category}
-                                        onClick={() => handleFilterChange("category", category)}
-                                        className={cn(
-                                            "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors capitalize",
-                                            filters.category === category
-                                                ? "bg-primary/10 text-primary font-medium"
-                                                : "hover:bg-muted text-muted-foreground",
-                                        )}
-                                    >
-                                        <span className="flex items-center gap-2">
-                                            <Icon className="h-4 w-4" />
-                                            {category}
-                                        </span>
-                                        <Badge variant="secondary">{count}</Badge>
-                                    </button>
-                                );
+                                if (count === 0 && category !== "new") return null;
+                                return renderCategoryButton(category, count);
                             })}
                         </div>
                     </div>
@@ -169,48 +174,12 @@ export function ToolsClient() {
                                         <SheetTitle>Filter Tools</SheetTitle>
                                     </SheetHeader>
 
-                                    {/* Mobile categories with icons */}
                                     <div className="space-y-1 px-3">
-                                        <button
-                                            onClick={() => handleFilterChange("category", "all")}
-                                            className={cn(
-                                                "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors",
-                                                filters.category === "all"
-                                                    ? "bg-primary/10 text-primary font-medium"
-                                                    : "hover:bg-muted text-muted-foreground",
-                                            )}
-                                        >
-                                            <span className="flex items-center gap-2">
-                                                <Sparkles className="h-4 w-4" /> All Tools
-                                            </span>
-                                            <Badge variant="secondary">
-                                                {toolMetadataList.length}
-                                            </Badge>
-                                        </button>
+                                        {renderCategoryButton("all", toolMetadataList.length)}
                                         {allCategories.map((category) => {
                                             const count = categoryCounts[category] || 0;
-                                            if (count === 0) return null;
-                                            const Icon = getCategoryIcon(category);
-                                            return (
-                                                <button
-                                                    key={category}
-                                                    onClick={() =>
-                                                        handleFilterChange("category", category)
-                                                    }
-                                                    className={cn(
-                                                        "w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors capitalize",
-                                                        filters.category === category
-                                                            ? "bg-primary/10 text-primary font-medium"
-                                                            : "hover:bg-muted text-muted-foreground",
-                                                    )}
-                                                >
-                                                    <span className="flex items-center gap-2">
-                                                        <Icon className="h-4 w-4" />
-                                                        {category}
-                                                    </span>
-                                                    <Badge variant="secondary">{count}</Badge>
-                                                </button>
-                                            );
+                                            if (count === 0 && category !== "new") return null;
+                                            return renderCategoryButton(category, count);
                                         })}
                                     </div>
                                 </SheetContent>

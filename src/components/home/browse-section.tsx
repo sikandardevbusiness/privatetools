@@ -6,14 +6,15 @@ import { useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ToolCard } from "@/features/tools/shared/components/tool-card"; // Adjust path if needed
+import { ToolCard } from "@/features/tools/shared/components/tool-card";
 
-import { toolMetadataList } from "@/features/tools/registry"; // Adjust path if needed
+import { isToolNew } from "@/features/tools/shared/actions";
+import { toolMetadataList } from "@/features/tools/registry";
 import { cn } from "@/lib/utils";
 
-// Dynamically create display categories from the tool list, capitalized, plus "All"
 const displayCategories = [
     "All",
+    "New",
     ...Array.from(new Set(toolMetadataList.map((tool) => tool.category))).map(
         (cat) => cat.charAt(0).toUpperCase() + cat.slice(1),
     ),
@@ -24,12 +25,17 @@ export function BrowseSection() {
     const [query, setQuery] = useState("");
 
     const filtered = useMemo(() => {
-        // 1. Filter by category and search query
         let results = toolMetadataList.filter((tool) => {
-            const categoryValue = activeCategory === "All" ? "all" : activeCategory.toLowerCase();
-            const matchesCategory = activeCategory === "All" || tool.category === categoryValue;
+            let matchesCategory = true;
 
-            // Search across name, category, tags, and description
+            // FIX: Handle "New" category separately using isToolNew
+            if (activeCategory === "New") {
+                matchesCategory = isToolNew(tool.createdAt);
+            } else if (activeCategory !== "All") {
+                const categoryValue = activeCategory.toLowerCase();
+                matchesCategory = tool.category === categoryValue;
+            }
+
             const tags = tool.tags || [];
             const searchString =
                 `${tool.name} ${tool.category} ${tags.join(" ")} ${tool.description}`.toLowerCase();
@@ -38,15 +44,14 @@ export function BrowseSection() {
             return matchesCategory && matchesQuery;
         });
 
-        // 2. Sort by createdAt descending (newest tools first)
         results.sort((a, b) => {
             const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
             const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
-            return dateB - dateA; // Newest first
+            return dateB - dateA;
         });
 
-        // 3. ✅ If "All" is selected and NO search query, limit to exactly 9 newest tools
-        if (activeCategory === "All" && query.trim() === "") {
+        // FIX: Apply 9-tool limit for both "All" and "New" when no search query
+        if ((activeCategory === "All" || activeCategory === "New") && query.trim() === "") {
             results = results.slice(0, 9);
         }
 
@@ -78,7 +83,6 @@ export function BrowseSection() {
             </div>
 
             <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                {/* Category Pills */}
                 <div className="flex flex-wrap gap-2">
                     {displayCategories.map((category) => (
                         <button
@@ -96,7 +100,6 @@ export function BrowseSection() {
                     ))}
                 </div>
 
-                {/* Search Input */}
                 <div className="relative w-full md:w-72">
                     <Search
                         size={16}
@@ -111,14 +114,12 @@ export function BrowseSection() {
                 </div>
             </div>
 
-            {/* Tools Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filtered.map((tool) => (
                     <ToolCard key={tool.id} tool={tool} />
                 ))}
             </div>
 
-            {/* Empty State */}
             {filtered.length === 0 && (
                 <div className="text-center py-12">
                     <p className="text-muted-foreground text-lg">
@@ -127,19 +128,20 @@ export function BrowseSection() {
                 </div>
             )}
 
-            {/* "Show More" CTA (Only shows when limited to 9) */}
-            {activeCategory === "All" && query.trim() === "" && toolMetadataList.length > 9 && (
-                <div className="text-center mt-12">
-                    <p className="text-sm text-muted-foreground mb-4">
-                        Showing the 9 newest tools.
-                    </p>
-                    <Link href="/tools">
-                        <Button variant="outline">
-                            Browse All Tools <ArrowRight size={16} />
-                        </Button>
-                    </Link>
-                </div>
-            )}
+            {(activeCategory === "All" || activeCategory === "New") &&
+                query.trim() === "" &&
+                toolMetadataList.length > 9 && (
+                    <div className="text-center mt-12">
+                        <p className="text-sm text-muted-foreground mb-4">
+                            Showing the 9 newest tools.
+                        </p>
+                        <Link href="/tools">
+                            <Button variant="outline">
+                                Browse All Tools <ArrowRight size={16} />
+                            </Button>
+                        </Link>
+                    </div>
+                )}
         </section>
     );
 }

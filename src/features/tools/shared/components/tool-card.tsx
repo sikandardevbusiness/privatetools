@@ -3,36 +3,18 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
+import { isToolNew } from "@/features/tools/shared/actions";
+
 import type { BaseTool } from "@/features/tools/shared/types";
 
 export function ToolCard({ tool }: { tool: BaseTool }) {
     const href = `/tools/${tool.category}/${tool.id}`;
-
-    const [isNew, setIsNew] = useState(false);
-
-    useEffect(() => {
-        if (tool.createdAt) {
-            const created = new Date(tool.createdAt).getTime();
-
-            // ✅ FIX: Wrap in setTimeout to make the state update asynchronous.
-            // This prevents the ESLint "synchronous setState in effect" warning
-            // and ensures Date.now() only runs on the client, avoiding Next.js warnings.
-            const timer = setTimeout(() => {
-                const now = Date.now();
-                const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
-                setIsNew(now - created < thirtyDaysInMs);
-            }, 0);
-
-            // Cleanup timer if the component unmounts or tool changes
-            return () => clearTimeout(timer);
-        }
-    }, [tool.createdAt]);
+    const isNew = isToolNew(tool.createdAt);
 
     return (
         <Card className="group relative flex flex-col overflow-hidden border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lg p-0 h-full">
@@ -46,7 +28,7 @@ export function ToolCard({ tool }: { tool: BaseTool }) {
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                <div className="absolute left-3 top-3 z-10 flex flex-col gap-2">
+                <div className="absolute left-3 top-3 z-10 flex gap-2">
                     {isNew && (
                         <Badge className="font-semibold bg-white text-black shadow-sm border-0">
                             New

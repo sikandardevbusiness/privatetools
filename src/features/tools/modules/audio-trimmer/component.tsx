@@ -4,11 +4,11 @@ import { RotateCcw, Scissors } from "lucide-react";
 import React, { useCallback, useRef, useState } from "react";
 
 import {
-    AudioVisualizer,
+    AudioTrimmer,
     formatTimeHHMMSS,
     parseTimeHHMMSS,
     useAudioTrimmer,
-    type AudioVisualizerRef,
+    type AudioTrimmerRef,
 } from "@sikandardevbusiness/audio-toolkit";
 import "@sikandardevbusiness/audio-toolkit/styles.css";
 
@@ -31,7 +31,7 @@ export default function AudioTrimmerClient({ tool }: { tool: BaseTool }): React.
     const [inputEnd, setInputEnd] = useState("00:00:00");
     const isTypingRef = useRef({ start: false, end: false });
 
-    const visualizerRef = useRef<AudioVisualizerRef | null>(null);
+    const trimmerRef = useRef<AudioTrimmerRef | null>(null);
     const { trim, isLoaded, isProcessing, progress, error } = useAudioTrimmer();
 
     const handleFilesSelected = (files: File[]) => {
@@ -124,7 +124,7 @@ export default function AudioTrimmerClient({ tool }: { tool: BaseTool }): React.
                             <Button
                                 type="button"
                                 variant="outline"
-                                onClick={() => visualizerRef.current?.resetToFull()}
+                                onClick={() => trimmerRef.current?.resetToFull()}
                             >
                                 <RotateCcw className="h-3.5 w-3.5" />
                                 Reset
@@ -132,9 +132,9 @@ export default function AudioTrimmerClient({ tool }: { tool: BaseTool }): React.
                         </CardHeader>
 
                         <CardContent className="space-y-6">
-                            {/* Visualizer Component */}
-                            <AudioVisualizer
-                                ref={visualizerRef}
+                            {/* Trimmer Component */}
+                            <AudioTrimmer
+                                ref={trimmerRef}
                                 file={file}
                                 startTime={startTime}
                                 endTime={endTime}
