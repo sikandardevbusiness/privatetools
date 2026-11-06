@@ -1014,6 +1014,8 @@ export const fileConverterToolMetadataList: BaseTool[] = [
             },
         ],
     },
+
+    // Audio/Video
     {
         id: "video-to-mp3",
         category: "audio",
@@ -1448,6 +1450,81 @@ export const fileConverterToolMetadataList: BaseTool[] = [
             },
         ],
     },
+    {
+        id: "flac-to-mp3",
+        category: "audio",
+        name: "FLAC to MP3 Converter",
+        createdAt: "06-11-2026",
+        longName: "Free FLAC to MP3 Converter Online - No File Size Limit",
+        thumbnailUrl:
+            "https://cdn.sanity.io/images/1cv2yjn3/production/0592470169223802375a02cfafe894ed3d121afc-1376x768.jpg",
+        description:
+            "Convert high-resolution FLAC audio files to MP3 locally in your browser. Zero file size limits, no uploads, and perfect audio quality.",
+        longDescription:
+            "FLAC files offer incredible lossless audio quality, but they are massive and incompatible with many car stereos, older devices, and mobile apps. Our free FLAC to MP3 converter solves this by processing the conversion entirely in your browser.\n\nUnlike other free online converters that cap uploads at 10MB or force you to wait in server queues, our tool has zero file size limits. Because it runs locally using advanced WebCodecs and WASM technology, your files never leave your device, guaranteeing 100% privacy and lightning-fast conversion speeds.",
+        tags: [
+            "flac to mp3",
+            "audio converter",
+            "lossless to mp3",
+            "local conversion",
+            "no upload",
+        ],
+        keywords: [
+            "flac to mp3 converter free no limit",
+            "convert high res audio to mp3 locally",
+            "flac to mp3 browser based no upload",
+            "free lossless audio converter online",
+            "shrink flac file size to mp3",
+        ],
+        steps: [
+            {
+                title: "Upload FLAC",
+                description:
+                    "Select or drag and drop your high-resolution FLAC file(s) into the browser.",
+            },
+            {
+                title: "Choose Quality",
+                description:
+                    "Select your desired MP3 bitrate (e.g., 320kbps for near-lossless quality).",
+            },
+            {
+                title: "Convert & Download",
+                description:
+                    "Click convert. The file processes instantly on your device and downloads automatically.",
+            },
+        ],
+        whatToExpect: [
+            {
+                title: "Zero File Size Limits",
+                description:
+                    "Convert 5MB singles or 500MB live concert recordings without restrictions.",
+            },
+            {
+                title: "100% Private & Local",
+                description:
+                    "Your audio files are never uploaded to any server. All processing happens in your browser.",
+            },
+            {
+                title: "Lightning Fast",
+                description:
+                    "Powered by native browser decoders and optimized WASM encoding for near real-time conversion.",
+            },
+        ],
+        faqs: [
+            {
+                question: "Is there a file size limit for FLAC to MP3 conversion?",
+                answer: "No. Because the conversion happens locally on your device using your computer's processing power, there are no artificial server-side file size limits.",
+            },
+            {
+                question: "Does converting FLAC to MP3 reduce audio quality?",
+                answer: "MP3 is a lossy format, so some data is discarded. However, by selecting a high bitrate like 320kbps during conversion, the resulting MP3 will be virtually indistinguishable from the original FLAC to the human ear, while being a fraction of the size.",
+            },
+            {
+                question: "Is my audio uploaded to a server?",
+                answer: "Absolutely not. The conversion runs entirely in your browser's memory. Your files never leave your device.",
+            },
+        ],
+    },
 ];
 
 export const fileConverterToolComponentMap: ToolComponentMap = {
@@ -1470,6 +1547,7 @@ export const fileConverterToolComponentMap: ToolComponentMap = {
     "mp3-to-wav": dynamic(() => import("./component")),
     "webm-to-mp4": dynamic(() => import("./component")),
     "mp4-to-webm": dynamic(() => import("./component")),
+    "flac-to-mp3": dynamic(() => import("./component")),
     "all-in-one-image-converter": dynamic(() => import("./component")),
 };
 
@@ -1587,37 +1665,43 @@ export const fileConverterToolConfigMap: Record<
     "wav-to-mp3": {
         acceptType: ".wav",
         inputFormats: ["wav"],
-        outputFormats: ["mp3"],
         defaultFormat: "mp3",
+        outputFormats: [...new Set(converter.getSupportedOutputFormats("wav"))],
     },
     "m4a-to-mp3": {
         acceptType: ".m4a",
         inputFormats: ["m4a"],
-        outputFormats: ["mp3"],
         defaultFormat: "mp3",
+        outputFormats: [...new Set(converter.getSupportedOutputFormats("m4a"))],
     },
     "ogg-to-mp3": {
         acceptType: ".ogg",
         inputFormats: ["ogg"],
-        outputFormats: ["mp3"],
         defaultFormat: "mp3",
+        outputFormats: [...new Set(converter.getSupportedOutputFormats("ogg"))],
     },
     "mp4-to-webm": {
         acceptType: ".mp4",
         inputFormats: ["mp4"],
-        outputFormats: ["webm"],
         defaultFormat: "webm",
+        outputFormats: [...new Set(converter.getSupportedOutputFormats("mp4"))],
     },
     "webm-to-mp4": {
         acceptType: ".webm",
         inputFormats: ["webm"],
-        outputFormats: ["mp4"],
         defaultFormat: "mp4",
+        outputFormats: [...new Set(converter.getSupportedOutputFormats("webm"))],
     },
     "mp3-to-wav": {
         acceptType: ".mp3",
         inputFormats: ["mp3"],
-        outputFormats: ["wav"],
         defaultFormat: "wav",
+        outputFormats: [...new Set(converter.getSupportedOutputFormats("mp3"))],
+    },
+    "flac-to-mp3": {
+        acceptType: ".flac",
+        inputFormats: ["flac"],
+        defaultFormat: "mp3",
+        outputFormats: [...new Set(converter.getSupportedOutputFormats("flac"))],
     },
 };

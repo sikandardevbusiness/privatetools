@@ -43,8 +43,20 @@ import {
     dataConverterToolMetadataList,
     dataConverterToolComponentMap,
 } from "@/features/tools/modules/data-converter";
+import {
+    audioSpeedChangerToolComponentMap,
+    audioSpeedChangerToolMetadataList,
+} from "./modules/audio-speed-changer";
 import { sqlEngineToolComponentMap, sqlEngineToolMetadataList } from "./modules/sql-engine";
 import { epubToolsComponentMap, epubToolsMetadataList } from "./modules/epub-tools";
+import {
+    audioVolumeNormalizerToolComponentMap,
+    audioVolumeNormalizerToolMetadataList,
+} from "./modules/audio-volume-normalizer";
+import {
+    audioTagEditorToolComponentMap,
+    audioTagEditorToolMetadataList,
+} from "./modules/audio-tag-editor";
 
 export const toolMetadataList: BaseTool[] = [
     ...imageCropperToolMetadataList,
@@ -52,6 +64,9 @@ export const toolMetadataList: BaseTool[] = [
     ...manhwaCropperToolMetadataList,
     ...removeSilenceToolMetadataList,
     ...audioTrimmerToolMetadata,
+    ...audioSpeedChangerToolMetadataList,
+    ...audioTagEditorToolMetadataList,
+    ...audioVolumeNormalizerToolMetadataList,
     ...epubToolsMetadataList,
     ...dataConverterToolMetadataList,
     ...fileConverterToolMetadataList,
@@ -75,9 +90,12 @@ export const toolComponentMap: ToolComponentMap = {
     ...removeSilenceToolComponentMap,
     ...fileConverterToolComponentMap,
     ...dataConverterToolComponentMap,
+    ...audioTagEditorToolComponentMap,
     ...fileCompressorToolComponentMap,
     ...videoWatermarkToolComponentMap,
     ...dataTransformerToolComponentMap,
     ...thumbnailPreviewToolComponentMap,
+    ...audioSpeedChangerToolComponentMap,
     ...imageEmoteConverterToolComponentMap,
+    ...audioVolumeNormalizerToolComponentMap,
 };
