@@ -26,7 +26,7 @@
         "@sikandardevbusiness/file-compressor": "^1.0.0",
         "@sikandardevbusiness/file-converter": "^1.0.2",
         "@sikandardevbusiness/manhwa-cropper": "^1.0.1",
-        "@sikandardevbusiness/pdf-redactor": "^1.0.1",
+        "@sikandardevbusiness/pdf-redactor": "^1.0.2",
         "@sikandardevbusiness/remove-silence": "^1.0.1",
         "@sikandardevbusiness/video-watermark": "^1.0.1",
         "@tanstack/react-table": "^9.3.1",

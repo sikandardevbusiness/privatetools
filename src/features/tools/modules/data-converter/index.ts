@@ -9,6 +9,7 @@ export const dataConverterToolMetadataList: BaseTool[] = [
         id: "vcf-to-csv",
         category: "data",
         name: "VCF to CSV/Excel Converter",
+        createdAt: "05-11-2026",
         longName: "Free VCF to CSV & Excel Converter - Convert vCard Contacts Locally & Privately",
         thumbnailUrl:
             "https://cdn.sanity.io/images/1cv2yjn3/production/74c20280b3b61220a21ecea58c01496cd2089d8e-1376x768.jpg",

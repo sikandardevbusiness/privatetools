@@ -52,6 +52,7 @@ We offer a growing suite of powerful tools, all running directly in your browser
 - **[JPG to PDF Converter](https://privatetools.in/tools/document/jpg-to-pdf):** Combine multiple JPG photos into a single PDF document.
 - **[PNG to PDF Converter](https://privatetools.in/tools/document/png-to-pdf):** Convert PNG graphics and transparent images to PDF.
 - **[PDF to PNG Converter](https://privatetools.in/tools/document/pdf-to-png):** Extract PDF pages as lossless PNG images.
+- **[EPUB Checker](https://privatetools.in/tools/document/epub-checker):** Validate EPUB files for Amazon KDP and other platforms locally, detecting missing metadata and structural errors.
 
 ### 🎵 Audio & Video Tools
 
@@ -68,6 +69,13 @@ We offer a growing suite of powerful tools, all running directly in your browser
 - **[Audio Trimmer](https://privatetools.in/tools/audio/audio-trimmer):** Cut and trim audio files to get the exact clip you need.
 - **[Remove Silence](https://privatetools.in/tools/audio/remove-silence):** Automatically detect and remove silent pauses from audio recordings.
 - **[Video Watermark](https://privatetools.in/tools/video/video-watermark):** Add custom text or image watermarks to your videos locally.
+
+### 💻 Developer & Data Tools
+
+- **[JSON to CSV Converter](https://privatetools.in/tools/developer/json-to-csv):** Transform JSON data into clean, structured CSV format instantly in your browser.
+- **[CSV to JSON Converter](https://privatetools.in/tools/developer/csv-to-json):** Convert CSV spreadsheets into valid, formatted JSON data locally.
+- **[CSV/JSON SQL Query](https://privatetools.in/tools/developer/csv-json-sql-query):** Run SQL queries directly on your CSV or JSON files without uploading them to a database.
+- **[All-in-One Data Transformer](https://privatetools.in/tools/developer/all-in-one-data-transformer):** Parse, format, minify, and transform various data structures securely without server uploads.
 
 ## 🚀 How It Works
 

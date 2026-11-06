@@ -81,7 +81,7 @@ export default function PDFRedactorClient({ tool }: { tool: BaseTool }) {
         <ToolFullScreen
             title={tool.name}
             isFullScreen={isFullScreen}
-            onToggleFullScreen={() => setIsFullScreen(!isFullScreen)}
+            onToggleFullScreen={reset}
             sidebar={
                 <PDFRedactorSettings
                     settings={settings}

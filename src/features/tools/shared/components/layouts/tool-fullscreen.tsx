@@ -1,7 +1,6 @@
-// web/src/features/tools/shared/components/layouts/tool-fullscreen.tsx
 "use client";
 
-import { Maximize2, SlidersHorizontal, XIcon } from "lucide-react";
+import { Maximize2, SlidersHorizontal, XIcon, PanelRight, PanelRightClose } from "lucide-react";
 import { useState, useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -28,6 +27,7 @@ export function ToolFullScreen({
     onToggleFullScreen,
 }: ToolFullScreenProps) {
     const [isSheetOpen, setIsSheetOpen] = useState(false);
+    const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
     useEffect(() => {
         if (isFullScreen) {
@@ -60,6 +60,23 @@ export function ToolFullScreen({
 
                 <div className="flex-1" />
 
+                {/* ✅ Toggle Sidebar Button (Desktop Only) */}
+                {sidebar && (
+                    <Button
+                        size="icon"
+                        variant="outline"
+                        onClick={() => setIsSidebarVisible(!isSidebarVisible)}
+                        className="hidden md:flex mr-2"
+                        title={isSidebarVisible ? "Hide toolbar" : "Show toolbar"}
+                    >
+                        {isSidebarVisible ? (
+                            <PanelRightClose className="h-4 w-4" />
+                        ) : (
+                            <PanelRight className="h-4 w-4" />
+                        )}
+                    </Button>
+                )}
+
                 {onToggleFullScreen && (
                     <Button variant="outline" size="icon" onClick={onToggleFullScreen}>
                         {isFullScreen ? (
@@ -73,12 +90,17 @@ export function ToolFullScreen({
 
             {/* Main Content Area with ScrollArea */}
             <div className="flex flex-1 overflow-hidden">
-                <ScrollArea className="flex-1 bg-muted/30 relative">
+                <ScrollArea
+                    className={cn(
+                        "flex-1 bg-muted/30 relative transition-all duration-300",
+                        sidebar && isSidebarVisible ? "md:mr-0" : "",
+                    )}
+                >
                     <div className="p-4 md:p-6 min-h-full">{children}</div>
                 </ScrollArea>
 
-                {/* Desktop Sidebar */}
-                {sidebar && (
+                {/* Desktop Sidebar - Conditionally rendered */}
+                {sidebar && isSidebarVisible && (
                     <div className="hidden md:block w-80 border-l border-border bg-background shrink-0">
                         <ScrollArea className="h-full">
                             <div className="p-4 space-y-6">{sidebar}</div>
