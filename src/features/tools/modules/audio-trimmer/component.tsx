@@ -9,8 +9,8 @@ import {
     parseTimeHHMMSS,
     useAudioTrimmer,
     type AudioVisualizerRef,
-} from "@sikandardevbusiness/audio-trimmer";
-import "@sikandardevbusiness/audio-trimmer/styles.css";
+} from "@sikandardevbusiness/audio-toolkit";
+import "@sikandardevbusiness/audio-toolkit/styles.css";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
