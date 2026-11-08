@@ -53,9 +53,9 @@ importers:
       '@sikandardevbusiness/manhwa-cropper':
         specifier: ^1.0.1
         version: 1.0.1
-      '@sikandardevbusiness/pdf-redactor':
-        specifier: ^1.0.2
-        version: 1.0.2(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@sikandardevbusiness/pdf-toolkit':
+        specifier: ^1.0.1
+        version: 1.0.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@sikandardevbusiness/remove-silence':
         specifier: ^1.0.1
         version: 1.0.1
@@ -2754,8 +2754,8 @@ packages:
   '@sikandardevbusiness/manhwa-cropper@1.0.1':
     resolution: {integrity: sha512-yoQqzGpqYaIl6fbCTJEpHmqaRPadZIDPmzkggfIKUL4Vrq76rVmaoX6cB6aEh0SoYH6P+xmJrpoatAXNdmDpzw==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/manhwa-cropper/1.0.1/c05870f38afaf931ba03264814626b4d32b8805d}
 
-  '@sikandardevbusiness/pdf-redactor@1.0.2':
-    resolution: {integrity: sha512-oK4/DxxPvBaFt0Qhm8LfkGpL2bt0BjZgDaoMJvJu0I7YYG1XWtmxhB2gZw7XoG0YSO66+9Q40pcnkX1cUQUfVg==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/pdf-redactor/1.0.2/163a0caad003f1a057ce091fb982a49bce51fad0}
+  '@sikandardevbusiness/pdf-toolkit@1.0.1':
+    resolution: {integrity: sha512-nAwN6J8uSMyKk3MFhbxr3EbLRM5vyW8KuwU4EEaAXgdn/k0+LkncwYRXIMz+p8x3559uGIurrEz63hb2XisIiQ==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/pdf-toolkit/1.0.1/e858516a4d1366ea2111f0ef433e3c755b31bfcf}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
@@ -10459,9 +10459,10 @@ snapshots:
 
   '@sikandardevbusiness/manhwa-cropper@1.0.1': {}
 
-  '@sikandardevbusiness/pdf-redactor@1.0.2(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@sikandardevbusiness/pdf-toolkit@1.0.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
       file-saver: 2.0.5
+      jszip: 3.10.2
       pdf-lib: 1.17.1
       pdfjs-dist: 4.10.38
       react: 19.3.0

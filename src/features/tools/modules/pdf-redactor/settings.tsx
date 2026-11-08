@@ -1,7 +1,7 @@
 "use client";
 
 import { Redo, Trash2, Undo } from "lucide-react";
-import type { RedactionSettings } from "@sikandardevbusiness/pdf-redactor";
+import type { RedactionSettings } from "@sikandardevbusiness/pdf-toolkit";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

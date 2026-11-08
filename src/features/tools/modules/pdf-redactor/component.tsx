@@ -1,6 +1,6 @@
 "use client";
 
-import { usePDFRedactor, type TextOverlayType } from "@sikandardevbusiness/pdf-redactor";
+import { usePDFRedactor, type TextOverlayType } from "@sikandardevbusiness/pdf-toolkit";
 import { Trash2, ZoomIn, ZoomOut } from "lucide-react";
 import { useState } from "react";
 

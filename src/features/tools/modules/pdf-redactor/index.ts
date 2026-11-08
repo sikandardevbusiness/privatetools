@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 
 import type { BaseTool, ToolComponentMap } from "@/features/tools/shared/types";
 
-export const pdfRedactorToolMetadata: BaseTool[] = [
+export const pdfRedactorToolMetadataList: BaseTool[] = [
     {
         id: "pdf-redactor",
         category: "document",

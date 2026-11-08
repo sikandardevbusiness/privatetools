@@ -226,7 +226,9 @@ export const FileItem = memo(function FileItem({
                                     style={{ width: `${item.progress || 50}%` }}
                                 />
                             </div>
-                            <p className="text-xs text-muted-foreground mt-1">Processing...</p>
+                            <p className="text-xs text-muted-foreground mt-1">
+                                Processing... ({item.progress.toFixed(2)}%)
+                            </p>
                         </div>
                     )}
 

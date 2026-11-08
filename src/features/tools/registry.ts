@@ -26,7 +26,7 @@ import {
     manhwaCropperToolComponentMap,
     manhwaCropperToolMetadataList,
 } from "./modules/manhwa-cropper";
-import { pdfRedactorToolComponentMap, pdfRedactorToolMetadata } from "./modules/pdf-redactor";
+import { pdfRedactorToolComponentMap, pdfRedactorToolMetadataList } from "./modules/pdf-redactor";
 import {
     removeSilenceToolComponentMap,
     removeSilenceToolMetadataList,
@@ -58,10 +58,14 @@ import {
     audioTagEditorToolMetadataList,
 } from "./modules/audio-tag-editor";
 import { audioMergerToolComponentMap, audioMergerToolMetadataList } from "./modules/audio-merger";
+import {
+    pdfSizeSplitterToolComponentMap,
+    pdfSizeSplitterToolMetadataList,
+} from "./modules/pdf-size-splitter";
 
 export const toolMetadataList: BaseTool[] = [
     ...imageCropperToolMetadataList,
-    ...pdfRedactorToolMetadata,
+    ...pdfRedactorToolMetadataList,
     ...manhwaCropperToolMetadataList,
     ...removeSilenceToolMetadataList,
     ...audioTrimmerToolMetadata,
@@ -70,6 +74,7 @@ export const toolMetadataList: BaseTool[] = [
     ...audioTagEditorToolMetadataList,
     ...audioVolumeNormalizerToolMetadataList,
     ...epubToolsMetadataList,
+    ...pdfSizeSplitterToolMetadataList,
     ...dataConverterToolMetadataList,
     ...fileConverterToolMetadataList,
     ...fileCompressorToolMetadataList,
@@ -97,6 +102,7 @@ export const toolComponentMap: ToolComponentMap = {
     ...fileCompressorToolComponentMap,
     ...videoWatermarkToolComponentMap,
     ...dataTransformerToolComponentMap,
+    ...pdfSizeSplitterToolComponentMap,
     ...thumbnailPreviewToolComponentMap,
     ...audioSpeedChangerToolComponentMap,
     ...imageEmoteConverterToolComponentMap,
