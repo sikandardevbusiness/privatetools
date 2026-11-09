@@ -6,9 +6,11 @@ export const audioTranscriberToolMetadataList: BaseTool[] = [
         id: "audio-transcriber",
         category: "audio",
         name: "Audio Transcriber",
+        isExperimental: true,
         createdAt: "08-11-2026",
         longName: "Free Local Audio Transcriber - Whisper in Browser, No Uploads",
-        thumbnailUrl: "https://cdn.sanity.io/images/1cv2yjn3/production/audio-transcriber.jpg",
+        thumbnailUrl:
+            "https://cdn.sanity.io/images/1cv2yjn3/production/cb3a8588c1657fe1209ec8731ae2de2fd58d8a43-1376x768.jpg",
         description:
             "Transcribe audio and video files to text locally in your browser using Whisper AI. Zero uploads, 100% private, with dynamic subtitle chunking.",
         longDescription:

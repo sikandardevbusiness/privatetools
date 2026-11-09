@@ -53,9 +53,16 @@ We offer a growing suite of powerful tools, all running directly in your browser
 - **[PNG to PDF Converter](https://privatetools.in/tools/document/png-to-pdf):** Convert PNG graphics and transparent images to PDF.
 - **[PDF to PNG Converter](https://privatetools.in/tools/document/pdf-to-png):** Extract PDF pages as lossless PNG images.
 - **[EPUB Checker](https://privatetools.in/tools/document/epub-checker):** Validate EPUB files for Amazon KDP and other platforms locally, detecting missing metadata and structural errors.
+- **[PDF Splitter by Size](https://privatetools.in/tools/document/pdf-size-splitter):** Split large PDFs into smaller files by exact MB or KB limit (e.g., 10MB, 25MB). Perfect for email attachments and court portal uploads.
 
 ### 🎵 Audio & Video Tools
 
+- **[Audio Transcriber](https://privatetools.in/tools/audio/audio-transcriber):** Transcribe MP3, WAV, MP4, and video files to text locally in your browser using Whisper AI. 100% private, zero server uploads, with multi-language support.
+- **[Audio Speed Changer](https://privatetools.in/tools/audio/audio-speed-changer):** Speed up or slow down MP3, WAV, and audio files without changing the pitch. 100% private, client-side processing.
+- **[Audio Merger](https://privatetools.in/tools/audio/audio-merger):** Merge and combine multiple MP3, WAV, or audio files into one single track locally in your browser.
+- **[MP3 Tag Editor](https://privatetools.in/tools/audio/mp3-tag-editor):** Edit ID3 tags, artist info, and embed cover artwork for MP3 files directly in your browser.
+- **[Audio Volume Normalizer](https://privatetools.in/tools/audio/audio-volume-normalizer):** Make MP3 files louder or normalize podcast volume to -14 LUFS locally.
+- **[FLAC to MP3 Converter](https://privatetools.in/tools/audio/flac-to-mp3):** Convert high-resolution FLAC audio files to MP3 locally in your browser.
 - **[Video Compressor for Discord (8MB)](https://privatetools.in/tools/video/video-compressor-discord):** Automatically compress videos to perfectly fit Discord's strict 8MB upload limit without sacrificing watchable quality.
 - **[Video Compressor](https://privatetools.in/tools/video/video-compressor):** Shrink MP4 and WebM video file sizes by up to 80% locally using hardware-accelerated GPU encoding.
 - **[Audio Compressor](https://privatetools.in/tools/audio/audio-compressor):** Reduce MP3, WAV, M4A, OGG, and AAC audio file sizes locally with smart bitrate allocation.
@@ -72,6 +79,7 @@ We offer a growing suite of powerful tools, all running directly in your browser
 
 ### 💻 Developer & Data Tools
 
+- **[VCF to CSV/Excel Converter](https://privatetools.in/tools/data/vcf-to-csv):** Convert iPhone/Android .vcf contact files to clean CSV or Excel formats instantly. 100% private, client-side processing.
 - **[JSON to CSV Converter](https://privatetools.in/tools/developer/json-to-csv):** Transform JSON data into clean, structured CSV format instantly in your browser.
 - **[CSV to JSON Converter](https://privatetools.in/tools/developer/csv-to-json):** Convert CSV spreadsheets into valid, formatted JSON data locally.
 - **[CSV/JSON SQL Query](https://privatetools.in/tools/developer/csv-json-sql-query):** Run SQL queries directly on your CSV or JSON files without uploading them to a database.
