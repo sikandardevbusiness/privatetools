@@ -217,17 +217,20 @@ export const FileItem = memo(function FileItem({
                         </div>
                     </div>
 
-                    {/* Progress Bar (exactly where it was in old code) */}
+                    {/* Progress Bar */}
                     {item.status === "processing" && (
                         <div className="mt-2 w-full">
                             <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
                                 <div
-                                    className="h-full bg-primary transition-all duration-300 ease-out"
-                                    style={{ width: `${item.progress || 50}%` }}
+                                    className="h-full bg-primary transition-[width] duration-150 ease-out"
+                                    style={{
+                                        width: `${Math.min(100, Math.max(0, item.progress ?? 0))}%`,
+                                    }}
                                 />
                             </div>
                             <p className="text-xs text-muted-foreground mt-1">
-                                Processing... ({item.progress.toFixed(2)}%)
+                                Processing... (
+                                {Math.round(Math.min(100, Math.max(0, item.progress ?? 0)))}%)
                             </p>
                         </div>
                     )}

@@ -62,6 +62,10 @@ import {
     pdfSizeSplitterToolComponentMap,
     pdfSizeSplitterToolMetadataList,
 } from "./modules/pdf-size-splitter";
+import {
+    audioTranscriberToolComponentMap,
+    audioTranscriberToolMetadataList,
+} from "./modules/audio-transcriber";
 
 export const toolMetadataList: BaseTool[] = [
     ...imageCropperToolMetadataList,
@@ -70,6 +74,7 @@ export const toolMetadataList: BaseTool[] = [
     ...removeSilenceToolMetadataList,
     ...audioTrimmerToolMetadata,
     ...audioSpeedChangerToolMetadataList,
+    ...audioTranscriberToolMetadataList,
     ...audioMergerToolMetadataList,
     ...audioTagEditorToolMetadataList,
     ...audioVolumeNormalizerToolMetadataList,
@@ -103,6 +108,7 @@ export const toolComponentMap: ToolComponentMap = {
     ...videoWatermarkToolComponentMap,
     ...dataTransformerToolComponentMap,
     ...pdfSizeSplitterToolComponentMap,
+    ...audioTranscriberToolComponentMap,
     ...thumbnailPreviewToolComponentMap,
     ...audioSpeedChangerToolComponentMap,
     ...imageEmoteConverterToolComponentMap,
