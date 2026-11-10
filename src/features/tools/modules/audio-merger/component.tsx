@@ -114,7 +114,6 @@ export default function AudioMergerClient({ tool }: { tool: BaseTool }) {
                 {!tracks.length ? (
                     <FileUpload
                         accept="audio/*"
-                        maxSizeMB={1000}
                         multiple={true}
                         onFilesSelected={handleFilesSelected}
                         allowedFormats={["mp3", "wav", "m4a", "ogg", "flac", "aac"]}

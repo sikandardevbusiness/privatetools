@@ -1,8 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import { saveAs } from "file-saver";
-import JSZip from "jszip";
+import { useRef, useState, useEffect, useMemo } from "react";
 import {
     LocalTranscriber,
     EXPORT_FORMATS,
@@ -14,11 +12,7 @@ import {
     toCSV,
     groupWordsIntoSegments,
 } from "@sikandardevbusiness/audio-transcriber";
-import type {
-    TranscriptionResult,
-    ProgressUpdate,
-    ExportFormat,
-} from "@sikandardevbusiness/audio-transcriber";
+import type { ProgressUpdate, ExportFormat } from "@sikandardevbusiness/audio-transcriber";
 
 import { ToolHeader } from "@/features/tools/shared/components/layouts/tool-header";
 import { ToolShell } from "@/features/tools/shared/components/layouts/tool-shell";
@@ -26,24 +20,17 @@ import { FileList } from "@/features/tools/shared/components/uploads/file-list";
 import { FileUpload } from "@/features/tools/shared/components/uploads/file-upload";
 import { TranscriberSettings, type TranscriptionTask } from "./settings";
 
-import type { BaseTool, ProcessedFile } from "@/features/tools/shared/types";
-
-interface TranscribedFile extends ProcessedFile {
-    transcriptionResult?: TranscriptionResult;
-}
+import type { BaseTool } from "@/features/tools/shared/types";
+import { useFileProcessor } from "@/features/tools/shared/hooks/use-file-processor";
 
 export default function AudioTranscriberClient({ tool }: { tool: BaseTool }) {
-    const [files, setFiles] = useState<TranscribedFile[]>([]);
-    const [isProcessing, setIsProcessing] = useState(false);
-
-    const [language, setLanguage] = useState<string>("en");
+    const [language, setLanguage] = useState<string>("auto");
     const [task, setTask] = useState<TranscriptionTask>("transcribe");
     const [wordsPerSegment, setWordsPerSegment] = useState<number>(8);
     const [modelId, setModelId] = useState<string>("Xenova/whisper-small");
     const [exportFormat, setExportFormat] = useState<ExportFormat>("srt");
 
     const transcriberRef = useRef<LocalTranscriber | null>(null);
-    const fileInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         transcriberRef.current = new LocalTranscriber();
@@ -52,72 +39,23 @@ export default function AudioTranscriberClient({ tool }: { tool: BaseTool }) {
         };
     }, []);
 
-    const handleFileSelect = (selectedFiles: File[]) => {
-        const newFiles: TranscribedFile[] = selectedFiles.map((file) => ({
-            id: crypto.randomUUID(),
-            file,
-            targetFormat: exportFormat,
-            status: "pending",
-            progress: 0,
-        }));
-        setFiles((prev) => [...prev, ...newFiles]);
-    };
+    // MEMOIZE: Guarantees the config object is stable and correctly formed.
+    // It only recreates when the actual settings change, preventing unnecessary re-renders.
+    const processorConfig = useMemo(
+        () => ({
+            defaultFormat: exportFormat,
+            getSupportedFormats: () => [...EXPORT_FORMATS],
+            processFile: async (
+                file: File,
+                targetFormat: string,
+                updateProgress: (p: number) => void,
+            ) => {
+                if (!transcriberRef.current) throw new Error("Transcriber not initialized");
 
-    const removeFile = (id: string) => {
-        setFiles((prev) => prev.filter((f) => f.id !== id));
-    };
-
-    const handleExportFormatChange = (value: ExportFormat) => {
-        setExportFormat(value);
-        setFiles((prev) =>
-            prev.map((f) =>
-                f.status === "pending" || f.status === "error" ? { ...f, targetFormat: value } : f,
-            ),
-        );
-    };
-
-    const handleFileFormatChange = (id: string, format: string) => {
-        setFiles((prev) => prev.map((f) => (f.id === id ? { ...f, targetFormat: format } : f)));
-    };
-
-    const processFiles = async () => {
-        const pendingFiles = files.filter((f) => f.status === "pending" || f.status === "error");
-        if (pendingFiles.length === 0 || !transcriberRef.current) return;
-
-        setIsProcessing(true);
-
-        for (const fileObj of pendingFiles) {
-            setFiles((prev) =>
-                prev.map((f) =>
-                    f.id === fileObj.id
-                        ? {
-                              ...f,
-                              status: "processing",
-                              progress: 0,
-                              targetFormat: fileObj.targetFormat,
-                          }
-                        : f,
-                ),
-            );
-
-            try {
                 const result = await transcriberRef.current.transcribe(
-                    fileObj.file,
-                    {
-                        modelId,
-                        language,
-                        task,
-                        wordsPerSegment,
-                        quantized: true,
-                        device: "wasm",
-                    },
-                    (p: ProgressUpdate) => {
-                        setFiles((prev) =>
-                            prev.map((f) =>
-                                f.id === fileObj.id ? { ...f, progress: p.progress } : f,
-                            ),
-                        );
-                    },
+                    file,
+                    { modelId, language, task, wordsPerSegment, quantized: true, device: "wasm" },
+                    (p: ProgressUpdate) => updateProgress(p.progress),
                 );
 
                 if (!result.text || result.text.trim() === "") {
@@ -126,139 +64,67 @@ export default function AudioTranscriberClient({ tool }: { tool: BaseTool }) {
                     );
                 }
 
-                setFiles((prev) =>
-                    prev.map((f) =>
-                        f.id === fileObj.id
-                            ? {
-                                  ...f,
-                                  status: "completed",
-                                  progress: 100,
-                                  transcriptionResult: result,
-                              }
-                            : f,
-                    ),
-                );
-            } catch (err) {
-                const msg = err instanceof Error ? err.message : "Transcription failed";
-                setFiles((prev) =>
-                    prev.map((f) =>
-                        f.id === fileObj.id
-                            ? { ...f, status: "error", progress: 0, error: msg }
-                            : f,
-                    ),
-                );
-            }
-        }
-        setIsProcessing(false);
-    };
+                const groupedSegments = groupWordsIntoSegments(result.segments, wordsPerSegment);
+                const dynamicResult = { ...result, segments: groupedSegments };
+                const fmt = targetFormat as ExportFormat;
 
-    const processSingle = async (id: string) => {
-        const fileObj = files.find((f) => f.id === id);
-        if (!fileObj || !transcriberRef.current) return;
+                let content = "";
+                switch (fmt) {
+                    case "srt":
+                        content = toSRT(dynamicResult);
+                        break;
+                    case "vtt":
+                        content = toVTT(dynamicResult);
+                        break;
+                    case "txt":
+                        content = toTXT(dynamicResult);
+                        break;
+                    case "json":
+                        content = toJSON(dynamicResult);
+                        break;
+                    case "ass":
+                        content = toASS(dynamicResult, {});
+                        break;
+                    case "csv":
+                        content = toCSV(dynamicResult);
+                        break;
+                    default:
+                        content = toTXT(dynamicResult);
+                }
 
-        setIsProcessing(true);
-        setFiles((prev) =>
-            prev.map((f) => (f.id === id ? { ...f, status: "processing", progress: 0 } : f)),
-        );
+                // ✅ Return a Blob. The hook will automatically wrap it in a File with the correct name.
+                return new Blob([content], { type: "text/plain" });
+            },
+            getOutputFileName: (originalName: string, targetFormat: string) => {
+                const baseName = originalName.replace(/\.[^/.]+$/, "");
+                const ext = targetFormat === "ass" ? "ass" : targetFormat;
+                return `${baseName}_transcript.${ext}`;
+            },
+        }),
+        [exportFormat, modelId, language, task, wordsPerSegment],
+    );
 
-        try {
-            const result = await transcriberRef.current.transcribe(
-                fileObj.file,
-                { modelId, language, task, wordsPerSegment, quantized: true, device: "wasm" },
-                (p: ProgressUpdate) => {
-                    setFiles((prev) =>
-                        prev.map((f) => (f.id === id ? { ...f, progress: p.progress } : f)),
-                    );
-                },
-            );
+    const processor = useFileProcessor(processorConfig);
 
-            setFiles((prev) =>
-                prev.map((f) =>
-                    f.id === id
-                        ? { ...f, status: "completed", progress: 100, transcriptionResult: result }
-                        : f,
-                ),
-            );
-        } catch (err) {
-            const msg = err instanceof Error ? err.message : "Transcription failed";
-            setFiles((prev) =>
-                prev.map((f) =>
-                    f.id === id ? { ...f, status: "error", progress: 0, error: msg } : f,
-                ),
-            );
-        }
-        setIsProcessing(false);
-    };
+    // ✅ Automatically reset completed files to "pending" when transcription settings change
+    useEffect(() => {
+        processor.resetCompletedFiles();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [modelId, language, task, wordsPerSegment, exportFormat]);
 
-    const generateTranscriptContent = (result: TranscriptionResult, fmt: ExportFormat) => {
-        const groupedSegments = groupWordsIntoSegments(result.segments, wordsPerSegment);
-        const dynamicResult = { ...result, segments: groupedSegments };
-
-        switch (fmt) {
-            case "srt":
-                return toSRT(dynamicResult);
-            case "vtt":
-                return toVTT(dynamicResult);
-            case "txt":
-                return toTXT(dynamicResult);
-            case "json":
-                return toJSON(dynamicResult);
-            case "ass":
-                return toASS(dynamicResult, {});
-            case "csv":
-                return toCSV(dynamicResult);
-            default:
-                return toTXT(dynamicResult);
-        }
-    };
-
-    const handleDownload = (id: string) => {
-        const item = files.find((f) => f.id === id);
-        if (!item?.transcriptionResult) return;
-
-        const fmt = (item.targetFormat as ExportFormat) || exportFormat;
-        const content = generateTranscriptContent(item.transcriptionResult, fmt);
-        const baseName = item.file.name.replace(/\.[^/.]+$/, "");
-        const ext = fmt === "ass" ? "ass" : fmt;
-
-        const blob = new Blob([content], { type: "text/plain" });
-        saveAs(blob, `${baseName}_transcript.${ext}`);
-    };
-
-    const handleDownloadAll = async () => {
-        const completedFiles = files.filter(
-            (f) => f.status === "completed" && f.transcriptionResult,
-        );
-        if (completedFiles.length === 0) return;
-
-        if (completedFiles.length === 1) {
-            handleDownload(completedFiles[0].id);
-            return;
-        }
-
-        const zip = new JSZip();
-        for (const item of completedFiles) {
-            if (!item.transcriptionResult) continue;
-
-            const baseName = item.file.name.replace(/\.[^/.]+$/, "");
-            const fmt = (item.targetFormat as ExportFormat) || exportFormat;
-            const content = generateTranscriptContent(item.transcriptionResult, fmt);
-            const ext = fmt === "ass" ? "ass" : fmt;
-
-            zip.file(`${baseName}_transcript.${ext}`, content);
-        }
-
-        const zipBlob = await zip.generateAsync({ type: "blob" });
-        saveAs(zipBlob, `transcripts_${exportFormat}.zip`);
+    // ✅ Update pending files when the global export format changes
+    const handleExportFormatChange = (value: ExportFormat) => {
+        setExportFormat(value);
+        processor.updateAllPendingFormats(value);
     };
 
     return (
         <ToolShell>
             <ToolHeader tool={tool}>
-                {files.length === 0 ? (
+                {processor.files.length === 0 ? (
                     <FileUpload
                         multiple={true}
-                        onFilesSelected={handleFileSelect}
+                        onFilesSelected={processor.addFiles}
                         accept="audio/*,video/*,.mp4,.mkv,.mov,.wav,.mp3,.webm,.aac,.ogg"
                         allowedFormats={["mp3", "wav", "mp4", "webm", "mov", "mkv", "aac", "ogg"]}
                     />
@@ -278,36 +144,24 @@ export default function AudioTranscriberClient({ tool }: { tool: BaseTool }) {
                 )}
             </ToolHeader>
 
-            {files.length > 0 && (
+            {processor.files.length > 0 && (
                 <div className="w-full max-w-4xl mx-auto space-y-6 px-4">
                     <FileList
-                        files={files}
-                        supportedFormats={[...EXPORT_FORMATS]}
-                        onProcess={processFiles}
-                        onRemoveFile={removeFile}
-                        onDownload={handleDownload}
-                        isProcessing={isProcessing}
-                        onProcessSingle={processSingle}
-                        onDownloadAll={handleDownloadAll}
-                        onAddMoreFiles={() => fileInputRef.current?.click()}
-                        onFormatChange={handleFileFormatChange}
+                        files={processor.files}
+                        isProcessing={processor.isProcessing}
+                        acceptTypes="audio/*,video/*,.mp4,.mkv,.mov,.wav,.mp3,.webm,.aac,.ogg"
+                        onFilesAdded={processor.addFiles}
+                        onProcess={processor.processAll}
+                        onRemoveFile={processor.removeFile}
+                        onDownload={processor.downloadFile}
+                        onProcessSingle={processor.processSingle}
+                        onFormatChange={processor.updateFileFormat}
+                        onDownloadAll={processor.downloadAll}
+                        getSupportedFormats={processor.getSupportedFormatsForFile}
+                        supportFormats={[...EXPORT_FORMATS]}
                     />
                 </div>
             )}
-
-            <input
-                ref={fileInputRef}
-                type="file"
-                multiple
-                accept="audio/*,video/*,.mp4,.mkv,.mov,.wav,.mp3,.webm"
-                className="hidden"
-                onChange={(e) => {
-                    if (e.target.files) {
-                        handleFileSelect(Array.from(e.target.files));
-                        e.target.value = "";
-                    }
-                }}
-            />
         </ToolShell>
     );
 }

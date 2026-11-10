@@ -2,7 +2,7 @@
 
 import { pdfToPageFiles } from "@sikandardevbusiness/file-converter";
 import { cropManhwaPanels, type ManhwaCropOptions } from "@sikandardevbusiness/manhwa-cropper";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import { ImageGrid } from "@/features/tools/shared/components/image-grid";
 import { ToolHeader } from "@/features/tools/shared/components/layouts/tool-header";
@@ -27,8 +27,6 @@ export default function ManhwaCropperClient({ tool }: { tool: BaseTool }) {
     const [minPanelHeight, setMinPanelHeight] = useState("240");
     const [backgroundColor, setBackgroundColor] = useState("#FFFFFF");
     const [splitMode, setSplitMode] = useState<"auto" | "fixed">("auto");
-
-    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleFileSelect = (selected: File[]) => {
         const sorted = [...selected].sort((a, b) =>
@@ -55,11 +53,11 @@ export default function ManhwaCropperClient({ tool }: { tool: BaseTool }) {
         if (pending.length === 0) return;
 
         setIsProcessing(true);
+        const pendingIds = new Set(pending.map((p) => p.id));
+
         setFiles((prev) =>
             prev.map((f) =>
-                pending.some((p) => p.id === f.id)
-                    ? { ...f, status: "processing", progress: 0 }
-                    : f,
+                pendingIds.has(f.id) ? { ...f, status: "processing", progress: 0 } : f,
             ),
         );
 
@@ -120,9 +118,7 @@ export default function ManhwaCropperClient({ tool }: { tool: BaseTool }) {
                 quality: parseInt(quality) || 92,
                 onProgress: (p) =>
                     setFiles((prev) =>
-                        prev.map((f) =>
-                            pending.some((x) => x.id === f.id) ? { ...f, progress: p } : f,
-                        ),
+                        prev.map((f) => (pendingIds.has(f.id) ? { ...f, progress: p } : f)),
                     ),
             };
 
@@ -137,14 +133,12 @@ export default function ManhwaCropperClient({ tool }: { tool: BaseTool }) {
                 outputBlob: file,
             }));
 
-            setFiles((prev) => [
-                ...prev.filter((f) => !pending.some((p) => p.id === f.id)),
-                ...panelFiles,
-            ]);
+            // Replace pending source files with the newly generated panel files
+            setFiles((prev) => [...prev.filter((f) => !pendingIds.has(f.id)), ...panelFiles]);
         } catch (error) {
             setFiles((prev) =>
                 prev.map((f) =>
-                    pending.some((p) => p.id === f.id)
+                    pendingIds.has(f.id)
                         ? {
                               ...f,
                               status: "error",
@@ -160,7 +154,7 @@ export default function ManhwaCropperClient({ tool }: { tool: BaseTool }) {
     };
 
     const completed = files.filter((f) => f.status === "completed" && f.outputBlob instanceof Blob);
-    const hasPendingFiles = files.some((f) => f.status !== "completed");
+    const pendingFiles = files.filter((f) => f.status !== "completed");
 
     return (
         <ToolShell>
@@ -210,32 +204,21 @@ export default function ManhwaCropperClient({ tool }: { tool: BaseTool }) {
                     )}
 
                     {/* File List for Pending/Processing Files */}
-                    {hasPendingFiles && (
-                        <FileList
-                            onProcess={processFiles}
-                            onRemoveFile={removePanel}
-                            isProcessing={isProcessing}
-                            onAddMoreFiles={() => fileInputRef.current?.click()}
-                            files={files.filter((f) => f.status !== "completed")}
-                            supportedFormats={["png", "jpg", "jpeg", "webp", "pdf"]}
-                        />
+                    {pendingFiles.length > 0 && (
+                        <div className="w-full max-w-4xl mx-auto space-y-6 px-4">
+                            <FileList
+                                files={pendingFiles}
+                                isProcessing={isProcessing}
+                                acceptTypes="image/png, image/jpeg, image/webp, application/pdf"
+                                onFilesAdded={handleFileSelect}
+                                onProcess={processFiles}
+                                onRemoveFile={removePanel}
+                                supportFormats={["png", "jpg", "jpeg", "webp", "pdf"]}
+                            />
+                        </div>
                     )}
                 </>
             )}
-
-            <input
-                ref={fileInputRef}
-                type="file"
-                multiple
-                accept="image/png, image/jpeg, image/webp, application/pdf"
-                className="hidden"
-                onChange={(e) => {
-                    if (e.target.files) {
-                        handleFileSelect(Array.from(e.target.files));
-                        e.target.value = "";
-                    }
-                }}
-            />
         </ToolShell>
     );
 }

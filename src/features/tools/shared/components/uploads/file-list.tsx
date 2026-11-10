@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { Download, RotateCw, Upload, Zap } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -12,49 +13,67 @@ import { cn } from "@/lib/utils";
 export function FileList({
     files,
     selectedId,
-    supportedFormats,
+    acceptTypes,
+    supportFormats,
     isProcessing = false,
-
-    // Functions
     onProcess,
     onDownload,
     onRemoveFile,
     onSelectFile,
     onDownloadAll,
-    onAddMoreFiles,
+    onFilesAdded,
     onFormatChange,
     onProcessSingle,
     getSupportedFormats,
 }: {
+    acceptTypes?: string;
     files: ProcessedFile[];
     isProcessing?: boolean;
+    supportFormats?: string[];
     selectedId?: string | null;
-    supportedFormats?: string[];
-
-    // Functions
     onProcess?: () => void;
     onDownloadAll?: () => void;
-    onAddMoreFiles?: () => void;
     onDownload?: (id: string) => void;
     onRemoveFile: (id: string) => void;
     onSelectFile?: (id: string) => void;
+    onFilesAdded?: (files: File[]) => void;
     onProcessSingle?: (id: string) => void;
     getSupportedFormats?: (file: File) => string[];
     onFormatChange?: (id: string, format: string) => void;
 }) {
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
     const completedCount = files.filter((f) => f.status === "completed").length;
     const pendingCount = files.filter((f) => f.status === "pending" || f.status === "error").length;
     const hasDownloadAll = completedCount > 0;
 
+    const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length > 0 && onFilesAdded) {
+            onFilesAdded(Array.from(e.target.files));
+            e.target.value = ""; // Reset input for re-selection
+        }
+    };
+
     return (
         <section className="max-w-4xl mx-auto px-4 sm:px-0 space-y-6 pt-12">
+            {acceptTypes && onFilesAdded && (
+                <input
+                    ref={fileInputRef}
+                    type="file"
+                    multiple
+                    accept={acceptTypes}
+                    className="hidden"
+                    onChange={handleFileSelect}
+                />
+            )}
+
             {/* Sticky Action Bar */}
-            {onProcess && onAddMoreFiles && (
+            {onProcess && onFilesAdded && (
                 <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
                     <ButtonGroup className="w-full sm:w-auto">
                         <Button
                             variant="outline"
-                            onClick={onAddMoreFiles}
+                            onClick={() => fileInputRef.current?.click()}
                             disabled={isProcessing}
                             className="flex-1 sm:flex-none"
                         >
@@ -85,7 +104,10 @@ export function FileList({
                             </>
                         ) : (
                             <>
-                                <Zap className="w-4 h-4" /> Process All
+                                <Zap className="w-4 h-4" />{" "}
+                                {pendingCount === files.length
+                                    ? "Process All"
+                                    : "Process Remaining"}
                             </>
                         )}
                     </Button>
@@ -94,54 +116,46 @@ export function FileList({
 
             {/* File List */}
             <div className="space-y-3">
-                {files.map((item) => {
-                    const isDisabled = item.status === "processing" || item.status === "completed";
-
-                    return (
-                        <FileItem
-                            item={item}
-                            key={item.id}
-                            onSelect={onSelectFile}
-                            onRemove={onRemoveFile}
-                            onFormatChange={onFormatChange}
-                            // ✅ Use dynamic function if provided, otherwise fallback to static array
-                            supportedFormats={
-                                getSupportedFormats
-                                    ? getSupportedFormats(item.file)
-                                    : supportedFormats
-                            }
-                            isSelected={selectedId === item.id}
-                        >
-                            {item.status === "completed" ? (
+                {files.map((item) => (
+                    <FileItem
+                        key={item.id}
+                        item={item}
+                        onSelect={onSelectFile}
+                        onRemove={onRemoveFile}
+                        onFormatChange={onFormatChange}
+                        supportedFormats={
+                            getSupportedFormats ? getSupportedFormats(item.file) : supportFormats
+                        }
+                        isSelected={selectedId === item.id}
+                    >
+                        {item.status === "completed" && onDownload ? (
+                            <Button
+                                variant="default"
+                                onClick={() => onDownload(item.id)}
+                                className="gap-2"
+                            >
+                                <Download className="w-4 h-4" /> Download
+                            </Button>
+                        ) : (
+                            onProcessSingle && (
                                 <Button
-                                    variant="default"
-                                    onClick={() => onDownload?.(item.id)}
-                                    className="gap-2"
+                                    variant="outline"
+                                    onClick={() => onProcessSingle(item.id)}
+                                    disabled={item.status === "processing"}
+                                    className="gap-2 min-w-25"
                                 >
-                                    <Download className="w-4 h-4" />
-                                    Download
+                                    <RotateCw
+                                        className={cn(
+                                            "w-4 h-4",
+                                            item.status === "processing" && "animate-spin",
+                                        )}
+                                    />
+                                    {item.outputBlob ? "Reprocess" : "Process"}
                                 </Button>
-                            ) : (
-                                onProcessSingle && (
-                                    <Button
-                                        variant="outline"
-                                        onClick={() => onProcessSingle(item.id)}
-                                        disabled={isDisabled}
-                                        className="gap-2 min-w-25"
-                                    >
-                                        <RotateCw
-                                            className={cn(
-                                                "w-4 h-4",
-                                                item.status === "processing" && "animate-spin",
-                                            )}
-                                        />
-                                        {item.status === "processing" ? "Processing" : "Process"}
-                                    </Button>
-                                )
-                            )}
-                        </FileItem>
-                    );
-                })}
+                            )
+                        )}
+                    </FileItem>
+                ))}
             </div>
         </section>
     );

@@ -39,7 +39,7 @@ export default function AudioSpeedChangerClient({ tool }: { tool: BaseTool }): R
         }
     }, [speed]);
 
-    // ✅ Simplified: PropSlider passes a single number, not an array
+    // Simplified: PropSlider passes a single number, not an array
     const handleSpeedChange = (newSpeed: number) => {
         setSpeed(newSpeed);
     };
@@ -65,7 +65,6 @@ export default function AudioSpeedChangerClient({ tool }: { tool: BaseTool }): R
                 {!file ? (
                     <FileUpload
                         accept="audio/*"
-                        maxSizeMB={500}
                         multiple={false}
                         onFilesSelected={handleFilesSelected}
                         allowedFormats={["mp3", "wav", "m4a", "ogg", "flac", "aac"]}

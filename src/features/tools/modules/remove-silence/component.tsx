@@ -1,8 +1,7 @@
 "use client";
 
 import { removeSilenceFromAudio } from "@sikandardevbusiness/remove-silence";
-import { saveAs } from "file-saver";
-import { useRef, useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { ToolHeader } from "@/features/tools/shared/components/layouts/tool-header";
@@ -11,180 +10,66 @@ import { FileList } from "@/features/tools/shared/components/uploads/file-list";
 import { FileUpload } from "@/features/tools/shared/components/uploads/file-upload";
 import { SilenceSettings } from "./settings";
 
-import type { BaseTool, ProcessedFile } from "@/features/tools/shared/types";
-import { createAndDownloadZip, type ZipFile } from "@/lib/zip";
+import type { BaseTool } from "@/features/tools/shared/types";
+import { useFileProcessor } from "@/features/tools/shared/hooks/use-file-processor";
 
 type OutputFormat = "mp3" | "wav";
 
 export default function RemoveSilenceAudioClient({ tool }: { tool: BaseTool }) {
-    const [files, setFiles] = useState<ProcessedFile[]>([]);
-    const [isProcessing, setIsProcessing] = useState(false);
-
     const [threshold, setThreshold] = useState(-40);
     const [minDuration, setMinDuration] = useState(0.35);
     const [outputFormat, setOutputFormat] = useState<OutputFormat>("mp3");
 
-    const fileInputRef = useRef<HTMLInputElement>(null);
-
-    const handleFileSelect = (selectedFiles: File[]) => {
-        const newFiles: ProcessedFile[] = selectedFiles.map((file) => ({
-            id: crypto.randomUUID(),
-            file,
-            targetFormat: outputFormat,
-            status: "pending",
-            progress: 0,
-        }));
-        setFiles((prev) => [...prev, ...newFiles]);
-    };
-
-    const handleFormatChange = (newFormat: OutputFormat) => {
-        setOutputFormat(newFormat);
-        setFiles((prev) =>
-            prev.map((f) => ({
-                ...f,
-                targetFormat: newFormat,
-                status: f.status === "completed" ? "pending" : f.status,
-            })),
-        );
-    };
-
-    const removeFile = (id: string) => {
-        setFiles((prev) => prev.filter((f) => f.id !== id));
-    };
-
-    const processFiles = async () => {
-        setIsProcessing(true);
-        const pendingFiles = files.filter((f) => f.status === "pending" || f.status === "error");
-
-        for (const fileObj of pendingFiles) {
-            setFiles((prev) =>
-                prev.map((f) =>
-                    f.id === fileObj.id ? { ...f, status: "processing", progress: 0 } : f,
-                ),
-            );
-
-            try {
+    // ✅ MEMOIZE: Guarantees the config object is stable and correctly formed.
+    const processorConfig = useMemo(
+        () => ({
+            defaultFormat: outputFormat,
+            getSupportedFormats: () => ["mp3", "wav"],
+            processFile: async (
+                file: File,
+                targetFormat: string,
+                updateProgress: (p: number) => void,
+            ) => {
                 const result = await removeSilenceFromAudio(
-                    fileObj.file,
+                    file,
                     threshold,
                     minDuration,
-                    outputFormat,
-                    (p) => {
-                        setFiles((prev) =>
-                            prev.map((f) => (f.id === fileObj.id ? { ...f, progress: p } : f)),
-                        );
-                    },
+                    targetFormat as OutputFormat,
+                    updateProgress,
                 );
+                return result.blob;
+            },
+            getOutputFileName: (originalName: string, targetFormat: string) => {
+                return originalName.replace(/\.[^/.]+$/, "") + `_clean.${targetFormat}`;
+            },
+        }),
+        [outputFormat, threshold, minDuration],
+    );
 
-                setFiles((prev) =>
-                    prev.map((f) =>
-                        f.id === fileObj.id
-                            ? {
-                                  ...f,
-                                  outputBlob: new File(
-                                      [result.blob],
-                                      fileObj.file.name.replace(/\.[^/.]+$/, "") +
-                                          `_clean.${outputFormat}`,
-                                      { type: result.blob.type },
-                                  ),
-                                  status: "completed",
-                                  progress: 100,
-                              }
-                            : f,
-                    ),
-                );
-            } catch (err) {
-                console.error("[Process Error]", err);
-                const message = err instanceof Error ? err.message : "Failed to process";
-                setFiles((prev) =>
-                    prev.map((f) =>
-                        f.id === fileObj.id
-                            ? { ...f, status: "error", error: message, progress: 0 }
-                            : f,
-                    ),
-                );
-            }
-        }
-        setIsProcessing(false);
-    };
+    const processor = useFileProcessor(processorConfig);
 
-    const processSingle = async (id: string) => {
-        const fileObj = files.find((f) => f.id === id);
-        if (!fileObj) return;
+    // Automatically reset completed files to "pending" when audio settings change
+    useEffect(() => {
+        processor.resetCompletedFiles();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [threshold, minDuration, outputFormat]);
 
-        setIsProcessing(true);
-        setFiles((prev) =>
-            prev.map((f) => (f.id === id ? { ...f, status: "processing", progress: 0 } : f)),
-        );
-
-        try {
-            const result = await removeSilenceFromAudio(
-                fileObj.file,
-                threshold,
-                minDuration,
-                outputFormat,
-                (p) => {
-                    setFiles((prev) => prev.map((f) => (f.id === id ? { ...f, progress: p } : f)));
-                },
-            );
-            setFiles((prev) =>
-                prev.map((f) =>
-                    f.id === id
-                        ? {
-                              ...f,
-                              outputBlob: new File(
-                                  [result.blob],
-                                  fileObj.file.name.replace(/\.[^/.]+$/, "") +
-                                      `_clean.${outputFormat}`,
-                                  { type: result.blob.type },
-                              ),
-                              status: "completed",
-                              progress: 100,
-                          }
-                        : f,
-                ),
-            );
-        } catch (err) {
-            console.error("[Process Single Error]", err);
-            const message = err instanceof Error ? err.message : "Failed to process";
-            setFiles((prev) =>
-                prev.map((f) =>
-                    f.id === id ? { ...f, status: "error", error: message, progress: 0 } : f,
-                ),
-            );
-        }
-        setIsProcessing(false);
-    };
-
-    const handleDownload = (id: string) => {
-        const fileObj = files.find((f) => f.id === id);
-        if (!fileObj?.outputBlob || !(fileObj.outputBlob instanceof Blob)) return;
-        saveAs(fileObj.outputBlob, (fileObj.outputBlob as File).name);
-    };
-
-    const handleDownloadAll = async () => {
-        const completed = files.filter(
-            (f) => f.status === "completed" && f.outputBlob instanceof Blob,
-        );
-        if (completed.length === 0) return;
-
-        const zipFiles: ZipFile[] = completed.map((f) => ({
-            name: (f.outputBlob as File).name,
-            content: f.outputBlob as Blob,
-        }));
-
-        await createAndDownloadZip(zipFiles, "cleaned-audio.zip");
+    // Update pending files and reset completed ones when global format changes
+    const handleFormatChange = (newFormat: OutputFormat) => {
+        setOutputFormat(newFormat);
+        processor.updateAllPendingFormats(newFormat);
+        processor.resetCompletedFiles();
     };
 
     return (
         <ToolShell>
             <ToolHeader tool={tool}>
-                {files.length === 0 ? (
+                {processor.files.length === 0 ? (
                     <FileUpload
                         accept="audio/*"
                         maxSizeMB={100}
                         multiple={true}
-                        onFilesSelected={handleFileSelect}
+                        onFilesSelected={processor.addFiles}
                         allowedFormats={["mp3", "wav", "ogg", "m4a", "aac", "flac", "webm"]}
                     />
                 ) : (
@@ -203,33 +88,23 @@ export default function RemoveSilenceAudioClient({ tool }: { tool: BaseTool }) {
                 )}
             </ToolHeader>
 
-            {files.length > 0 && (
-                <FileList
-                    files={files}
-                    onProcess={processFiles}
-                    onRemoveFile={removeFile}
-                    isProcessing={isProcessing}
-                    onDownload={handleDownload}
-                    onProcessSingle={processSingle}
-                    onDownloadAll={handleDownloadAll}
-                    supportedFormats={["mp3", "wav"]}
-                    onAddMoreFiles={() => fileInputRef.current?.click()}
-                />
+            {processor.files.length > 0 && (
+                <div className="w-full max-w-4xl mx-auto space-y-6 px-4">
+                    <FileList
+                        files={processor.files}
+                        isProcessing={processor.isProcessing}
+                        acceptTypes="audio/*"
+                        onFilesAdded={processor.addFiles}
+                        onProcess={processor.processAll}
+                        onRemoveFile={processor.removeFile}
+                        onDownload={processor.downloadFile}
+                        onProcessSingle={processor.processSingle}
+                        onFormatChange={processor.updateFileFormat}
+                        onDownloadAll={processor.downloadAll}
+                        getSupportedFormats={processor.getSupportedFormatsForFile}
+                    />
+                </div>
             )}
-
-            <input
-                ref={fileInputRef}
-                type="file"
-                multiple
-                accept="audio/*"
-                className="hidden"
-                onChange={(e) => {
-                    if (e.target.files) {
-                        handleFileSelect(Array.from(e.target.files));
-                        e.target.value = "";
-                    }
-                }}
-            />
         </ToolShell>
     );
 }

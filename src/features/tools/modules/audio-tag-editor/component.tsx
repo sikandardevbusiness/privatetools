@@ -40,7 +40,7 @@ export default function AudioTagEditorClient({ tool }: { tool: BaseTool }) {
             setCoverFile(null);
             setFormData({ title: "", artist: "", album: "", genre: "", year: "", track: "" });
 
-            // ✅ Now 'tags' is correctly typed as ExistingTags | null
+            // Now 'tags' is correctly typed as ExistingTags | null
             const tags = await loadTags(files[0]);
             if (tags) {
                 setFormData({
@@ -88,11 +88,10 @@ export default function AudioTagEditorClient({ tool }: { tool: BaseTool }) {
                 {!file ? (
                     <div className="max-w-4xl mx-auto w-full">
                         <FileUpload
-                            accept="audio/mpeg, audio/mp3"
-                            maxSizeMB={100}
                             multiple={false}
-                            onFilesSelected={handleFilesSelected}
                             allowedFormats={["mp3"]}
+                            accept="audio/mpeg, audio/mp3"
+                            onFilesSelected={handleFilesSelected}
                         />
                         <p className="text-center text-xs text-muted-foreground mt-4">
                             Tip: Currently supports MP3 files for ID3v2 tag editing.
