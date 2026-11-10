@@ -53,6 +53,9 @@ importers:
       '@sikandardevbusiness/file-converter':
         specifier: ^1.0.3
         version: 1.0.3(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@sikandardevbusiness/har-sanitizer':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@sikandardevbusiness/manhwa-cropper':
         specifier: ^1.0.1
         version: 1.0.1
@@ -119,6 +122,9 @@ importers:
       sanity-plugin-media:
         specifier: ^6.3.3
         version: 6.6.1(@standard-schema/spec@1.1.0)(@types/react@19.3.0)(ajv-formats@2.1.1(ajv@8.20.0))(ajv@8.20.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sanity@6.22.0(@babel/core@7.29.7)(@babel/runtime@8.1.0)(@noble/hashes@2.4.0)(@rolldown/plugin-babel@0.2.4(@babel/core@7.29.7)(@babel/runtime@8.1.0)(rolldown@1.2.16)(vite@8.3.5(@types/node@20.19.43)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1)))(@sanity/workflow-blueprint@0.36.0(@sanity/workflow-engine@0.36.0(@types/react@19.3.0)(typescript@5.9.3))(typescript@5.9.3))(@types/node@20.19.43)(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(immer@11.2.9)(jiti@2.7.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(rolldown@1.2.16)(styled-components@6.6.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(terser@5.51.2)(typescript@5.9.3))(styled-components@6.6.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(valibot@1.5.0(typescript@5.9.3))
+      shiki:
+        specifier: ^4.6.0
+        version: 4.6.0
       tw-animate-css:
         specifier: ^1.4.0
         version: 1.4.0
@@ -2779,6 +2785,13 @@ packages:
       '@ffmpeg/ffmpeg': ^0.12.10
       '@ffmpeg/util': ^0.12.1
       '@xenova/transformers': ^2.17.2
+    peerDependenciesMeta:
+      '@ffmpeg/ffmpeg':
+        optional: true
+      '@ffmpeg/util':
+        optional: true
+      '@xenova/transformers':
+        optional: true
 
   '@sikandardevbusiness/data-toolkit@1.1.0':
     resolution: {integrity: sha512-JSjYu8lLjutReWyOPjB/NWfZL1QOIRlibL6o5VedMKCdwiX0wIHhEJaK1fLjO0vb0uhrzpTQAB5VujN/4ngYcQ==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/data-toolkit/1.1.0/6ef49ac45462bd566d37d2fdf4eda5cb42ef6786}
@@ -2794,6 +2807,9 @@ packages:
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
+
+  '@sikandardevbusiness/har-sanitizer@1.0.0':
+    resolution: {integrity: sha512-/PL26Z+Fuj6WK7XSJDHoH1EXqhoLQ7Rua8n1iyjhc8uqBtstQRXfG3FrC0bgI20yEojtd4oI9FNfCriG5SrFgA==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/har-sanitizer/1.0.0/9f94f177233d6a47e5748dcf6fad852b3fd3b7dd}
 
   '@sikandardevbusiness/manhwa-cropper@1.0.1':
     resolution: {integrity: sha512-yoQqzGpqYaIl6fbCTJEpHmqaRPadZIDPmzkggfIKUL4Vrq76rVmaoX6cB6aEh0SoYH6P+xmJrpoatAXNdmDpzw==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/manhwa-cropper/1.0.1/c05870f38afaf931ba03264814626b4d32b8805d}
@@ -8629,7 +8645,8 @@ snapshots:
       valibot: 1.5.0(typescript@5.9.3)
       zod: 4.6.7
 
-  '@huggingface/jinja@0.2.2': {}
+  '@huggingface/jinja@0.2.2':
+    optional: true
 
   '@humanfs/core@0.19.2':
     dependencies:
@@ -9529,27 +9546,37 @@ snapshots:
 
   '@portabletext/types@4.0.2': {}
 
-  '@protobufjs/aspromise@1.1.2': {}
+  '@protobufjs/aspromise@1.1.2':
+    optional: true
 
-  '@protobufjs/base64@1.1.2': {}
+  '@protobufjs/base64@1.1.2':
+    optional: true
 
-  '@protobufjs/codegen@2.0.5': {}
+  '@protobufjs/codegen@2.0.5':
+    optional: true
 
-  '@protobufjs/eventemitter@1.1.1': {}
+  '@protobufjs/eventemitter@1.1.1':
+    optional: true
 
   '@protobufjs/fetch@1.1.1':
     dependencies:
       '@protobufjs/aspromise': 1.1.2
+    optional: true
 
-  '@protobufjs/float@1.0.2': {}
+  '@protobufjs/float@1.0.2':
+    optional: true
 
-  '@protobufjs/inquire@1.1.2': {}
+  '@protobufjs/inquire@1.1.2':
+    optional: true
 
-  '@protobufjs/path@1.1.2': {}
+  '@protobufjs/path@1.1.2':
+    optional: true
 
-  '@protobufjs/pool@1.1.0': {}
+  '@protobufjs/pool@1.1.0':
+    optional: true
 
-  '@protobufjs/utf8@1.1.2': {}
+  '@protobufjs/utf8@1.1.2':
+    optional: true
 
   '@reduxjs/toolkit@2.14.0(@types/react@19.3.0)(react-redux@9.3.1(@types/react@19.3.0)(react@19.3.0)(redux@5.0.1))(react@19.3.0)':
     dependencies:
@@ -10618,7 +10645,7 @@ snapshots:
       - supports-color
 
   '@sikandardevbusiness/audio-transcriber@1.0.0(@ffmpeg/ffmpeg@0.12.15)(@ffmpeg/util@0.12.2)(@xenova/transformers@2.17.2)':
-    dependencies:
+    optionalDependencies:
       '@ffmpeg/ffmpeg': 0.12.15
       '@ffmpeg/util': 0.12.2
       '@xenova/transformers': 2.17.2
@@ -10652,6 +10679,8 @@ snapshots:
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
       utif: 3.1.0
+
+  '@sikandardevbusiness/har-sanitizer@1.0.0': {}
 
   '@sikandardevbusiness/manhwa-cropper@1.0.1': {}
 
@@ -10848,7 +10877,8 @@ snapshots:
 
   '@types/json5@0.0.29': {}
 
-  '@types/long@4.0.2': {}
+  '@types/long@4.0.2':
+    optional: true
 
   '@types/mdast@4.0.4':
     dependencies:
@@ -11199,6 +11229,7 @@ snapshots:
       - bare-abort-controller
       - bare-buffer
       - react-native-b4a
+    optional: true
 
   '@xstate/react@6.1.0(@types/react@19.3.0)(react@19.3.0)(xstate@5.33.3)':
     dependencies:
@@ -11481,7 +11512,8 @@ snapshots:
   base64-arraybuffer@1.0.2:
     optional: true
 
-  base64-js@1.5.1: {}
+  base64-js@1.5.1:
+    optional: true
 
   baseline-browser-mapping@2.11.35: {}
 
@@ -11496,6 +11528,7 @@ snapshots:
       buffer: 5.7.1
       inherits: 2.0.4
       readable-stream: 3.6.2
+    optional: true
 
   boolbase@1.0.0: {}
 
@@ -11543,6 +11576,7 @@ snapshots:
     dependencies:
       base64-js: 1.5.1
       ieee754: 1.2.1
+    optional: true
 
   bundle-name@4.1.1:
     dependencies:
@@ -11640,7 +11674,8 @@ snapshots:
     dependencies:
       readdirp: 5.1.1
 
-  chownr@1.1.4: {}
+  chownr@1.1.4:
+    optional: true
 
   chownr@3.0.0: {}
 
@@ -11710,6 +11745,7 @@ snapshots:
     dependencies:
       color-name: 1.1.4
       simple-swizzle: 0.2.4
+    optional: true
 
   color2k@2.0.4: {}
 
@@ -11717,6 +11753,7 @@ snapshots:
     dependencies:
       color-convert: 2.0.1
       color-string: 1.9.1
+    optional: true
 
   colord@2.10.0: {}
 
@@ -11905,6 +11942,7 @@ snapshots:
   decompress-response@6.0.0:
     dependencies:
       mimic-response: 3.1.0
+    optional: true
 
   decompress-response@7.0.0:
     dependencies:
@@ -11916,7 +11954,8 @@ snapshots:
 
   deeks@3.2.1: {}
 
-  deep-extend@0.6.0: {}
+  deep-extend@0.6.0:
+    optional: true
 
   deep-is@0.1.4: {}
 
@@ -12447,7 +12486,8 @@ snapshots:
 
   exif-component@1.0.1: {}
 
-  expand-template@2.0.3: {}
+  expand-template@2.0.3:
+    optional: true
 
   fast-deep-equal@3.1.3: {}
 
@@ -12564,7 +12604,8 @@ snapshots:
       flatted: 3.4.4
       keyv: 4.5.4
 
-  flatbuffers@1.12.0: {}
+  flatbuffers@1.12.0:
+    optional: true
 
   flatbuffers@24.12.23: {}
 
@@ -12597,7 +12638,8 @@ snapshots:
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
 
-  fs-constants@1.0.0: {}
+  fs-constants@1.0.0:
+    optional: true
 
   fs-extra@11.4.1:
     dependencies:
@@ -12689,7 +12731,8 @@ snapshots:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
-  github-from-package@0.0.0: {}
+  github-from-package@0.0.0:
+    optional: true
 
   glob-parent@5.1.2:
     dependencies:
@@ -12739,7 +12782,8 @@ snapshots:
 
   groq@6.22.0: {}
 
-  guid-typescript@1.0.9: {}
+  guid-typescript@1.0.9:
+    optional: true
 
   gunzip-maybe@1.4.2:
     dependencies:
@@ -12938,7 +12982,8 @@ snapshots:
 
   is-arrayish@0.2.1: {}
 
-  is-arrayish@0.3.4: {}
+  is-arrayish@0.3.4:
+    optional: true
 
   is-async-function@2.1.1:
     dependencies:
@@ -13412,7 +13457,8 @@ snapshots:
       is-unicode-supported: 2.1.0
       yoctocolors: 2.2.0
 
-  long@4.0.0: {}
+  long@4.0.0:
+    optional: true
 
   loose-envify@1.4.0:
     dependencies:
@@ -13553,7 +13599,8 @@ snapshots:
     dependencies:
       minipass: 7.1.3
 
-  mkdirp-classic@0.5.3: {}
+  mkdirp-classic@0.5.3:
+    optional: true
 
   modern-tar@0.8.6: {}
 
@@ -13602,7 +13649,8 @@ snapshots:
 
   nanoid@6.0.2: {}
 
-  napi-build-utils@2.0.0: {}
+  napi-build-utils@2.0.0:
+    optional: true
 
   napi-postinstall@0.3.8: {}
 
@@ -13665,8 +13713,10 @@ snapshots:
   node-abi@3.101.0:
     dependencies:
       semver: 7.8.6
+    optional: true
 
-  node-addon-api@6.1.0: {}
+  node-addon-api@6.1.0:
+    optional: true
 
   node-exports-info@1.6.2:
     dependencies:
@@ -13774,8 +13824,10 @@ snapshots:
   onnx-proto@4.0.4:
     dependencies:
       protobufjs: 6.11.6
+    optional: true
 
-  onnxruntime-common@1.14.0: {}
+  onnxruntime-common@1.14.0:
+    optional: true
 
   onnxruntime-node@1.14.0:
     dependencies:
@@ -13790,6 +13842,7 @@ snapshots:
       onnx-proto: 4.0.4
       onnxruntime-common: 1.14.0
       platform: 1.3.6
+    optional: true
 
   open@11.0.4:
     dependencies:
@@ -13962,7 +14015,8 @@ snapshots:
     dependencies:
       find-up: 3.0.0
 
-  platform@1.3.6: {}
+  platform@1.3.6:
+    optional: true
 
   player.style@0.3.5(react@19.3.0):
     dependencies:
@@ -14015,6 +14069,7 @@ snapshots:
       simple-get: 4.0.1
       tar-fs: 2.1.5
       tunnel-agent: 0.6.0
+    optional: true
 
   prelude-ls@1.2.1: {}
 
@@ -14060,6 +14115,7 @@ snapshots:
       '@types/long': 4.0.2
       '@types/node': 20.19.43
       long: 4.0.0
+    optional: true
 
   pump@2.0.1:
     dependencies:
@@ -14093,6 +14149,7 @@ snapshots:
       ini: 1.3.8
       minimist: 1.2.8
       strip-json-comments: 2.0.1
+    optional: true
 
   react-advanced-cropper@0.20.1(react@19.3.0):
     dependencies:
@@ -14762,6 +14819,7 @@ snapshots:
       - bare-abort-controller
       - bare-buffer
       - react-native-b4a
+    optional: true
 
   sharp@0.35.5(@types/node@20.19.43):
     dependencies:
@@ -14846,17 +14904,20 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
-  simple-concat@1.0.1: {}
+  simple-concat@1.0.1:
+    optional: true
 
   simple-get@4.0.1:
     dependencies:
       decompress-response: 6.0.0
       once: 1.4.0
       simple-concat: 1.0.1
+    optional: true
 
   simple-swizzle@0.2.4:
     dependencies:
       is-arrayish: 0.3.4
+    optional: true
 
   simple-wcswidth@1.1.2: {}
 
@@ -15029,7 +15090,8 @@ snapshots:
 
   strip-final-newline@4.0.0: {}
 
-  strip-json-comments@2.0.1: {}
+  strip-json-comments@2.0.1:
+    optional: true
 
   strip-json-comments@3.1.1: {}
 
@@ -15099,6 +15161,7 @@ snapshots:
       mkdirp-classic: 0.5.3
       pump: 3.0.4
       tar-stream: 2.2.0
+    optional: true
 
   tar-fs@3.1.3:
     dependencies:
@@ -15119,6 +15182,7 @@ snapshots:
       fs-constants: 1.0.0
       inherits: 2.0.4
       readable-stream: 3.6.2
+    optional: true
 
   tar-stream@3.2.2:
     dependencies:

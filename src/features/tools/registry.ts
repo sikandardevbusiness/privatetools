@@ -66,6 +66,10 @@ import {
     audioTranscriberToolComponentMap,
     audioTranscriberToolMetadataList,
 } from "./modules/audio-transcriber";
+import {
+    harSanitizerToolComponentMap,
+    harSanitizerToolMetadataList,
+} from "./modules/har-sanitizer";
 
 export const toolMetadataList: BaseTool[] = [
     ...imageCropperToolMetadataList,
@@ -81,6 +85,7 @@ export const toolMetadataList: BaseTool[] = [
     ...epubToolsMetadataList,
     ...pdfSizeSplitterToolMetadataList,
     ...dataConverterToolMetadataList,
+    ...harSanitizerToolMetadataList,
     ...fileConverterToolMetadataList,
     ...fileCompressorToolMetadataList,
     ...videoWatermarkToolMetadataList,
@@ -99,6 +104,7 @@ export const toolComponentMap: ToolComponentMap = {
     ...pdfRedactorToolComponentMap,
     ...imageCropperToolComponentMap,
     ...audioTrimmerToolComponentMap,
+    ...harSanitizerToolComponentMap,
     ...manhwaCropperToolComponentMap,
     ...removeSilenceToolComponentMap,
     ...fileConverterToolComponentMap,
