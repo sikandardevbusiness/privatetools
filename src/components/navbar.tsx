@@ -1,11 +1,12 @@
 "use client";
 
-import { Menu } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 
 import { Logo } from "@/components/logo";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
     Sheet,
     SheetClose,
@@ -22,7 +23,6 @@ import { cn } from "@/lib/utils";
 const navLinks = [
     { label: "Home", href: "/" },
     { label: "Browse", href: "/tools" },
-    { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
 ];
 
@@ -56,7 +56,7 @@ export function Navbar() {
                 <Logo />
 
                 {/* Desktop Navigation */}
-                <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
+                <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
                     {navLinks.map((link) => (
                         <Link
                             key={link.href}
@@ -66,6 +66,30 @@ export function Navbar() {
                             {link.label}
                         </Link>
                     ))}
+
+                    {/* Resources Popover (Base UI) */}
+                    <Popover>
+                        <PopoverTrigger className="flex gap-x-1 items-center justify-center">
+                            Resources
+                            <ChevronDown className="w-4 h-4" />
+                        </PopoverTrigger>
+                        <PopoverContent className="w-30 p-1" align="start">
+                            <div className="flex flex-col gap-1">
+                                <Link
+                                    href="/blog"
+                                    className="flex items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                                >
+                                    Blog
+                                </Link>
+                                <Link
+                                    href="/alternatives"
+                                    className="flex items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                                >
+                                    Alternatives
+                                </Link>
+                            </div>
+                        </PopoverContent>
+                    </Popover>
                 </nav>
 
                 {/* Desktop Actions (GitHub + Theme) */}
@@ -97,14 +121,16 @@ export function Navbar() {
                                     <Menu className="h-5 w-5" />
                                 </Button>
                             }
-                        />
+                        >
+                            Open Menu
+                        </SheetTrigger>
 
                         <SheetContent side="right" className="w-75 sm:w-100">
-                            <SheetHeader className="border-b border-border">
+                            <SheetHeader className="border-b border-border pb-4">
                                 <SheetTitle className="text-left">Navigation</SheetTitle>
                             </SheetHeader>
 
-                            <nav className="flex flex-col px-8 gap-4">
+                            <nav className="flex flex-col px-4 gap-2 mt-4">
                                 {navLinks.map((link) => (
                                     <SheetClose
                                         key={link.href}
@@ -112,13 +138,46 @@ export function Navbar() {
                                         render={
                                             <Link
                                                 href={link.href}
-                                                className="text-lg font-medium text-foreground hover:text-primary transition-colors block w-full text-left py-2"
+                                                className="text-lg font-medium text-foreground hover:text-primary transition-colors block w-full text-left py-2 px-2 rounded-md hover:bg-muted"
                                             >
                                                 {link.label}
                                             </Link>
                                         }
-                                    />
+                                    >
+                                        {link.label}
+                                    </SheetClose>
                                 ))}
+
+                                {/* Mobile Resources Section */}
+                                <div className="pt-4 pb-2 px-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                                    Resources
+                                </div>
+                                <SheetClose
+                                    nativeButton={false}
+                                    render={
+                                        <Link
+                                            href="/blog"
+                                            className="text-base font-medium text-foreground hover:text-primary transition-colors block w-full text-left py-2 px-2 rounded-md hover:bg-muted"
+                                        >
+                                            Blog
+                                        </Link>
+                                    }
+                                >
+                                    Blog
+                                </SheetClose>
+                                <SheetClose
+                                    nativeButton={false}
+                                    render={
+                                        <Link
+                                            href="/alternatives"
+                                            className="text-base font-medium text-foreground hover:text-primary transition-colors block w-full text-left py-2 px-2 rounded-md hover:bg-muted"
+                                        >
+                                            Alternatives
+                                        </Link>
+                                    }
+                                >
+                                    Alternatives
+                                </SheetClose>
                             </nav>
                         </SheetContent>
                     </Sheet>

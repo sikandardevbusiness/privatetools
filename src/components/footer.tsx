@@ -28,8 +28,8 @@ const footerLinks = {
 
 const exploreLinks = [
     { label: "All Tools", href: "/tools" },
-    { label: "Image Tools", href: "/tools?category=image" },
-    { label: "Document Tools", href: "/tools?category=document" },
+    { label: "Alternatives", href: "/alternatives" },
+    { label: "Blog", href: "/blog" },
 ];
 
 export function Footer() {
