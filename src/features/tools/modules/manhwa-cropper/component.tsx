@@ -1,7 +1,7 @@
 "use client";
 
 import { pdfToPageFiles } from "@sikandardevbusiness/file-converter";
-import { cropManhwaPanels, type ManhwaCropOptions } from "@sikandardevbusiness/manhwa-cropper";
+import { cropManhwaPanels, type ManhwaCropOptions } from "@sikandardevbusiness/manhwa-toolkit";
 import { useState } from "react";
 
 import { ImageGrid } from "@/features/tools/shared/components/image-grid";

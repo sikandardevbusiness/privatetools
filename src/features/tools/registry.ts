@@ -70,6 +70,10 @@ import {
     harSanitizerToolComponentMap,
     harSanitizerToolMetadataList,
 } from "./modules/har-sanitizer";
+import {
+    manhwaPdfMergerToolComponentMap,
+    manhwaPdfMergerToolMetadataList,
+} from "./modules/manhwa-pdf-merger";
 
 export const toolMetadataList: BaseTool[] = [
     ...imageCropperToolMetadataList,
@@ -82,6 +86,7 @@ export const toolMetadataList: BaseTool[] = [
     ...audioMergerToolMetadataList,
     ...audioTagEditorToolMetadataList,
     ...audioVolumeNormalizerToolMetadataList,
+    ...manhwaPdfMergerToolMetadataList,
     ...epubToolsMetadataList,
     ...pdfSizeSplitterToolMetadataList,
     ...dataConverterToolMetadataList,
@@ -114,6 +119,7 @@ export const toolComponentMap: ToolComponentMap = {
     ...videoWatermarkToolComponentMap,
     ...dataTransformerToolComponentMap,
     ...pdfSizeSplitterToolComponentMap,
+    ...manhwaPdfMergerToolComponentMap,
     ...audioTranscriberToolComponentMap,
     ...thumbnailPreviewToolComponentMap,
     ...audioSpeedChangerToolComponentMap,

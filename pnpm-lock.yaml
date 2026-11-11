@@ -56,9 +56,9 @@ importers:
       '@sikandardevbusiness/har-sanitizer':
         specifier: ^1.0.0
         version: 1.0.0
-      '@sikandardevbusiness/manhwa-cropper':
-        specifier: ^1.0.1
-        version: 1.0.1
+      '@sikandardevbusiness/manhwa-toolkit':
+        specifier: ^1.0.0
+        version: 1.0.0
       '@sikandardevbusiness/pdf-toolkit':
         specifier: ^1.0.1
         version: 1.0.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -2811,8 +2811,8 @@ packages:
   '@sikandardevbusiness/har-sanitizer@1.0.0':
     resolution: {integrity: sha512-/PL26Z+Fuj6WK7XSJDHoH1EXqhoLQ7Rua8n1iyjhc8uqBtstQRXfG3FrC0bgI20yEojtd4oI9FNfCriG5SrFgA==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/har-sanitizer/1.0.0/9f94f177233d6a47e5748dcf6fad852b3fd3b7dd}
 
-  '@sikandardevbusiness/manhwa-cropper@1.0.1':
-    resolution: {integrity: sha512-yoQqzGpqYaIl6fbCTJEpHmqaRPadZIDPmzkggfIKUL4Vrq76rVmaoX6cB6aEh0SoYH6P+xmJrpoatAXNdmDpzw==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/manhwa-cropper/1.0.1/c05870f38afaf931ba03264814626b4d32b8805d}
+  '@sikandardevbusiness/manhwa-toolkit@1.0.0':
+    resolution: {integrity: sha512-wKkpNQseUIWqGH3D53jzbdioqU3eIL/LbkkMllfxMv3yda01y7ewDf4tsNDXwME3u4v4ANDS1If2zNrlfGtWjw==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/manhwa-toolkit/1.0.0/91714905c1647f380c293ece17a03c5e5e762c22}
 
   '@sikandardevbusiness/pdf-toolkit@1.0.1':
     resolution: {integrity: sha512-nAwN6J8uSMyKk3MFhbxr3EbLRM5vyW8KuwU4EEaAXgdn/k0+LkncwYRXIMz+p8x3559uGIurrEz63hb2XisIiQ==, tarball: https://npm.pkg.github.com/download/@sikandardevbusiness/pdf-toolkit/1.0.1/e858516a4d1366ea2111f0ef433e3c755b31bfcf}
@@ -10682,7 +10682,9 @@ snapshots:
 
   '@sikandardevbusiness/har-sanitizer@1.0.0': {}
 
-  '@sikandardevbusiness/manhwa-cropper@1.0.1': {}
+  '@sikandardevbusiness/manhwa-toolkit@1.0.0':
+    dependencies:
+      pdf-lib: 1.17.1
 
   '@sikandardevbusiness/pdf-toolkit@1.0.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
