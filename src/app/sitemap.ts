@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 
 import { toolMetadataList } from "@/features/tools/registry";
+import { categoryInfoList } from "@/features/tools/category";
 import { env } from "@/lib/env";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -29,7 +30,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority,
     }));
 
-    // 2. Dynamic Tool Pages
+    // 2. Dynamic Category Pages (Using your existing categoryInfoList)
+    const categoryPages = categoryInfoList.map((category) => ({
+        url: `${baseUrl}/tools/${category.id}`,
+        lastModified: currentDate,
+        changeFrequency: "weekly" as const,
+        priority: 0.85,
+    }));
+
+    // 3. Dynamic Tool Pages
     const toolPages = toolMetadataList.map((tool) => ({
         url: `${baseUrl}/tools/${tool.category}/${tool.id}`,
         lastModified: currentDate,
@@ -37,5 +46,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
     }));
 
-    return [...staticPages, ...toolPages];
+    return [...staticPages, ...categoryPages, ...toolPages];
 }

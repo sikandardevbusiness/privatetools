@@ -136,7 +136,7 @@ function generateBreadcrumbSchema(tool: BaseTool) {
                 "@type": "ListItem",
                 position: 3,
                 name: `${categoryLabel} Tools`,
-                item: `${BASE_URL}/tools?category=${tool.category}`,
+                item: `${BASE_URL}/tools/${tool.category}`,
             },
             {
                 "@type": "ListItem",
