@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 
 import { toolMetadataList } from "@/features/tools/registry";
+import { categoryInfoList } from "@/features/tools/category";
+import { alternativesList } from "@/app/(root)/alternatives/registry";
 import { env } from "@/lib/env";
 
 export async function GET() {
@@ -27,22 +29,40 @@ export async function GET() {
 `;
 
     for (const [category, tools] of Object.entries(categories)) {
-        const categoryName = category.charAt(0).toUpperCase() + category.slice(1);
-        content += `### ${categoryName} Utilities\n`;
+        const categoryInfo = categoryInfoList.find((c) => c.id === category);
+        const categoryName =
+            categoryInfo?.title || category.charAt(0).toUpperCase() + category.slice(1);
+        content += `### ${categoryName}\n`;
+        content += `${categoryInfo?.description || ""}\n\n`;
         for (const tool of tools) {
             content += `- [${tool.name}](${baseUrl}/tools/${category}/${tool.id}): ${tool.description}\n`;
         }
         content += "\n";
     }
 
-    content += `## Core Pages
-- [Home](${baseUrl})
-- [About](${baseUrl}/about): Zero-server privacy guarantee.
-- [Contact](${baseUrl}/contact): Support and feedback.
-- [Legal](${baseUrl}/legal/privacy): Privacy policy and terms.
+    content += `## Alternative Pages
 
-## Comprehensive Docs
+Compare PrivateTools with popular cloud-based tools. See how our local, privacy-first alternatives stack up against industry standards.
+
+`;
+
+    for (const alt of alternativesList) {
+        content += `- [${alt.name} Alternative](${baseUrl}/alternatives/${alt.id}): ${alt.tagline}\n`;
+    }
+
+    content += `
+## Core Pages
+- [Home](${baseUrl})
+- [All Tools](${baseUrl}/tools): Browse all 50+ privacy-first tools
+- [Alternatives](${baseUrl}/alternatives): Compare with popular cloud tools
+- [About](${baseUrl}/about): Zero-server privacy guarantee
+- [Contact](${baseUrl}/contact): Support and feedback
+- [Legal](${baseUrl}/legal/privacy): Privacy policy and terms
+
+## Comprehensive Documentation
 - [Full Technical Index & Tool Specs](${baseUrl}/llms-full.txt)
+- [Category Documentation](${baseUrl}/llms.txt#core-categories--tools)
+- [Alternative Comparisons](${baseUrl}/llms.txt#alternative-pages)
 `;
 
     return new NextResponse(content, {

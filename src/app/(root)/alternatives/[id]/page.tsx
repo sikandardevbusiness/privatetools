@@ -14,6 +14,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { LLMCopyButton } from "@/components/llm-copy-button";
 
 import { alternativesList } from "../registry";
 import { toolMetadataList } from "@/features/tools/registry";
@@ -109,21 +110,27 @@ export default async function AlternativePage({ params }: PageProps) {
             <main className="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8 space-y-12">
                 {/* Header */}
                 <div className="space-y-4">
-                    <Breadcrumb>
-                        <BreadcrumbList>
-                            <BreadcrumbItem>
-                                <BreadcrumbLink href="/">Home</BreadcrumbLink>
-                            </BreadcrumbItem>
-                            <BreadcrumbSeparator />
-                            <BreadcrumbItem>
-                                <BreadcrumbLink href="/alternatives">Alternatives</BreadcrumbLink>
-                            </BreadcrumbItem>
-                            <BreadcrumbSeparator />
-                            <BreadcrumbItem>
-                                <BreadcrumbPage>{alt.name} Alternative</BreadcrumbPage>
-                            </BreadcrumbItem>
-                        </BreadcrumbList>
-                    </Breadcrumb>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <Breadcrumb>
+                            <BreadcrumbList>
+                                <BreadcrumbItem>
+                                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                                </BreadcrumbItem>
+                                <BreadcrumbSeparator />
+                                <BreadcrumbItem>
+                                    <BreadcrumbLink href="/alternatives">
+                                        Alternatives
+                                    </BreadcrumbLink>
+                                </BreadcrumbItem>
+                                <BreadcrumbSeparator />
+                                <BreadcrumbItem>
+                                    <BreadcrumbPage>{alt.name} Alternative</BreadcrumbPage>
+                                </BreadcrumbItem>
+                            </BreadcrumbList>
+                        </Breadcrumb>
+
+                        <LLMCopyButton url={`/alternatives/${id}/llms.txt`} />
+                    </div>
 
                     <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
                         The Best {alt.name} Alternative

@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 
 import { toolMetadataList } from "@/features/tools/registry";
 import { categoryInfoList } from "@/features/tools/category";
+import { alternativesList } from "@/app/(root)/alternatives/registry";
 import { env } from "@/lib/env";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -12,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const staticPages = [
         { route: "", priority: 1.0, changeFrequency: "daily" as const },
         { route: "/tools", priority: 0.9, changeFrequency: "weekly" as const },
+        { route: "/alternatives", priority: 0.9, changeFrequency: "weekly" as const },
         { route: "/about", priority: 0.5, changeFrequency: "monthly" as const },
         { route: "/contact", priority: 0.5, changeFrequency: "monthly" as const },
 
@@ -46,5 +48,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
     }));
 
-    return [...staticPages, ...categoryPages, ...toolPages];
+    // 4. Dynamic Alternative Pages
+    const alternativePages = alternativesList.map((alt) => ({
+        url: `${baseUrl}/alternatives/${alt.id}`,
+        lastModified: currentDate,
+        changeFrequency: "weekly" as const,
+        priority: 0.85,
+    }));
+
+    return [...staticPages, ...categoryPages, ...toolPages, ...alternativePages];
 }

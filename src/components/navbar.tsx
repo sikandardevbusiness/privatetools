@@ -56,12 +56,12 @@ export function Navbar() {
                 <Logo />
 
                 {/* Desktop Navigation */}
-                <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-muted-foreground">
+                <nav className="hidden md:flex items-center text-sm font-medium text-muted-foreground">
                     {navLinks.map((link) => (
                         <Link
                             key={link.href}
                             href={link.href}
-                            className="transition-colors hover:text-primary"
+                            className={cn(buttonVariants({ variant: "ghost" }))}
                         >
                             {link.label}
                         </Link>
@@ -69,7 +69,7 @@ export function Navbar() {
 
                     {/* Resources Popover (Base UI) */}
                     <Popover>
-                        <PopoverTrigger className="flex gap-x-1 items-center justify-center">
+                        <PopoverTrigger className={cn(buttonVariants({ variant: "ghost" }))}>
                             Resources
                             <ChevronDown className="w-4 h-4" />
                         </PopoverTrigger>

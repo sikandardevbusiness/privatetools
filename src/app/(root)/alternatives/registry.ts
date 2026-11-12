@@ -3,7 +3,7 @@ export interface Alternative {
     name: string;
     tagline: string;
     description: string;
-    ourTools: string[];
+    ourTools: string[]; // MUST be exact slug IDs to match toolMetadataList.filter((t) => alt.ourTools.includes(t.id))
     competitorFeatures: string[];
     ourBenefits: string[];
     limitations: string[];
@@ -18,7 +18,7 @@ export const alternativesList: Alternative[] = [
         name: "Smallpdf & iLovePDF",
         tagline: "The 100% free, private, and unlimited alternative to cloud-based PDF tools.",
         description:
-            "Smallpdf and iLovePDF are popular online PDF utilities, but they restrict free users to a few tasks per day and require uploading your sensitive documents to their cloud servers. Our suite of PDF tools runs entirely in your browser, offering unlimited compressions, splits, conversions, and redactions with zero file uploads.",
+            "Smallpdf and iLovePDF restrict free users and require uploading sensitive documents to cloud servers. Our suite of document tools runs entirely in your browser, offering splits, conversions, and true redaction with zero file uploads.",
         ourTools: [
             "pdf-compressor",
             "pdf-size-splitter",
@@ -32,13 +32,13 @@ export const alternativesList: Alternative[] = [
             "Files uploaded to third-party cloud servers",
             "Strict daily limits (e.g., 2 tasks/day) for free users",
             "File size caps (often 50MB–100MB)",
-            "Premium paywalls for advanced features like redaction",
+            "Premium paywalls for advanced features like true redaction",
         ],
         ourBenefits: [
             "100% local browser processing (zero server uploads)",
             "Truly unlimited free usage, no daily task limits",
             "No file size limits other than your device's RAM",
-            "Advanced privacy tools like permanent PDF redaction included for free",
+            "Advanced privacy tools like true PDF redaction and metadata removal included for free",
         ],
         limitations: [
             "Processing very large PDFs (500MB+) requires a device with sufficient RAM",
@@ -67,25 +67,25 @@ export const alternativesList: Alternative[] = [
             },
             {
                 feature: "Redaction",
-                competitor: "Locked behind premium paywall",
-                us: "Free and permanent local redaction",
+                competitor: "Locked behind premium paywall or fake redaction",
+                us: "Free, true, and permanent local redaction",
             },
         ],
         status: "in-progress",
         keywords: [
             "smallpdf alternative",
             "ilovepdf alternative",
-            "free local pdf compressor",
-            "private pdf tools no upload",
-            "unlimited pdf splitter",
+            "free local pdf splitter",
+            "private pdf redactor no upload",
+            "unlimited pdf tools",
         ],
     },
     {
         id: "tinypng",
-        name: "TinyPNG & Compressor.io",
-        tagline: "The private, client-side alternative to TinyPNG for image compression.",
+        name: "TinyPNG & Generic Image Converters",
+        tagline: "The private, client-side alternative for image processing and conversion.",
         description:
-            "TinyPNG is great for compressing images, but it requires uploading your photos to external servers, raising privacy concerns. Our Image Compressor achieves similar or better compression ratios using advanced browser-based algorithms, ensuring your images never leave your device.",
+            "Tools like TinyPNG require uploading your photos to external servers, raising privacy concerns. Our image tools achieve processing locally in your browser, ensuring your images never leave your device.",
         ourTools: [
             "image-compressor",
             "webp-to-jpg",
@@ -101,16 +101,16 @@ export const alternativesList: Alternative[] = [
             "Requires uploading images to external servers",
             "Batch processing limits (e.g., max 20 images)",
             "API rate limits for free developers",
-            "Limited format support (mostly PNG/JPG/WebP)",
+            "Low-resolution downloads for free users",
         ],
         ourBenefits: [
             "Zero server uploads, ensuring complete image privacy",
             "No batch limits; process as many images as your device can handle",
-            "Supports modern and legacy formats (HEIC, TIFF, WebP, PNG, JPG)",
+            "Full resolution output with no artificial downscaling",
             "No API keys, accounts, or registration required",
         ],
         limitations: [
-            "Compression ratios rely on browser algorithms, which may differ slightly from proprietary server-side AI",
+            "Processing relies on browser algorithms, which may differ slightly from proprietary server-side AI",
             "Requires a modern browser with WebAssembly support for best performance",
         ],
         comparisonTable: [
@@ -125,9 +125,9 @@ export const alternativesList: Alternative[] = [
                 us: "Process unlimited images locally",
             },
             {
-                feature: "Format Support",
-                competitor: "PNG, JPG, WebP",
-                us: "PNG, JPG, WebP, HEIC, TIFF, and more",
+                feature: "Output Quality",
+                competitor: "Low-res for free users",
+                us: "Full resolution, no downscaling",
             },
             {
                 feature: "Cost & Limits",
@@ -138,8 +138,8 @@ export const alternativesList: Alternative[] = [
         status: "planned",
         keywords: [
             "tinypng alternative",
-            "local image compressor",
-            "private photo compressor",
+            "local image converter",
+            "private photo processor",
             "heic to jpg local",
             "batch image converter no upload",
         ],
@@ -165,10 +165,10 @@ export const alternativesList: Alternative[] = [
             "Potential data retention and privacy risks for sensitive recordings",
         ],
         ourBenefits: [
-            "100% offline transcription using local Whisper AI models",
+            "100% offline transcription using local Whisper AI models with dynamic subtitle chunking",
             "Zero data collection; your audio never leaves your device",
             "Completely free with absolutely no minute or length limits",
-            "Suite of editing tools (trim, remove silence, normalize) all in one place",
+            "Suite of editing tools (merge, trim, speed change, normalize) all in one place",
         ],
         limitations: [
             "Transcription speed depends entirely on your device's CPU/GPU power",
@@ -193,7 +193,7 @@ export const alternativesList: Alternative[] = [
             {
                 feature: "Editing",
                 competitor: "Separate tools or premium features",
-                us: "Built-in trim, silence removal, and normalization",
+                us: "Built-in trim, silence removal, and volume normalization",
             },
         ],
         status: "done",
@@ -208,9 +208,9 @@ export const alternativesList: Alternative[] = [
     {
         id: "cloudconvert",
         name: "CloudConvert & Zamzar",
-        tagline: "The instant, private alternative to CloudConvert for media files.",
+        tagline: "The instant, private alternative for media and document conversion.",
         description:
-            "CloudConvert is a versatile file converter, but uploading large video or audio files takes time and raises privacy concerns. Our specialized converters handle media conversion instantly in your browser, eliminating upload/download wait times.",
+            "CloudConvert requires uploading files to remote servers, which takes time and raises privacy concerns. Our specialized converters handle media and document conversion instantly in your browser, eliminating upload/download wait times.",
         ourTools: [
             "mp4-to-webm",
             "webm-to-mp4",
@@ -235,8 +235,8 @@ export const alternativesList: Alternative[] = [
             "No watermarks or artificial quality degradation",
         ],
         limitations: [
-            "Focused on specific high-demand media formats rather than 'every format in existence'",
-            "Heavy video conversions require a device with a decent CPU/GPU",
+            "Focused on specific high-demand formats rather than 'every format in existence'",
+            "Heavy media conversions require a device with a decent CPU/GPU",
         ],
         comparisonTable: [
             {
@@ -263,18 +263,18 @@ export const alternativesList: Alternative[] = [
         status: "planned",
         keywords: [
             "cloudconvert alternative",
-            "local video converter",
+            "local media converter",
             "private audio converter",
             "mp4 to webm local",
             "flac to mp3 browser",
         ],
     },
     {
-        id: "remove-bg",
-        name: "Remove.bg & Adobe Express",
+        id: "generic-image-editors",
+        name: "Generic Online Image Editors & Croppers",
         tagline: "The private, high-resolution alternative for image cropping and resizing.",
         description:
-            "Tools like Remove.bg and generic online editors require uploading high-resolution images to the cloud and often restrict free users to low-resolution downloads. Our specialized creator tools keep your high-res images private and deliver full-quality output.",
+            "Generic online editors require uploading high-resolution images to the cloud and often restrict free users to low-resolution downloads. Our specialized creator tools keep your high-res images private and deliver full-quality output for specific niches.",
         ourTools: [
             "universal-image-cropper",
             "manhwa-panel-cropper",
@@ -321,31 +321,31 @@ export const alternativesList: Alternative[] = [
         ],
         status: "in-progress",
         keywords: [
-            "remove.bg alternative",
             "local image cropper",
             "discord emote resizer local",
             "youtube thumbnail previewer",
             "private manga panel cropper",
+            "high res image crop no upload",
         ],
     },
     {
         id: "handbrake-online",
         name: "HandBrake & FreeConvert Video",
-        tagline: "The browser-based, instant alternative to desktop video compressors.",
+        tagline: "The browser-based, instant alternative to desktop media compressors.",
         description:
-            "Desktop software like HandBrake requires installation and technical knowledge, while online compressors have strict file size limits and long upload times. Our video tools run instantly in your browser with specialized presets for platforms like Discord.",
+            "Desktop software requires installation and technical knowledge, while online compressors have strict file size limits and long upload times. Our media tools run instantly in your browser with specialized processing.",
         ourTools: ["video-compressor", "video-compressor-discord", "video-watermark"],
         competitorFeatures: [
             "Desktop software requires installation and technical knowledge",
             "Online compressors have strict file size limits (e.g., 500MB)",
-            "Long upload and download times for large video files",
+            "Long upload and download times for large media files",
             "Watermarks added to free versions of online tools",
         ],
         ourBenefits: [
             "Browser-based, no software installation required",
             "Specialized presets (e.g., Discord 8MB limit) for instant results",
             "Zero upload/download wait times; processes directly on your machine",
-            "Free custom watermarking without branding the tool's name on your video",
+            "Clean, custom watermarking without branding the tool's name on your video",
         ],
         limitations: [
             "Browser sandboxing may limit access to hardware acceleration compared to native desktop apps",
@@ -384,20 +384,21 @@ export const alternativesList: Alternative[] = [
     {
         id: "metadata-remover",
         name: "Metadata2Go & VerExif",
-        tagline: "The secure, client-side alternative for removing EXIF and sensitive metadata.",
+        tagline:
+            "The secure, client-side alternative for removing EXIF, ID3, and sensitive metadata.",
         description:
-            "Online metadata removers require uploading your photos or network logs to third-party servers, which defeats the purpose of privacy. Our tools wipe EXIF data and sanitize HAR files entirely in your browser, guaranteeing your data never touches a server.",
-        ourTools: ["exif-wiper", "har-sanitizer"],
+            "Online metadata removers require uploading your photos, audio, or network logs to third-party servers, which defeats the purpose of privacy. Our tools wipe metadata and sanitize files entirely in your browser, guaranteeing your data never touches a server.",
+        ourTools: ["exif-wiper", "har-sanitizer", "audio-tag-editor"],
         competitorFeatures: [
-            "Requires uploading sensitive photos or network logs to third-party servers",
+            "Requires uploading sensitive files to third-party servers",
             "Unclear data retention policies for uploaded files",
-            "Limited to basic EXIF data, often missing deeper metadata",
+            "Limited to basic EXIF data, often missing deeper metadata or network logs",
             "Clunky, ad-heavy interfaces",
         ],
         ourBenefits: [
             "Guaranteed privacy: files are processed entirely in your browser",
-            "Advanced sanitization, including HAR network log redaction for developers",
-            "No data retention, as the server never sees your file",
+            "Advanced sanitization, including HAR network log redaction and MP3 ID3 editing",
+            "True metadata removal with zero data retention",
             "Clean, ad-free, and open-source interface",
         ],
         limitations: [
@@ -418,7 +419,7 @@ export const alternativesList: Alternative[] = [
             {
                 feature: "Scope",
                 competitor: "Basic photo EXIF only",
-                us: "Photo EXIF + advanced developer HAR sanitization",
+                us: "Photo/PDF metadata + advanced developer HAR sanitization + MP3 ID3",
             },
             {
                 feature: "Experience",
@@ -432,6 +433,7 @@ export const alternativesList: Alternative[] = [
             "local exif remover",
             "private har sanitizer",
             "browser metadata wiper",
+            "mp3 tag editor local",
         ],
     },
     {
@@ -455,8 +457,8 @@ export const alternativesList: Alternative[] = [
         ],
         ourBenefits: [
             "100% client-side processing ensures your proprietary data stays private",
-            "Advanced features like running actual SQL queries directly on CSV files",
-            "Specialized converters (e.g., VCF to CSV for iPhone/Android contacts)",
+            "Advanced features like running actual SQL queries directly on CSV/JSON files powered by DuckDB WebAssembly",
+            "Specialized converters (e.g., VCF to CSV/Excel for iPhone/Android contacts)",
             "Fast, ad-free, and open-source",
         ],
         limitations: [
@@ -472,7 +474,7 @@ export const alternativesList: Alternative[] = [
             {
                 feature: "Capabilities",
                 competitor: "Simple format swapping",
-                us: "Advanced SQL querying and complex transformations",
+                us: "Advanced SQL querying (DuckDB) and complex transformations",
             },
             {
                 feature: "Specialization",
