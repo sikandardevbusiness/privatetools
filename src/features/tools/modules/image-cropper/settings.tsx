@@ -1,9 +1,11 @@
 "use client";
 
 import { Download, RotateCcw } from "lucide-react";
+import { OutputFormat } from "@sikandardevbusiness/image-cropper";
 
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { PropSlider } from "@/components/ui/prop-slider";
 import {
     Select,
     SelectContent,
@@ -13,21 +15,25 @@ import {
 } from "@/components/ui/select";
 
 interface CropperSettingsProps {
+    borderRadius: number;
+    outputFormat: OutputFormat;
     aspectRatio: number | undefined;
-    outputFormat: string;
     onReset: () => void;
     onDownload: () => void;
     onNewImage: () => void;
+    onBorderRadiusChange: (value: number) => void;
+    onOutputFormatChange: (value: OutputFormat) => void;
     onAspectRatioChange: (value: number | undefined) => void;
-    onOutputFormatChange: (value: string) => void;
 }
 
 export function CropperSettings({
     aspectRatio,
+    borderRadius,
     outputFormat,
     onReset,
     onDownload,
     onAspectRatioChange,
+    onBorderRadiusChange,
     onOutputFormatChange,
 }: CropperSettingsProps) {
     return (
@@ -38,11 +44,8 @@ export function CropperSettings({
                     <Select
                         value={aspectRatio?.toString() || "free"}
                         onValueChange={(value) => {
-                            if (value === "free" || value === null) {
-                                onAspectRatioChange(undefined);
-                            } else {
-                                onAspectRatioChange(parseFloat(value));
-                            }
+                            if (value === "free" || value === null) onAspectRatioChange(undefined);
+                            else onAspectRatioChange(parseFloat(value));
                         }}
                     >
                         <SelectTrigger className="w-full">
@@ -50,15 +53,27 @@ export function CropperSettings({
                         </SelectTrigger>
                         <SelectContent className="w-full">
                             <SelectItem value="free">Free Form</SelectItem>
-                            <SelectItem value="1">1:1 (Square)</SelectItem>
+                            <SelectItem value="1">1:1 (Square / Circle)</SelectItem>
                             <SelectItem value="1.7778">16:9 (Landscape)</SelectItem>
                             <SelectItem value="1.3333">4:3 (Standard)</SelectItem>
                             <SelectItem value="0.75">3:4 (Portrait)</SelectItem>
                             <SelectItem value="0.5625">9:16 (Story)</SelectItem>
                         </SelectContent>
                     </Select>
+                </div>
+
+                <div className="space-y-2">
+                    <PropSlider
+                        label="Border Radius"
+                        value={borderRadius}
+                        onChange={onBorderRadiusChange}
+                        min={0}
+                        max={50}
+                        step={1}
+                        unit="%"
+                    />
                     <p className="text-xs text-muted-foreground">
-                        Lock the crop shape for social media or custom dimensions.
+                        0% = sharp, 50% = circle (at 1:1).
                     </p>
                 </div>
 
@@ -74,36 +89,26 @@ export function CropperSettings({
                             <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="w-full">
-                            {["png", "jpg", "webp"].map((fmt) => (
-                                <SelectItem key={fmt} value={fmt}>
-                                    {fmt.toUpperCase()}
-                                </SelectItem>
-                            ))}
+                            <SelectItem value="png">PNG (Transparent)</SelectItem>
+                            <SelectItem value="jpg">JPG (White BG)</SelectItem>
+                            <SelectItem value="webp">WEBP (Compressed)</SelectItem>
                         </SelectContent>
                     </Select>
                     <p className="text-xs text-muted-foreground">
-                        PNG for quality, JPG for size, WEBP for modern browsers.
+                        PNG keeps rounded corners transparent.
                     </p>
                 </div>
             </div>
 
             <div className="space-y-3 pt-4 border-t border-border">
-                {/* Action Buttons */}
-                <div className="space-y-3">
-                    <Button variant="outline" onClick={onReset} className="w-full gap-2" size="lg">
-                        <RotateCcw className="w-4 h-4" />
-                        Reset
-                    </Button>
-
-                    <Button onClick={onDownload} className="w-full gap-2" size="lg">
-                        <Download className="w-4 h-4" />
-                        Download Image
-                    </Button>
-                </div>
-
-                {/* Simple Note instead of Zoom Controls */}
+                <Button variant="outline" onClick={onReset} className="w-full gap-2" size="lg">
+                    <RotateCcw className="w-4 h-4" /> Reset
+                </Button>
+                <Button onClick={onDownload} className="w-full gap-2" size="lg">
+                    <Download className="w-4 h-4" /> Crop & Download
+                </Button>
                 <p className="text-xs text-muted-foreground text-center py-2">
-                    Tip: Scroll to zoom • Drag to move • Drag edges to resize
+                    Drag to move • Drag handles to resize • Scroll to zoom
                 </p>
             </div>
         </div>
