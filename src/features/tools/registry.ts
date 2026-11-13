@@ -74,6 +74,31 @@ import {
     manhwaPdfMergerToolComponentMap,
     manhwaPdfMergerToolMetadataList,
 } from "./modules/manhwa-pdf-merger";
+import {
+    colorConverterToolComponentMap,
+    colorConverterToolMetadataList,
+} from "./modules/color-converter";
+import {
+    colorPaletteToolComponentMap,
+    colorPaletteToolMetadataList,
+} from "./modules/color-palette";
+import {
+    imagePaletteToolComponentMap,
+    imagePaletteToolMetadataList,
+} from "./modules/image-palette";
+import {
+    contrastCheckerToolComponentMap,
+    contrastCheckerToolMetadataList,
+} from "./modules/contrast-checker";
+import {
+    colorblindToolComponentMap,
+    colorblindToolMetadataList,
+} from "./modules/colorblind-simulator";
+import { gradientToolComponentMap, gradientToolMetadataList } from "./modules/gradient-generator";
+import {
+    imageColorPickerToolComponentMap,
+    imageColorPickerToolMetadataList,
+} from "./modules/image-color-picker";
 
 export const toolMetadataList: BaseTool[] = [
     ...imageCropperToolMetadataList,
@@ -87,6 +112,13 @@ export const toolMetadataList: BaseTool[] = [
     ...audioTagEditorToolMetadataList,
     ...audioVolumeNormalizerToolMetadataList,
     ...manhwaPdfMergerToolMetadataList,
+    ...colorConverterToolMetadataList,
+    ...colorPaletteToolMetadataList,
+    ...contrastCheckerToolMetadataList,
+    ...colorblindToolMetadataList,
+    ...imagePaletteToolMetadataList,
+    ...gradientToolMetadataList,
+    ...imageColorPickerToolMetadataList,
     ...epubToolsMetadataList,
     ...pdfSizeSplitterToolMetadataList,
     ...dataConverterToolMetadataList,
@@ -103,13 +135,17 @@ export const toolMetadataList: BaseTool[] = [
 
 export const toolComponentMap: ToolComponentMap = {
     ...epubToolsComponentMap,
+    ...gradientToolComponentMap,
     ...exifWiperToolComponentMap,
     ...sqlEngineToolComponentMap,
+    ...colorblindToolComponentMap,
     ...audioMergerToolComponentMap,
     ...pdfRedactorToolComponentMap,
     ...imageCropperToolComponentMap,
     ...audioTrimmerToolComponentMap,
     ...harSanitizerToolComponentMap,
+    ...colorPaletteToolComponentMap,
+    ...imagePaletteToolComponentMap,
     ...manhwaCropperToolComponentMap,
     ...removeSilenceToolComponentMap,
     ...fileConverterToolComponentMap,
@@ -117,9 +153,12 @@ export const toolComponentMap: ToolComponentMap = {
     ...audioTagEditorToolComponentMap,
     ...fileCompressorToolComponentMap,
     ...videoWatermarkToolComponentMap,
+    ...colorConverterToolComponentMap,
+    ...contrastCheckerToolComponentMap,
     ...dataTransformerToolComponentMap,
     ...pdfSizeSplitterToolComponentMap,
     ...manhwaPdfMergerToolComponentMap,
+    ...imageColorPickerToolComponentMap,
     ...audioTranscriberToolComponentMap,
     ...thumbnailPreviewToolComponentMap,
     ...audioSpeedChangerToolComponentMap,

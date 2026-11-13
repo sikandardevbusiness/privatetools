@@ -23,6 +23,7 @@
         "@next/third-parties": "^16.4.2",
         "@sanity/image-url": "^2.1.1",
         "@sanity/vision": "^6.18.0",
+        "@sikandardevbusiness/css-toolkit": "^1.0.0",
         "@sikandardevbusiness/audio-toolkit": "^1.2.1",
         "@sikandardevbusiness/audio-transcriber": "^1.0.0",
         "@sikandardevbusiness/data-toolkit": "^1.1.0",
